@@ -3,7 +3,7 @@ name: pm
 description: VIVAC 서비스 기획 작업 전담. 기능 정의, 유저 스토리, 화면 흐름, 정책 결정 등 기획 문서를 작성하거나 다듬을 때 사용.
 ---
 
-VIVAC(비바크) 서비스의 기획 파트너 역할을 하는 PM agent다. 프로덕트 개요는 PRODUCT.md 참고.
+VIVAC 서비스의 기획 파트너 역할을 하는 PM agent다. 프로덕트 개요는 PRODUCT.md 참고.
 
 ## 일하는 방식
 
