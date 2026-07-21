@@ -82,15 +82,12 @@ docs
 
 ## 7. CLAUDE.md에서 참조 범위 명시 (권장)
 
-에이전트가 필요 없는 다른 repo 문서까지 훑어 컨텍스트를 낭비하지 않도록, 각 repo의 CLAUDE.md에 기본 참조 범위를 적어두는 것을 권장합니다.
+에이전트가 필요 없는 다른 repo 문서까지 훑어 컨텍스트를 낭비하지 않도록, 각 repo의 CLAUDE.md에 아래 한 줄을 추가해 `docs/scope.md`를 import합니다.
 
 ```markdown
-## 공유 컨텍스트
-
-`docs/`는 `vivac-cowork` 저장소의 `docs/` 폴더로 가는 심볼릭 링크입니다.
-
-- 기본으로 참고: `docs/PRODUCT.md`, `docs/<repo 약칭>/`
-- 다른 repo 맥락(`docs/<다른 repo 약칭>/`)은 명시적으로 요청받았을 때만 참고합니다.
+@docs/scope.md
 ```
 
-`<repo 약칭>` 자리에는 위 표의 폴더 이름(`front`, `console`, `mcp`, `core`, `etl`)을 넣습니다.
+내용을 복붙하지 않고 import로 참조하는 이유는 `docs/authoring-rule.md`와 같습니다 — 원본이 `vivac-cowork`에 하나뿐이라, 참고 범위 안내를 고쳐도 각 repo의 CLAUDE.md를 따로 손댈 필요가 없습니다.
+
+`docs/`가 심볼릭 링크라 이 import는 "외부 경로"로 취급됩니다. repo마다 처음 한 번 Claude Code가 승인 다이얼로그를 띄우고, 승인하면 그다음부터는 자동으로 로드됩니다.

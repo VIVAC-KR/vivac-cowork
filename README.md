@@ -11,6 +11,7 @@ VIVAC 서비스의 **기획/협업 문서 저장소**입니다. 코드는 없고
 | [docs/data-pipeline.md](docs/data-pipeline.md) | 스팟 데이터 파이프라인 설계 — `pipeline_status`(RAW→PUBLISHED 처리 단계), `trust_tier`(신뢰도 1~3등급) 필드 정의와 확정 정책. |
 | [docs/business-feature-roadmap.md](docs/business-feature-roadmap.md) | 비즈니스 기능 로드맵 — 성장/리텐션/수익화/신뢰 4개 관점의 기능 후보와 우선순위. |
 | [docs/authoring-rule.md](docs/authoring-rule.md) | `docs/` 하위 문서 작성 규칙(카테고리, 파일명, 톤, 템플릿). `.claude/rules/`로 연결하면 문서 작성 시 자동 로드됩니다. |
+| [docs/scope.md](docs/scope.md) | 공유 컨텍스트 기본 참고 범위 안내. 각 repo CLAUDE.md에서 `@docs/scope.md`로 import합니다. |
 | [SYMLINK-SETUP.md](SYMLINK-SETUP.md) | 각 repo에서 이 저장소의 `docs/`를 심볼릭 링크로 연결하는 방법. |
 | [CLAUDE.md](CLAUDE.md) | Claude Code용 프로젝트 지침. `vivac-cowork` 저장소 자체 작업용이며, `docs/`가 아니라 저장소 루트에 있어 다른 repo로는 공유되지 않습니다. |
 
