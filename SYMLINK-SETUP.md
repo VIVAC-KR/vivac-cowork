@@ -42,33 +42,45 @@ ln -s "<vivac-cowork 경로>/docs" docs
 | vivacapi-core | `~/CursorProjects/vivac/vivacapi-core` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
 | vivacapi-etl | `~/CursorProjects/vivac/vivacapi-etl` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
 
-## 3. git에 커밋되지 않도록 처리
+## 3. 문서 작성 규칙도 자동으로 로드되게 걸기 (권장)
 
-절대경로 심볼릭 링크는 clone 위치가 사람마다 달라, 커밋하면 다른 환경에서 깨집니다. 각 repo의 `.gitignore`에 한 줄을 추가합니다.
-
-```
-docs
-```
-
-## 4. 확인
+`docs/authoring-rule.md`에는 카테고리 폴더 선택 기준, 파일명, 톤, 문서별 템플릿이 정리돼 있습니다. `docs/` 심볼릭 링크만으로는 이 내용이 세션에 자동으로 끼워지지 않습니다 — Claude가 스스로 읽으러 가야만 보입니다. `.claude/rules/`에 같은 파일을 한 번 더 심볼릭 링크로 걸어두면, Claude가 `docs/**/*.md`를 다룰 때마다 이 규칙이 자동으로 컨텍스트에 로드됩니다(파일 안 `paths:` frontmatter로 스코프가 걸려 있습니다).
 
 ```bash
-ls -la docs                          # 심볼릭 링크인지 확인 (화살표로 표시됨)
-cat docs/PRODUCT.md                  # 공유 문서가 읽히는지 확인
-ls docs/<repo 약칭>/                 # 해당 repo 전용 문서 폴더 확인
+mkdir -p .claude/rules
+ln -s "<vivac-cowork 경로>/docs/authoring-rule.md" .claude/rules/vivac-docs-authoring.md
 ```
 
-## 5. worktree에서도 자동으로 걸리게 하기 (권장)
+## 4. git에 커밋되지 않도록 처리
 
-Claude Code에서 `git worktree`를 새로 만들면 gitignore된 파일(이 `docs` 심볼릭 링크 포함)은 기본적으로 새 worktree에 복사되지 않습니다. repo 루트에 `.worktreeinclude` 파일을 만들고 아래처럼 적어두면, gitignore된 파일 중 이 패턴에 매칭되는 것만 새 worktree 생성 시 자동으로 복사됩니다(심볼릭 링크는 링크 그대로 복사되어 같은 `vivac-cowork` 경로를 계속 가리킵니다).
+절대경로 심볼릭 링크는 clone 위치가 사람마다 달라, 커밋하면 다른 환경에서 깨집니다. 각 repo의 `.gitignore`에 두 줄을 추가합니다.
 
 ```
 docs
+.claude/rules/vivac-docs-authoring.md
+```
+
+## 5. 확인
+
+```bash
+ls -la docs                                        # 심볼릭 링크인지 확인 (화살표로 표시됨)
+cat docs/PRODUCT.md                                # 공유 문서가 읽히는지 확인
+ls docs/<repo 약칭>/                               # 해당 repo 전용 문서 폴더 확인
+ls -la .claude/rules/vivac-docs-authoring.md       # 규칙 심볼릭 링크 확인
+```
+
+## 6. worktree에서도 자동으로 걸리게 하기 (권장)
+
+Claude Code에서 `git worktree`를 새로 만들면 gitignore된 파일(`docs`, `.claude/rules/vivac-docs-authoring.md` 심볼릭 링크 포함)은 기본적으로 새 worktree에 복사되지 않습니다. repo 루트에 `.worktreeinclude` 파일을 만들고 아래처럼 적어두면, gitignore된 파일 중 이 패턴에 매칭되는 것만 새 worktree 생성 시 자동으로 복사됩니다(심볼릭 링크는 링크 그대로 복사되어 같은 `vivac-cowork` 경로를 계속 가리킵니다).
+
+```
+docs
+.claude/rules/vivac-docs-authoring.md
 ```
 
 `.claude/settings.json`의 `worktree.symlinkDirectories`는 여기 쓰지 않습니다 — 그건 같은 repo 안 원본 worktree의 디렉터리를 라이브로 공유하는 용도(예: `node_modules`)라 성격이 다르고, 쓰기 시 심볼릭 링크가 일반 파일로 바뀌거나 worktree 정리가 실패하는 알려진 버그가 있습니다.
 
-## 6. CLAUDE.md에서 참조 범위 명시 (권장)
+## 7. CLAUDE.md에서 참조 범위 명시 (권장)
 
 에이전트가 필요 없는 다른 repo 문서까지 훑어 컨텍스트를 낭비하지 않도록, 각 repo의 CLAUDE.md에 기본 참조 범위를 적어두는 것을 권장합니다.
 
