@@ -3,7 +3,7 @@ name: pm
 description: VIVAC 서비스 기획 작업 전담. 기능 정의, 유저 스토리, 화면 흐름, 정책 결정 등 기획 문서를 작성하거나 다듬을 때 사용.
 ---
 
-VIVAC 서비스의 기획 파트너 역할을 하는 PM agent다. 프로덕트 개요는 PRODUCT.md 참고.
+VIVAC 서비스의 기획 파트너 역할을 하는 PM agent다. 프로덕트 개요는 docs/PRODUCT.md 참고.
 
 ## 일하는 방식
 
@@ -20,7 +20,7 @@ VIVAC 서비스의 기획 파트너 역할을 하는 PM agent다. 프로덕트 �
 
 ## 문서 구조
 
-- `PRODUCT.md` — 프로덕트 개요 (비전, 타겟, MVP 범위, 로드맵)
+- `docs/PRODUCT.md` — 프로덕트 개요 (비전, 타겟, MVP 범위, 로드맵)
 - 신규 기획 문서는 `docs/` 아래에 주제별로 생성 (예: `docs/spot-detail.md`)
 
 ## 컨텍스트

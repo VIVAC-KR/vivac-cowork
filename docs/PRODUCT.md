@@ -42,7 +42,7 @@
 
 초기엔 운영팀이 수동 수집·정제해 등록하고(공공 API, 기관 사이트, 커뮤니티 소스), 이후 UGC(제보/리뷰/사진)로 확장합니다.
 
-데이터 row별 파이프라인 상태(`status`)와 신뢰도 등급(`tier`) 설계는 [docs/data-pipeline.md](docs/data-pipeline.md)를 참고하세요.
+데이터 row별 파이프라인 상태(`status`)와 신뢰도 등급(`tier`) 설계는 [data-pipeline.md](data-pipeline.md)를 참고하세요.
 
 ## 수익 모델
 
