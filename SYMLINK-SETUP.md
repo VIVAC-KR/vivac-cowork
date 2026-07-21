@@ -1,12 +1,20 @@
 # 심볼릭 링크 설정 — 각 repo에서 vivac-cowork 문서 참조하기
 
-`vivac-cowork`의 `docs/` 폴더를 작업 중인 repo의 `docs/` 자리에 심볼릭 링크로 연결하면, 그 repo 안에서 바로 공유 기획 문서(`PRODUCT.md` 등)와 해당 repo 전용 문서(`docs-<repo명>/`)를 함께 참조할 수 있습니다.
+`vivac-cowork`의 `docs/` 폴더를 작업 중인 repo의 `docs/` 자리에 심볼릭 링크로 연결하면, 그 repo 안에서 바로 공유 기획 문서(`PRODUCT.md` 등)와 해당 repo 전용 문서(`docs/<repo 약칭>/`)를 함께 참조할 수 있습니다.
+
+| repo | 약칭 폴더 |
+|---|---|
+| `VIVAC-frontend` | `docs/front/` |
+| `vivac-console` | `docs/console/` |
+| `vivac-mcp` | `docs/mcp/` |
+| `vivacapi-core` | `docs/core/` |
+| `vivacapi-etl` | `docs/etl/` |
 
 `vivac-cowork` 저장소 루트 전체가 아니라 **`docs/` 폴더만** 공유됩니다. `CLAUDE.md`, `README.md` 등 `vivac-cowork` 저장소 자체에 대한 설명이나 기획 작업용 파일은 이 링크에 포함되지 않고, 각 개발 repo에는 노출되지 않습니다.
 
 ## 1. 기존 로컬 docs 정리
 
-작업할 repo에 이미 자체 `docs/` 폴더가 있다면(대부분 있습니다), 그 안의 md 문서가 이미 `vivac-cowork`의 `docs/docs-<repo명>/`로 옮겨졌는지 먼저 확인합니다. 옮겨졌다면 로컬 `docs/`는 삭제해도 안전합니다.
+작업할 repo에 이미 자체 `docs/` 폴더가 있다면(대부분 있습니다), 그 안의 md 문서가 이미 `vivac-cowork`의 `docs/<repo 약칭>/`로 옮겨졌는지 먼저 확인합니다. 옮겨졌다면 로컬 `docs/`는 삭제해도 안전합니다.
 
 ```bash
 cd <작업할 repo 경로>
@@ -14,7 +22,7 @@ git rm -r docs   # 이미 vivac-cowork로 옮겨진 문서라면 안전하게 �
 git commit -m "docs: remove local docs, now managed in vivac-cowork"
 ```
 
-아직 옮기지 않은 문서가 있다면, 먼저 그 내용을 `vivac-cowork`의 `docs/docs-<repo명>/`로 옮긴 뒤 진행합니다.
+아직 옮기지 않은 문서가 있다면, 먼저 그 내용을 `vivac-cowork`의 `docs/<repo 약칭>/`로 옮긴 뒤 진행합니다.
 
 ## 2. 링크 걸기
 
@@ -47,7 +55,7 @@ docs
 ```bash
 ls -la docs                          # 심볼릭 링크인지 확인 (화살표로 표시됨)
 cat docs/PRODUCT.md                  # 공유 문서가 읽히는지 확인
-ls docs/docs-<repo명>/               # 해당 repo 전용 문서 폴더 확인
+ls docs/<repo 약칭>/                 # 해당 repo 전용 문서 폴더 확인
 ```
 
 ## 5. worktree에서도 자동으로 걸리게 하기 (권장)
@@ -69,8 +77,8 @@ docs
 
 `docs/`는 `vivac-cowork` 저장소의 `docs/` 폴더로 가는 심볼릭 링크입니다.
 
-- 기본으로 참고: `docs/PRODUCT.md`, `docs/docs-<repo명>/`
-- 다른 repo 맥락(`docs/docs-<다른repo명>/`)은 명시적으로 요청받았을 때만 참고합니다.
+- 기본으로 참고: `docs/PRODUCT.md`, `docs/<repo 약칭>/`
+- 다른 repo 맥락(`docs/<다른 repo 약칭>/`)은 명시적으로 요청받았을 때만 참고합니다.
 ```
 
-`<repo명>` 자리에는 실제 폴더 이름(`vivac-console`, `vivacapi-core` 등)을 넣습니다.
+`<repo 약칭>` 자리에는 위 표의 폴더 이름(`front`, `console`, `mcp`, `core`, `etl`)을 넣습니다.

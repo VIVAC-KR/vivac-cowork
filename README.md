@@ -13,17 +13,17 @@ VIVAC 서비스의 **기획/협업 문서 저장소**입니다. 코드는 없고
 | [SYMLINK-SETUP.md](SYMLINK-SETUP.md) | 각 repo에서 이 저장소의 `docs/`를 심볼릭 링크로 연결하는 방법. |
 | [CLAUDE.md](CLAUDE.md) | Claude Code용 프로젝트 지침. `vivac-cowork` 저장소 자체 작업용이며, `docs/`가 아니라 저장소 루트에 있어 다른 repo로는 공유되지 않습니다. |
 
-## repo별 문서 (`docs/docs-<repo>/`)
+## repo별 문서 (`docs/<repo>/`)
 
-각 repo에서만 참고하는 맥락(아키텍처, 백로그, 코드리뷰, 결정사항, ETL 작업 기록 등)은 원본 repo가 아니라 여기서 관리합니다. 각 repo는 이 저장소의 `docs/` 폴더를 자기 `docs/` 자리에 심볼릭 링크로 걸어 공유 문서(PRODUCT.md 등)와 자기 전용 폴더(`docs-<repo>/`)를 함께 참조합니다. 저장소 루트(CLAUDE.md 등)는 링크 대상에 포함되지 않습니다 — 링크 설정 방법은 [SYMLINK-SETUP.md](SYMLINK-SETUP.md) 참고.
+각 repo에서만 참고하는 맥락(아키텍처, 백로그, 코드리뷰, 결정사항, ETL 작업 기록 등)은 원본 repo가 아니라 여기서 관리합니다. 각 repo는 이 저장소의 `docs/` 폴더를 자기 `docs/` 자리에 심볼릭 링크로 걸어 공유 문서(PRODUCT.md 등)와 자기 전용 폴더(`<repo>/`)를 함께 참조합니다. 저장소 루트(CLAUDE.md 등)는 링크 대상에 포함되지 않습니다 — 링크 설정 방법은 [SYMLINK-SETUP.md](SYMLINK-SETUP.md) 참고.
 
 | 폴더 | 원본 repo |
 |---|---|
-| [docs/docs-vivac-frontend/](docs/docs-vivac-frontend/) | `VIVAC-frontend` |
-| [docs/docs-vivac-console/](docs/docs-vivac-console/) | `vivac-console` |
-| [docs/docs-vivac-mcp/](docs/docs-vivac-mcp/) | `vivac-mcp` |
-| [docs/docs-vivacapi-core/](docs/docs-vivacapi-core/) | `vivacapi-core` |
-| [docs/docs-vivacapi-etl/](docs/docs-vivacapi-etl/) | `vivacapi-etl` |
+| [docs/front/](docs/front/) | `VIVAC-frontend` |
+| [docs/console/](docs/console/) | `vivac-console` |
+| [docs/mcp/](docs/mcp/) | `vivac-mcp` |
+| [docs/core/](docs/core/) | `vivacapi-core` |
+| [docs/etl/](docs/etl/) | `vivacapi-etl` |
 
 ### 폴더 내부 규칙
 
