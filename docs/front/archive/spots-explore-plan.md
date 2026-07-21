@@ -1,3 +1,18 @@
+# ⚠️ Archived
+
+이 문서는 더 이상 유효하지 않습니다.
+
+대체 문서:
+없음 — 문서가 설명하는 `apps/web/src/features/spots/`(SpotCard, SpotListView, SpotMapView, SpotExplorer) 구현이 현재 코드베이스에 존재하지 않습니다(확인일 2026-07-15 기준, 홈 화면 개편 과정에서 제거된 것으로 추정). `/spots` 리스트·지도 탐색 페이지를 재구현할 경우 이 문서의 컴포넌트 분해·placeholder 톤 결정을 참고 자료로 활용할 수 있습니다.
+
+Archive Date:
+2026-07-15
+
+Reason:
+문서가 참조하는 `Spot` 타입, MSW 목 데이터, `features/spots/*` 컴포넌트가 현재 코드베이스에 존재하지 않습니다. `docs/backlog/codebase-review-260714.md`에서 코드와 모순되는 문서로 이미 식별된 바 있습니다.
+
+---
+
 # 장소 탐색 페이지 — 리스트/지도 토글 보기 (디자인 우선) 계획
 
 ## 배경 (Context)

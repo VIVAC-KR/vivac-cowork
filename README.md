@@ -31,4 +31,6 @@ VIVAC 서비스의 **기획/협업 문서 저장소**입니다. 코드는 없고
 
 문서 성격별로 표준 하위 폴더(`decisions/`, `backlog/`, `reviews/`, `projects/`)를 씁니다. 카테고리 기준, 파일명, 톤, 문서별 템플릿은 [.claude/rules/vivac-docs-authoring.md](.claude/rules/vivac-docs-authoring.md)에 정리돼 있습니다 — 각 repo의 `.claude/rules/`에 같은 경로로 심볼릭 링크를 걸어두면 문서를 쓸 때 자동으로 로드됩니다(설정 방법은 [SYMLINK-SETUP.md](SYMLINK-SETUP.md) 참고).
 
+`docs/front/`는 예외입니다 — `VIVAC-frontend` repo 자체의 `docs/` 구조(`archive/`, `backlog/`, `decisions/`, `reference/`, `templates/`, `INDEX.md`)를 수정 없이 그대로 미러링합니다. 이 폴더는 위 규칙 대상이 아니며, 갱신 시에도 원본 repo의 `docs/`를 그대로 다시 복사합니다.
+
 `vivac-ios`, `vivac-mobile-test`는 자체 `docs/` 폴더가 없어 취합 대상에서 제외했습니다. `vivacapi-core-org`는 `vivacapi-core`의 오래된 개인 포크로, 내용이 전부 `vivacapi-core` 쪽이 최신·상위호환이라 제외했습니다(대조 확인 완료, 2026-07-21).

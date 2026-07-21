@@ -1,3 +1,18 @@
+# ⚠️ Archived
+
+이 문서는 더 이상 유효하지 않습니다.
+
+대체 문서:
+없음 — NextAuth v5 전환(commit 788291c) 이후 인증 아키텍처를 다루는 신규 Reference 문서가 아직 작성되지 않았습니다. 현재 구현은 `apps/web/src/auth.ts`, `apps/web/src/features/auth/SessionBridge.tsx` 등을 참고하십시오. 관련 미해결 이슈는 [`docs/backlog/codebase-review-260714.md`](../backlog/codebase-review-260714.md) 참고.
+
+Archive Date:
+2026-07-15
+
+Reason:
+이 문서는 `@react-oauth/google` + Zustand + localStorage 기반의 구(舊) 인증 구현을 설명합니다. 이후 NextAuth v5 서버 세션 전환(commit 788291c)으로 해당 구현이 대체되었습니다. `docs/backlog/codebase-review-260714.md`에서 코드와 모순되는 문서로 이미 식별된 바 있습니다.
+
+---
+
 # 인증 로직 구현 보고서
 
 **프로젝트:** VIVAC — 국내 백패킹/미니멀 캠핑 유저를 위한 통합 장소 탐색 앱  
