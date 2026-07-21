@@ -8,33 +8,33 @@
 
 ```bash
 cd <작업할 repo 경로>
-ln -s "<vivac-cowork 경로>" .context
+ln -s "<vivac-cowork 경로>" .vivac-context
 ```
 
 예시 (이 워크스페이스 기준 — 경로는 사람마다 다를 수 있으니 본인 환경에 맞게 바꿔서 사용합니다):
 
 | repo | 실행 위치 | 명령 |
 |---|---|---|
-| VIVAC-frontend | `~/CursorProjects/vivac/VIVAC-frontend` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .context` |
-| vivac-console | `~/CursorProjects/vivac/vivac-console` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .context` |
-| vivac-mcp | `~/CursorProjects/vivac/vivac-mcp` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .context` |
-| vivacapi-core | `~/CursorProjects/vivac/vivacapi-core` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .context` |
-| vivacapi-etl | `~/CursorProjects/vivac/vivacapi-etl` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .context` |
+| VIVAC-frontend | `~/CursorProjects/vivac/VIVAC-frontend` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .vivac-context` |
+| vivac-console | `~/CursorProjects/vivac/vivac-console` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .vivac-context` |
+| vivac-mcp | `~/CursorProjects/vivac/vivac-mcp` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .vivac-context` |
+| vivacapi-core | `~/CursorProjects/vivac/vivacapi-core` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .vivac-context` |
+| vivacapi-etl | `~/CursorProjects/vivac/vivacapi-etl` | `ln -s ~/Documents/Claude/Projects/vivac-cowork .vivac-context` |
 
 ## 2. git에 커밋되지 않도록 처리
 
 절대경로 심볼릭 링크는 clone 위치가 사람마다 달라, 커밋하면 다른 환경에서 깨집니다. 각 repo의 `.gitignore`에 한 줄을 추가합니다.
 
 ```
-.context
+.vivac-context
 ```
 
 ## 3. 확인
 
 ```bash
-ls -la .context                          # 링크 경로 확인
-cat .context/PRODUCT.md                  # 공유 문서가 읽히는지 확인
-ls .context/docs/docs-<repo명>/          # 해당 repo 전용 문서 폴더 확인
+ls -la .vivac-context                          # 링크 경로 확인
+cat .vivac-context/PRODUCT.md                  # 공유 문서가 읽히는지 확인
+ls .vivac-context/docs/docs-<repo명>/          # 해당 repo 전용 문서 폴더 확인
 ```
 
 ## 4. CLAUDE.md에서 참조 범위 명시 (권장)
@@ -44,10 +44,10 @@ ls .context/docs/docs-<repo명>/          # 해당 repo 전용 문서 폴더 확
 ```markdown
 ## 공유 컨텍스트
 
-`.context/`는 `vivac-cowork` 저장소로 가는 심볼릭 링크입니다.
+`.vivac-context/`는 `vivac-cowork` 저장소로 가는 심볼릭 링크입니다.
 
-- 기본으로 참고: `.context/PRODUCT.md`, `.context/docs/docs-<repo명>/`
-- 다른 repo 맥락(`.context/docs/docs-<다른repo명>/`)은 명시적으로 요청받았을 때만 참고합니다.
+- 기본으로 참고: `.vivac-context/PRODUCT.md`, `.vivac-context/docs/docs-<repo명>/`
+- 다른 repo 맥락(`.vivac-context/docs/docs-<다른repo명>/`)은 명시적으로 요청받았을 때만 참고합니다.
 ```
 
 `<repo명>` 자리에는 실제 폴더 이름(`vivac-console`, `vivacapi-core` 등)을 넣습니다.
