@@ -50,7 +50,17 @@ cat docs/PRODUCT.md                  # 공유 문서가 읽히는지 확인
 ls docs/docs-<repo명>/               # 해당 repo 전용 문서 폴더 확인
 ```
 
-## 5. CLAUDE.md에서 참조 범위 명시 (권장)
+## 5. worktree에서도 자동으로 걸리게 하기 (권장)
+
+Claude Code에서 `git worktree`를 새로 만들면 gitignore된 파일(이 `docs` 심볼릭 링크 포함)은 기본적으로 새 worktree에 복사되지 않습니다. repo 루트에 `.worktreeinclude` 파일을 만들고 아래처럼 적어두면, gitignore된 파일 중 이 패턴에 매칭되는 것만 새 worktree 생성 시 자동으로 복사됩니다(심볼릭 링크는 링크 그대로 복사되어 같은 `vivac-cowork` 경로를 계속 가리킵니다).
+
+```
+docs
+```
+
+`.claude/settings.json`의 `worktree.symlinkDirectories`는 여기 쓰지 않습니다 — 그건 같은 repo 안 원본 worktree의 디렉터리를 라이브로 공유하는 용도(예: `node_modules`)라 성격이 다르고, 쓰기 시 심볼릭 링크가 일반 파일로 바뀌거나 worktree 정리가 실패하는 알려진 버그가 있습니다.
+
+## 6. CLAUDE.md에서 참조 범위 명시 (권장)
 
 에이전트가 필요 없는 다른 repo 문서까지 훑어 컨텍스트를 낭비하지 않도록, 각 repo의 CLAUDE.md에 기본 참조 범위를 적어두는 것을 권장합니다.
 
