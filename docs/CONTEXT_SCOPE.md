@@ -4,4 +4,4 @@
 
 - 기본으로 참고: `docs/PRODUCT.md`, `docs/data-pipeline.md`, `docs/business-feature-roadmap.md`, 그리고 지금 작업 중인 repo에 대응하는 `docs/<약칭>/` 폴더 (front/console/mcp/core/etl 중 하나)
 - 다른 repo의 `docs/<다른 약칭>/` 폴더는 명시적으로 요청받았을 때만 참고합니다.
-- `docs/authoring-rule.md`는 문서를 쓸 때(`.claude/rules/`로 연결했다면) 자동으로 로드되므로 따로 참고할 필요는 없습니다.
+- 문서 작성 규칙(`.claude/rules/vivac-docs-authoring.md`)은 연결해뒀다면 문서를 쓸 때 자동으로 로드되므로 따로 참고할 필요는 없습니다.

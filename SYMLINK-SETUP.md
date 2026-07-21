@@ -44,11 +44,11 @@ ln -s "<vivac-cowork 경로>/docs" docs
 
 ## 3. 문서 작성 규칙도 자동으로 로드되게 걸기 (권장)
 
-`docs/authoring-rule.md`에는 카테고리 폴더 선택 기준, 파일명, 톤, 문서별 템플릿이 정리돼 있습니다. `docs/` 심볼릭 링크만으로는 이 내용이 세션에 자동으로 끼워지지 않습니다 — Claude가 스스로 읽으러 가야만 보입니다. `.claude/rules/`에 같은 파일을 한 번 더 심볼릭 링크로 걸어두면, Claude가 `docs/**/*.md`를 다룰 때마다 이 규칙이 자동으로 컨텍스트에 로드됩니다(파일 안 `paths:` frontmatter로 스코프가 걸려 있습니다).
+`vivac-cowork`의 `.claude/rules/vivac-docs-authoring.md`에는 카테고리 폴더 선택 기준, 파일명, 톤, 문서별 템플릿이 정리돼 있습니다. 이 파일은 `docs/`가 아니라 `.claude/rules/` 밑에 있어 `docs` 심볼릭 링크만으로는 안 딸려옵니다 — 같은 위치(`.claude/rules/`)에 한 번 더 심볼릭 링크를 걸어야 합니다. 이렇게 두면 Claude가 `docs/**/*.md`를 다룰 때마다 이 규칙이 자동으로 컨텍스트에 로드됩니다(파일 안 `paths:` frontmatter로 스코프가 걸려 있습니다).
 
 ```bash
 mkdir -p .claude/rules
-ln -s "<vivac-cowork 경로>/docs/authoring-rule.md" .claude/rules/vivac-docs-authoring.md
+ln -s "<vivac-cowork 경로>/.claude/rules/vivac-docs-authoring.md" .claude/rules/vivac-docs-authoring.md
 ```
 
 ## 4. git에 커밋되지 않도록 처리
@@ -82,12 +82,12 @@ docs
 
 ## 7. CLAUDE.md에서 참조 범위 명시 (권장)
 
-에이전트가 필요 없는 다른 repo 문서까지 훑어 컨텍스트를 낭비하지 않도록, 각 repo의 CLAUDE.md에 아래 한 줄을 추가해 `docs/scope.md`를 import합니다.
+에이전트가 필요 없는 다른 repo 문서까지 훑어 컨텍스트를 낭비하지 않도록, 각 repo의 CLAUDE.md에 아래 한 줄을 추가해 `docs/CONTEXT_SCOPE.md`를 import합니다.
 
 ```markdown
-@docs/scope.md
+@docs/CONTEXT_SCOPE.md
 ```
 
-내용을 복붙하지 않고 import로 참조하는 이유는 `docs/authoring-rule.md`와 같습니다 — 원본이 `vivac-cowork`에 하나뿐이라, 참고 범위 안내를 고쳐도 각 repo의 CLAUDE.md를 따로 손댈 필요가 없습니다.
+내용을 복붙하지 않고 import로 참조하는 이유는 `.claude/rules/vivac-docs-authoring.md`와 같습니다 — 원본이 `vivac-cowork`에 하나뿐이라, 참고 범위 안내를 고쳐도 각 repo의 CLAUDE.md를 따로 손댈 필요가 없습니다.
 
 `docs/`가 심볼릭 링크라 이 import는 "외부 경로"로 취급됩니다. repo마다 처음 한 번 Claude Code가 승인 다이얼로그를 띄우고, 승인하면 그다음부터는 자동으로 로드됩니다.

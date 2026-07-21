@@ -118,5 +118,5 @@ paths:
 ## 5. 원칙
 
 - 새 문서가 기존 문서와 내용이 겹치면 새로 쓰지 않고 기존 문서를 갱신하거나 링크로 참조합니다. 중복 기록 금지.
-- 결정이 나중에 뒤집히면 원본 문서를 지우지 않고 각주/경고로 반영 사실을 남깁니다 (예: [projects/spot-invites.md](core/projects/spot-invites.md) 상단 각주 참고).
+- 결정이 나중에 뒤집히면 원본 문서를 지우지 않고 각주/경고로 반영 사실을 남깁니다 (예: [projects/spot-invites.md](../../docs/core/projects/spot-invites.md) 상단 각주 참고).
 - 다른 repo 전용 폴더(`docs/<다른 repo>/`) 문서는 명시적으로 요청받았을 때만 참고하거나 수정합니다.
