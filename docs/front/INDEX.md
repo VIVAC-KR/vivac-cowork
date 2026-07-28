@@ -14,6 +14,7 @@
 | └─ `reference/infra/` | 배포·인프라 가이드 (예: `docker-deployment.md`) |
 | `docs/decisions/` | 의사결정 기록. 기술 선택 이유, UX 결정 이유, 검토했던 대안, 트레이드오프. 현재 스펙이 아니라 "왜"를 기록한다. |
 | └─ `decisions/incidents/` | 장애 원인 및 대응 기록 (예: `cloudfront-nextjs-rsc-caching.md`) |
+| `docs/projects/` | 여러 결정이 묶인 기능·API 설계 문서. 기능 골격·향후 작업 로드맵을 담고, 개별 결정이 확정되면 Reference 또는 Decisions로 승격한다. (예: `search.md`) |
 | `docs/backlog/` | 아직 해결되지 않은 문제. 개선 아이디어, 기술 부채, 코드 리뷰 결과, 추후 검토 사항. 해결되면 Reference 또는 Decisions로 이동한다. |
 | `docs/archive/` | 폐기된 문서. 삭제하지 않고 보관하며, 상단에 Archive 헤더(대체 문서·폐기일·사유)를 명시한다. 구현 근거로 사용하지 않는다. |
 | `docs/templates/` | 문서 작성 템플릿 (ADR, Reference, Incident). |
