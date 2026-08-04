@@ -193,4 +193,4 @@
 
 ---
 
-관련 문서: [PRODUCT.md](PRODUCT.md)(제품 정의) · [STATUS.md](STATUS.md)(진행상황·팀 결정 대기 항목) · [business-feature-roadmap.md](business-feature-roadmap.md)(백엔드 관점 기능 후보) · [INDEX.md](INDEX.md)(전체 문서 인덱스)
+관련 문서: [PRODUCT.md](PRODUCT.md)(제품 정의) · [ia.md](ia.md)(정보 구조·사이트맵) · [STATUS.md](STATUS.md)(진행상황·팀 결정 대기 항목) · [business-feature-roadmap.md](business-feature-roadmap.md)(백엔드 관점 기능 후보) · [INDEX.md](INDEX.md)(전체 문서 인덱스)
