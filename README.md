@@ -4,8 +4,12 @@ VIVAC 서비스의 **기획/협업 문서 저장소**입니다. 코드는 없고
 
 ## 문서 구성
 
+> 📍 문서가 많아 길을 잃기 쉽습니다 — **[docs/INDEX.md](docs/INDEX.md)**(전체 문서 마스터 인덱스)와 **[docs/STATUS.md](docs/STATUS.md)**(미해결 이슈·진행 상황·핵심 결정 로그 종합)를 먼저 보세요.
+
 | 파일 | 내용 |
 |---|---|
+| [docs/INDEX.md](docs/INDEX.md) | 전체 문서(제품 공유 문서 + 5개 repo 전용 폴더 + design/) 마스터 인덱스. "이 내용 어디 있지?"의 첫 진입점입니다. |
+| [docs/STATUS.md](docs/STATUS.md) | 코드 리뷰 오픈 이슈, 로드맵 진행 상황, 팀 결정 대기 항목, 핵심 결정 로그를 한 곳에 모은 트래커. |
 | [docs/PRODUCT.md](docs/PRODUCT.md) | 제품 개요 — 문제 정의, 차별화, 타겟, MVP 범위, 데이터 전략, 수익 모델, 로드맵. 현재 확정본입니다. |
 | [docs/PRODUCT_TEMP.md](docs/PRODUCT_TEMP.md) | (2026-08-04 병합 완료, 더 이상 갱신 안 함) 과거 기획 개정 초안 — 내용은 PRODUCT.md로 병합되었고, 이 파일은 병합 사실만 안내하는 스텁으로 남아 있습니다. |
 | [docs/data-pipeline.md](docs/data-pipeline.md) | 스팟 데이터 파이프라인 설계 — `pipeline_status`(RAW→PUBLISHED 처리 단계), `trust_tier`(신뢰도 1~3등급) 필드 정의와 확정 정책. |
