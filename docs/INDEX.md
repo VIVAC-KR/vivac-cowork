@@ -9,7 +9,8 @@
 1. [PRODUCT.md](PRODUCT.md) — 제품 정의 확정본
 2. [STATUS.md](STATUS.md) — 미해결 이슈·진행 상황·결정 로그 종합
 3. [feature-spec.md](feature-spec.md) — 화면 단위 상세 기능 기획(정상구현/반쪽구현/API선구현/완전미구현)
-4. [business-feature-roadmap.md](business-feature-roadmap.md) — 실제 구현 스냅샷 기준 기능 로드맵
+4. [ia.md](ia.md) — 정보 구조(사이트맵·화면 인벤토리·내비게이션)
+5. [business-feature-roadmap.md](business-feature-roadmap.md) — 실제 구현 스냅샷 기준 기능 로드맵
 
 ## 1. 제품 전체 (docs/ 루트 — 여러 repo에 걸친 맥락)
 
@@ -20,6 +21,7 @@
 | [data-pipeline.md](data-pipeline.md) | 스팟 데이터 `pipeline_status`/`trust_tier` 필드 설계 | ✅ 확정, vivacapi-core에 구현됨 |
 | [business-feature-roadmap.md](business-feature-roadmap.md) | 성장/리텐션/수익화/신뢰 4관점 기능 후보 — 코드 대조로 근거 검증됨 | 진행 중 (항목별 상태는 STATUS.md 참고) |
 | [feature-spec.md](feature-spec.md) | 화면 단위 상세 기능 기획 — 실서비스(vivac.app)·API 대조로 확인한 정상구현/반쪽구현/API선구현/완전미구현 4갈래를 통합 | 🆕 2026-08-04 작성 |
+| [ia.md](ia.md) | 정보 구조(IA) — 사이트맵, 화면 인벤토리, 내비게이션 구조, 아직 배치 못 정한 것 | 🆕 2026-08-04 작성 |
 | [CONTEXT_SCOPE.md](CONTEXT_SCOPE.md) | 각 repo CLAUDE.md가 import하는 공유 컨텍스트 기본 참고 범위 안내 | ✅ 안정 |
 | [TEMP.md](TEMP.md) | 스크래치 메모("hello22!") | 내용 없음 — 정리 대상 |
 | [archive/planning-source/](archive/planning-source/) | PRODUCT.md 병합에 쓰인 기획·리서치 원본 (2026-08-04 통합) | 폐기 3건 + 미해결/유효 3건 혼재, 각 파일 상단 상태 헤더 참고 |
