@@ -38,7 +38,7 @@
 | 상태 | 건수 | 항목 |
 |---|---|---|
 | ✅ 완료 | 3 | 1.1 재사용 리퍼럴 링크, 4.2 trust_tier 신선도 감쇠(PR #117), 4.4 검증 담당자 재할당(PR #118) |
-| ⏸ 보류 | 1 | 1.2 스팟 상세 공개 공유 카드(OG 메타) — 상세페이지 자체가 없어 전제가 깨짐 |
+| ⏸ 보류 | 1 | 1.2 스팟 상세 공개 공유 카드(OG 메타) — ⚠️ **재확인 필요(2026-08-04)**: "상세페이지 자체가 없다"(2026-07-20 기준)는 전제가 더 이상 맞지 않음. `/spots/{uid}`가 실제로 구현·배포돼 있음을 실서비스에서 확인([feature-spec.md §1.2](feature-spec.md#12-스팟-상세-spotsuid)). OG 메타만 다시 검토하면 될 수 있음 |
 | 제안(미착수) | 12 | 1.3, 1.4, 2.1~2.4, 3.1~3.4, 4.1, 4.3 |
 
 의존성 없이 바로 착수 가능한 항목(난이도 하): `1.1`✅, `1.3(a)`, `2.2`, `4.2`✅, `4.3`, `4.4`✅ — 미완료는 `1.3(a)`, `2.2`, `4.3` 3건.
@@ -62,7 +62,7 @@
 | [front/reference/frontend/api-proxy.md](front/reference/frontend/api-proxy.md) | `route.ts`를 유일한 프록시로 설명하나 실제로는 `next.config.ts`의 `rewrites()`가 우선 적용 | 갱신 필요 |
 | [core/projects/vivac-console-backend.md](core/projects/vivac-console-backend.md), [vivac-console-frontend.md](core/projects/vivac-console-frontend.md) | 경로가 `/v1/admin/*`로 돼 있으나 실제는 `/v1/internal/*` | [core/architecture.md](core/architecture.md)가 최신 기준임을 이미 각주로 명시함 — 추가 조치 불요 |
 | [core/projects/spot-invites.md](core/projects/spot-invites.md) | "초대 1회용" 결정이 business-feature-roadmap 1.1에서 일반 리퍼럴에 한해 뒤집힘 | 이미 각주 반영됨 — 추가 조치 불요 |
-| [design/reference/pages/spot-detail.md](../../vivac-frontend/design/reference/pages/spot-detail.md) | 후속 이슈 문서를 `docs/backlog/spot-detail-ui-followups.md`로 링크하지만 실제 파일명은 `spot-detail-design-followups.md` | 🔧 링크 오탈자 — 수정 필요 |
+| [design/reference/pages/spot-detail.md](../../vivac-frontend/design/reference/pages/spot-detail.md) | 후속 이슈 문서 링크가 실제 파일명·경로와 다름 | ✅ 2026-08-04 수정 완료(vivac-frontend 별도 커밋) |
 | [front/archive/auth-implementation.md](front/archive/auth-implementation.md) | 대체 문서가 "없음"으로 표시 — NextAuth v5 전환 후 신규 Reference 문서 미작성 | Reference 문서 신규 작성 필요 |
 | [core/skill-db-inspect.md](core/skill-db-inspect.md) | `.claude/skills/db_inspect/SKILL.md`로 옮겨야 할 초안인데 아직 이 자리에 있음 | 이동 또는 초안임을 계속 유지할지 결정 필요 |
 | [TEMP.md](TEMP.md) | 내용 없는 스크래치 메모("hello22!") | 삭제 검토 |
@@ -84,6 +84,7 @@
 | 2026-07-28 | 검색 라우팅 골격만 우선 구축(질의·필터는 후속) | [front/projects/search.md](front/projects/search.md) |
 | 2026-08-03 | nginx stale upstream으로 89분 장애 | [core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md](core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md) |
 | 2026-08-04 | 기획 문서 통합 — PRODUCT.md 확정, 원본은 archive로 이동 | [PRODUCT.md](PRODUCT.md), [archive/planning-source/](archive/planning-source/) |
+| 2026-08-04 | 실서비스(vivac.app) 점검으로 화면·API 구현 현황 확정, 상세 화면 기획 4갈래로 통합 | [feature-spec.md](feature-spec.md) |
 
 ---
 
