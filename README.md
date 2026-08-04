@@ -7,9 +7,10 @@ VIVAC 서비스의 **기획/협업 문서 저장소**입니다. 코드는 없고
 | 파일 | 내용 |
 |---|---|
 | [docs/PRODUCT.md](docs/PRODUCT.md) | 제품 개요 — 문제 정의, 차별화, 타겟, MVP 범위, 데이터 전략, 수익 모델, 로드맵. 현재 확정본입니다. |
-| [docs/PRODUCT_TEMP.md](docs/PRODUCT_TEMP.md) | 기획 개정 초안 (2026-07-11 PM 분석 반영) — beachhead 타겟(차박러), 신뢰도 투명성 중심 재포지셔닝, MVP 범위 조정, 가설 검증 계획/KPI. 확정 시 PRODUCT.md로 병합 예정입니다. |
+| [docs/PRODUCT_TEMP.md](docs/PRODUCT_TEMP.md) | (2026-08-04 병합 완료, 더 이상 갱신 안 함) 과거 기획 개정 초안 — 내용은 PRODUCT.md로 병합되었고, 이 파일은 병합 사실만 안내하는 스텁으로 남아 있습니다. |
 | [docs/data-pipeline.md](docs/data-pipeline.md) | 스팟 데이터 파이프라인 설계 — `pipeline_status`(RAW→PUBLISHED 처리 단계), `trust_tier`(신뢰도 1~3등급) 필드 정의와 확정 정책. |
 | [docs/business-feature-roadmap.md](docs/business-feature-roadmap.md) | 비즈니스 기능 로드맵 — 성장/리텐션/수익화/신뢰 4개 관점의 기능 후보와 우선순위. |
+| [docs/archive/planning-source/](docs/archive/planning-source/) | PRODUCT.md 병합에 쓰인 원본 기획·리서치 문서 모음 (2026-08-04, 프로젝트 루트에 흩어져 있던 `docs_to_be_merge/`와 시장조사 자료를 통합). 폐기된 문서와 아직 미해결·미실행인 문서가 섞여 있으므로 각 파일 상단 상태 표시를 먼저 확인하세요. |
 | [.claude/rules/vivac-docs-authoring.md](.claude/rules/vivac-docs-authoring.md) | `docs/` 하위 문서 작성 규칙(카테고리, 파일명, 톤, 템플릿). `docs/`가 아니라 `.claude/rules/`에 있어, 각 repo에서 이 경로 그대로 한 번 더 심볼릭 링크를 걸면 문서 작성 시 자동 로드됩니다. |
 | [docs/CONTEXT_SCOPE.md](docs/CONTEXT_SCOPE.md) | 공유 컨텍스트 기본 참고 범위 안내. 각 repo CLAUDE.md에서 `@docs/CONTEXT_SCOPE.md`로 import합니다. |
 | [SYMLINK-SETUP.md](SYMLINK-SETUP.md) | 각 repo에서 이 저장소의 `docs/`를 심볼릭 링크로 연결하는 방법. |
