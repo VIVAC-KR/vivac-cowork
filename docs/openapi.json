@@ -3,7 +3,7 @@
   "info": {
     "title": "VIVAC API",
     "description": "캠퍼를 위한 장소 큐레이션 서비스",
-    "version": "0.21.5"
+    "version": "0.22.0"
   },
   "paths": {
     "/v1/auth/google": {
@@ -133,7 +133,7 @@
           "explore"
         ],
         "summary": "스팟 목록/검색",
-        "description": "탐색 가능한 spot 목록을 조회합니다 (비로그인 가능).\n\nq가 있으면 검색 모드(가중치 기반 관련도 정렬)로 분기한다.\n검색 모드의 cursor는 기본 목록과 포맷이 다르므로 서로 재사용할 수 없다\n(설계 근거: docs/projects/spot-search-postgres-fts.md).",
+        "description": "탐색 가능한 spot 목록을 조회합니다 (비로그인 가능).\n\nq가 있으면 검색 모드(가중치 기반 관련도 정렬)로 분기한다.\n검색 모드의 cursor는 기본 목록과 포맷이 다르므로 서로 재사용할 수 없다\n(설계 근거: docs/projects/spot-search-postgres-fts.md).\n\ncursor는 발급 시점의 bbox에 묶인다 — 다른 bbox로 재사용하면\n`400 CURSOR_SCOPE_MISMATCH`로 거부한다.",
         "operationId": "list_spots_v1_explore_spots_get",
         "parameters": [
           {
@@ -194,6 +194,24 @@
             "description": "지역(도/시) 필터"
           },
           {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "지도 영역 필터 `min_lng,min_lat,max_lng,max_lat` — **경도가 먼저**다 (GeoJSON/OGC 순서). 예: `127.5,35.2,127.9,35.5`. q/category와는 AND로 결합된다.",
+              "title": "Bbox"
+            },
+            "description": "지도 영역 필터 `min_lng,min_lat,max_lng,max_lat` — **경도가 먼저**다 (GeoJSON/OGC 순서). 예: `127.5,35.2,127.9,35.5`. q/category와는 AND로 결합된다."
+          },
+          {
             "name": "cursor",
             "in": "query",
             "required": false,
@@ -250,13 +268,136 @@
         }
       }
     },
+    "/v1/explore/spots/map": {
+      "get": {
+        "tags": [
+          "explore"
+        ],
+        "summary": "지도 핀 목록",
+        "description": "지도 핀 렌더링용 경량 목록을 조회합니다 (비로그인 가능).\n\n필터(q/category/region_province/bbox)는 `GET /v1/explore/spots`와 동일한\n조건을 쓰므로 두 모드의 결과 집합이 갈리지 않는다. 커서 없이 한 번에\n반환하며, 클러스터링은 클라이언트 몫이다.",
+        "operationId": "list_spots_for_map_v1_explore_spots_map_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "검색어 (제목/한줄설명/설명/주소)",
+              "title": "Q"
+            },
+            "description": "검색어 (제목/한줄설명/설명/주소)"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "카테고리 코드 필터",
+              "title": "Category"
+            },
+            "description": "카테고리 코드 필터"
+          },
+          {
+            "name": "region_province",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "지역(도/시) 필터",
+              "title": "Region Province"
+            },
+            "description": "지역(도/시) 필터"
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "지도 영역 필터 `min_lng,min_lat,max_lng,max_lat` — **경도가 먼저**다 (GeoJSON/OGC 순서). 예: `127.5,35.2,127.9,35.5`. q/category와는 AND로 결합된다.",
+              "title": "Bbox"
+            },
+            "description": "지도 영역 필터 `min_lng,min_lat,max_lng,max_lat` — **경도가 먼저**다 (GeoJSON/OGC 순서). 예: `127.5,35.2,127.9,35.5`. q/category와는 AND로 결합된다."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 8000,
+              "minimum": 1,
+              "description": "최대 핀 개수 (1-8000)",
+              "default": 8000,
+              "title": "Limit"
+            },
+            "description": "최대 핀 개수 (1-8000)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotMapResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/explore/spots/{uid}": {
       "get": {
         "tags": [
           "explore"
         ],
         "summary": "스팟 상세 조회",
-        "description": "spot 상세 정보를 조회합니다 (비로그인 가능).\n\npipeline_status가 PUBLISHED이고 삭제되지 않은 spot만 노출한다 — 파이프라인\n검토 중이거나 소프트 삭제된 spot은 존재해도 SPOT_NOT_FOUND로 응답한다.",
+        "description": "spot 상세 정보를 조회합니다 (비로그인 가능).\n\npipeline_status가 PUBLISHED이고 삭제되지 않은 spot만 노출한다 — 파이프라인\n검토 중이거나 소프트 삭제된 spot은 존재해도 SPOT_NOT_FOUND로 응답한다.\nEXPLORE_REQUIRE_COORDINATES가 켜져 있으면 좌표 없는 spot도 SPOT_NOT_FOUND다.",
         "operationId": "get_spot_v1_explore_spots__uid__get",
         "parameters": [
           {
@@ -7339,6 +7480,28 @@
               }
             ],
             "title": "Category"
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitude"
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitude"
           }
         },
         "type": "object",
@@ -7348,13 +7511,17 @@
           "trust_tier",
           "thumbnail_url",
           "region_short",
-          "category"
+          "category",
+          "latitude",
+          "longitude"
         ],
         "title": "SpotListItem",
         "example": {
           "category": [
             "AUTO_CAMPING"
           ],
+          "latitude": 37.7907,
+          "longitude": 127.5262,
           "region_short": "강원",
           "thumbnail_url": "https://cdn.vivac.app/spots/spot_a1b2c3/thumb.jpg",
           "title": "남이섬 오토캠핑장",
@@ -7385,13 +7552,23 @@
           "has_more": {
             "type": "boolean",
             "title": "Has More"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "total_capped": {
+            "type": "boolean",
+            "title": "Total Capped"
           }
         },
         "type": "object",
         "required": [
           "items",
           "next_cursor",
-          "has_more"
+          "has_more",
+          "total",
+          "total_capped"
         ],
         "title": "SpotListResponse",
         "example": {
@@ -7401,6 +7578,8 @@
               "category": [
                 "AUTO_CAMPING"
               ],
+              "latitude": 37.7907,
+              "longitude": 127.5262,
               "region_short": "강원",
               "thumbnail_url": "https://cdn.vivac.app/spots/spot_a1b2c3/thumb.jpg",
               "title": "남이섬 오토캠핑장",
@@ -7408,7 +7587,83 @@
               "uid": "spot_a1b2c3"
             }
           ],
-          "next_cursor": "eyJ1aWQiOiJzcG90X2ExYjJjMyJ9"
+          "next_cursor": "eyJ1aWQiOiJzcG90X2ExYjJjMyJ9",
+          "total": 137,
+          "total_capped": false
+        }
+      },
+      "SpotMapItem": {
+        "properties": {
+          "uid": {
+            "type": "string",
+            "title": "Uid"
+          },
+          "latitude": {
+            "type": "number",
+            "title": "Latitude"
+          },
+          "longitude": {
+            "type": "number",
+            "title": "Longitude"
+          },
+          "trust_tier": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trust Tier"
+          }
+        },
+        "type": "object",
+        "required": [
+          "uid",
+          "latitude",
+          "longitude",
+          "trust_tier"
+        ],
+        "title": "SpotMapItem",
+        "description": "지도 핀 렌더링 전용 경량 항목. 좌표는 항상 non-null이다.",
+        "example": {
+          "latitude": 37.7907,
+          "longitude": 127.5262,
+          "trust_tier": 2,
+          "uid": "spot_a1b2c3"
+        }
+      },
+      "SpotMapResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SpotMapItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "truncated"
+        ],
+        "title": "SpotMapResponse",
+        "example": {
+          "items": [
+            {
+              "latitude": 37.7907,
+              "longitude": 127.5262,
+              "trust_tier": 2,
+              "uid": "spot_a1b2c3"
+            }
+          ],
+          "truncated": false
         }
       },
       "SpotOptionField": {
