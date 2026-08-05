@@ -243,18 +243,59 @@ TTL은 `SPOTS_LIST_CACHE_TTL_SECONDS`(30초) 공유.
 
 ### ① §2 — 기존 좌표 필드가 WGS84인가
 
-**코드로는 확인 불가. 데이터 소스 확인이 필요하다.**
+**기존 데이터는 코드로 확인 불가. 다만 앞으로 들어오는 데이터는 입구에서 막는다.**
 
 `spots.latitude/longitude`는 변환 없는 순수 `Float` 컬럼이고, 저장 경로
 (`POST /v1/internal/spots/bulk`, `scripts/upload_spots_local.py`, 콘솔 편집) 어디에도
-좌표계 변환이나 검증이 없다. **입력값이 그대로 들어간다.** 즉 좌표계는 전적으로
-적재 소스가 무엇을 주느냐에 달려 있고, 저장소는 그걸 알지 못한다.
+좌표계 변환이 없다. **입력값이 그대로 들어간다.** 즉 이미 적재된 값의 좌표계는
+전적으로 소스가 무엇을 줬느냐에 달려 있고, 저장소는 그걸 알지 못한다.
 
 요청의 지적대로 이건 "약간 틀림"이 아니라 "완전히 다른 곳"으로 나타나는 실패 모드다.
-적재 시점에 검증하는 것을 제안한다 — 한국 범위(위도 33~39, 경도 124~132)를 벗어난
-값을 bulk upsert에서 거부하면, 카텍/TM 같은 미터 단위 좌표계는 값의 크기 자체가
-달라(수십만 단위) 첫 행에서 걸린다. 이번 범위에 포함하지 않았고, 별도로 진행할지
-알려주면 붙이겠다.
+그래서 **bulk upsert에 좌표계 검증을 추가했다** (아래 §9.1).
+
+기존 데이터 검증은 좌표 적재가 진행되면 자연히 갱신되므로 별도 백필을 넣지 않았다.
+지금 상태를 확인하려면 `SELECT count(*) FROM spots WHERE latitude IS NOT NULL AND
+(latitude NOT BETWEEN 32.5 AND 38.7 OR longitude NOT BETWEEN 124.0 AND 132.5)`.
+
+### ①-1. bulk upsert 좌표계 검증
+
+`SpotBulkRow`의 `model_validator`가 국내 범위 밖 좌표를 거부한다
+(`core/geo.py`의 `is_within_korea()`).
+
+| 범위 | 값 |
+|---|---|
+| 위도 | 32.5 ~ 38.7 |
+| 경도 | 124.0 ~ 132.5 |
+
+**국경을 엄밀히 긋는 값이 아니다** — "좌표계가 통째로 틀렸는가"만 잡는 용도라, 실제
+극단값(마라도 33.06N, 백령도 124.6E, 독도 131.87E, 최북단 38.6N)보다 넉넉히 잡아
+경계 근처 도서를 잘못 거부하지 않게 했다.
+
+잡히는 케이스:
+
+| 입력 | 결과 |
+|---|---|
+| 카텍/TM 등 미터 단위 좌표계 (445000, 195000) | 거부 — 값의 자릿수가 다름 |
+| lat/lng 뒤바뀜 (127.5, 37.8) | 거부 — 경도 127.5가 위도 범위 밖 |
+| 해외 좌표 | 거부 |
+| `(0, 0)` null island | 거부 |
+| 좌표 없음 (둘 다 NULL) | **통과** — 적재 전 데이터를 막으면 안 되므로 |
+
+**검증 위치를 워커의 행 단위 에러가 아니라 스키마로 정한 이유.** `trust_tier`가 이미
+`Field(ge=1, le=3)`로 스키마 레벨 범위 검증을 하고 있어 같은 패턴을 따랐다. 부수
+효과로 `POST /v1/internal/spots/bulk`가 **큐잉 시점에 422로 즉시 거부**한다 — job을
+만들고 폴링해서 결과를 열어봐야 알 수 있는 것보다 피드백이 빠르고, pydantic이 모든
+행의 에러를 한 번에 모으므로 몇 번째 행이 문제인지도 함께 나온다
+(`loc: ["body","rows",42,...]`). `dry_run`도 자동으로 같은 검증을 받는다.
+
+**적용 범위는 bulk뿐이다.** 콘솔 단건 편집(`PATCH /v1/internal/spots/{uid}`,
+`SpotUpdate`)에는 걸지 않았다 — 대량 자동 적재와 달리 사람이 한 건씩 눈으로 보며
+넣는 경로라 좌표계가 통째로 틀릴 실패 모드가 아니고, 검증을 공유 부모
+(`SpotEditableFields`)에 올리면 **응답 모델인 `SpotAdminDetail`까지 걸려** 이미 범위
+밖인 기존 데이터를 콘솔에서 열 때 500이 난다. 필요해지면 `SpotUpdate`에만 따로 붙인다.
+
+한쪽 좌표만 있는 행(위도만 있고 경도는 NULL)도 거부하지 않는다 — 기존 적재 파이프라인을
+깨뜨릴 수 있어 이번 범위에서 뺐다. §3 필터는 둘 다 non-null을 요구하므로 노출되지는 않는다.
 
 ### ② §3 — 좌표 적재 진행 상황과 예상 완료 시점
 
@@ -275,7 +316,9 @@ TTL은 `SPOTS_LIST_CACHE_TTL_SECONDS`(30초) 공유.
 - 필터(합법·식수·취사)·정렬·자동완성 — 요청에서 제외된 범위
 - 서버 사이드 클러스터링, 줌 레벨별 집계 — 8,000건 규모에서 불필요
 - PostGIS / GiST
-- 좌표계 검증 (§9-① 참조 — 별도 판단 필요)
+- 기존 적재분에 대한 좌표계 백필/검증 (§9-① — 신규 적재만 막는다)
+- 콘솔 단건 편집의 좌표계 검증 (§9-①-1 — 근거 참조)
+- 한쪽 좌표만 있는 행의 거부 (§9-①-1)
 - 목록 좌표 필드의 non-nullable 전환 (§2 — 플래그 전환 이후)
 
 ---
@@ -284,13 +327,14 @@ TTL은 `SPOTS_LIST_CACHE_TTL_SECONDS`(30초) 공유.
 
 | 파일 | 변경 |
 |---|---|
-| `vivacapi/core/geo.py` | 신규 — `BBox`, `parse_bbox()` |
+| `vivacapi/core/geo.py` | 신규 — `BBox`, `parse_bbox()`, `is_within_korea()` |
 | `vivacapi/core/config.py` | `EXPLORE_REQUIRE_COORDINATES` |
 | `vivacapi/core/errors.py` | `CURSOR_SCOPE_MISMATCH` (400) |
 | `vivacapi/crud/spot.py` | 공통 필터, bbox, 커서 스코프, `count_spots`, `list_spots_map` |
-| `vivacapi/schemas/spot.py` | 목록 좌표, `total`/`total_capped`, `SpotMapItem`/`SpotMapResponse` |
+| `vivacapi/schemas/spot.py` | 목록 좌표, `total`/`total_capped`, `SpotMapItem`/`SpotMapResponse`, `SpotBulkRow` 좌표계 검증 |
 | `vivacapi/api/v1/endpoints/explore.py` | `bbox` 파라미터, `/spots/map` |
 | `vivacapi/models/spot.py` | `ix_spots_coordinates` |
 | `alembic/versions/a7c3e1f9b204_*.py` | 인덱스 마이그레이션 |
 | `tests/test_explore_map_router.py` | 신규 — bbox/커서/total/지도 |
 | `tests/test_explore_coordinate_gate.py` | 신규 — §3 플래그 ON/OFF 양쪽 |
+| `tests/test_spot_bulk_schema.py` | 좌표계 검증 케이스 추가 |
