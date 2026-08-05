@@ -3,7 +3,7 @@
   "info": {
     "title": "VIVAC API",
     "description": "캠퍼를 위한 장소 큐레이션 서비스",
-    "version": "0.16.1"
+    "version": "0.21.4"
   },
   "paths": {
     "/v1/auth/google": {
@@ -45,7 +45,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
       }
     },
     "/v1/auth/refresh": {
@@ -87,7 +92,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
       }
     },
     "/v1/auth/me": {
@@ -943,11 +953,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SpotGroupSpotItem"
-                  },
-                  "title": "Response List Group Spots V1 Groups  Group Uid  Spots Get"
+                  "$ref": "#/components/schemas/SpotGroupSpotListResponse"
                 }
               }
             }
@@ -1471,7 +1477,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
       }
     },
     "/v1/internal/jobs/{job_id}": {
@@ -1505,6 +1516,85 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/JobRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/internal/db-dumps": {
+      "post": {
+        "tags": [
+          "internal-db-dumps"
+        ],
+        "summary": "DB 전체 덤프 작업 큐잉",
+        "description": "전체 DB를 pg_dump(custom format)로 덤프하는 작업을 큐잉한다 (SUPERUSER 전용).\n\n즉시 처리하지 않고 job_id만 반환한다 — 실제 덤프는 워커가 처리한다.\n상태는 GET /v1/internal/jobs/{job_id}로 폴링한다.",
+        "operationId": "enqueue_db_dump_v1_internal_db_dumps_post",
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Enqueue Db Dump V1 Internal Db Dumps Post"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/internal/db-dumps/{job_id}/download": {
+      "get": {
+        "tags": [
+          "internal-db-dumps"
+        ],
+        "summary": "완료된 DB 덤프 다운로드 URL 발급",
+        "description": "성공한 db_dump job의 결과물을 내려받을 presigned S3 URL을 발급한다.",
+        "operationId": "get_db_dump_download_url_v1_internal_db_dumps__job_id__download_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DbDumpDownload"
                 }
               }
             }
@@ -1557,6 +1647,58 @@
                     "$ref": "#/components/schemas/AuditLogEntry"
                   },
                   "title": "Response Get Spot History V1 Internal Spots  Uid  History Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/internal/spots/{uid}/groups": {
+      "get": {
+        "tags": [
+          "internal-spots"
+        ],
+        "summary": "스팟이 속한 그룹 목록 조회",
+        "description": "멤버십과 무관하게 이 스팟이 속한 모든 그룹을 반환한다.",
+        "operationId": "list_spot_groups_v1_internal_spots__uid__groups_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Uid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SpotGroupOfSpotItem"
+                  },
+                  "title": "Response List Spot Groups V1 Internal Spots  Uid  Groups Get"
                 }
               }
             }
@@ -2837,6 +2979,51 @@
       }
     },
     "/v1/internal/groups": {
+      "post": {
+        "tags": [
+          "internal-spot-groups"
+        ],
+        "summary": "그룹 생성",
+        "description": "요청한 staff를 OWNER로 하는 새 그룹을 만든다(어드민 전용, 앱 API의 /groups와 별개).",
+        "operationId": "create_group_v1_internal_groups_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SpotGroupCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotGroupAdminDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "tags": [
           "internal-spot-groups"
@@ -3408,6 +3595,62 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "internal-spot-groups"
+        ],
+        "summary": "그룹에 스팟 추가",
+        "description": "앱 API와 달리 pipeline_status와 무관하게 추가할 수 있다(모더레이션 목적). 소프트 삭제된 스팟은 추가할 수 없다.",
+        "operationId": "add_group_spot_v1_internal_groups__group_uid__spots_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "group_uid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Group Uid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SpotGroupSpotAdd"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotGroupSpotItem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/internal/groups/{group_uid}/spots/{spot_uid}": {
@@ -3750,6 +3993,28 @@
           "count"
         ],
         "title": "CountItem"
+      },
+      "DbDumpDownload": {
+        "properties": {
+          "download_url": {
+            "type": "string",
+            "title": "Download Url"
+          },
+          "expires_in": {
+            "type": "integer",
+            "title": "Expires In"
+          }
+        },
+        "type": "object",
+        "required": [
+          "download_url",
+          "expires_in"
+        ],
+        "title": "DbDumpDownload",
+        "example": {
+          "download_url": "https://vivac-dumps.s3.ap-northeast-2.amazonaws.com/db-dumps/....dump?X-Amz-...",
+          "expires_in": 3600
+        }
       },
       "FieldChange": {
         "properties": {
@@ -4120,7 +4385,8 @@
         "type": "string",
         "enum": [
           "spots_bulk_upsert",
-          "spot_business_info_bulk_upsert"
+          "spot_business_info_bulk_upsert",
+          "db_dump"
         ],
         "title": "JobType"
       },
@@ -6674,6 +6940,47 @@
           "role": "editor"
         }
       },
+      "SpotGroupOfSpotItem": {
+        "properties": {
+          "uid": {
+            "type": "string",
+            "title": "Uid"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/GroupVisibility"
+          },
+          "added_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Added At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "uid",
+          "name",
+          "visibility",
+          "added_at"
+        ],
+        "title": "SpotGroupOfSpotItem",
+        "example": {
+          "added_at": "2026-07-08T15:20:00Z",
+          "name": "종강 여행 스팟 모음",
+          "uid": "Kx7mQ2pL9vNc4wZtR8bYaS",
+          "visibility": "private"
+        }
+      },
       "SpotGroupSpotAdd": {
         "properties": {
           "spot_uid": {
@@ -6747,6 +7054,31 @@
             ],
             "title": "Category"
           },
+          "tagline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tagline"
+          },
+          "amenities": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amenities"
+          },
           "added_by_uid": {
             "type": "string",
             "title": "Added By Uid"
@@ -6772,6 +7104,8 @@
           "thumbnail_url",
           "region_short",
           "category",
+          "tagline",
+          "amenities",
           "added_by_uid",
           "added_at"
         ],
@@ -6779,15 +7113,37 @@
         "example": {
           "added_at": "2026-07-08T15:20:00Z",
           "added_by_uid": "Jd8NpQ3xTmC7vRk2YbW9aZ",
+          "amenities": [
+            "샤워실",
+            "화장실",
+            "전기"
+          ],
           "category": [
             "cafe"
           ],
           "region_short": "서울",
+          "tagline": "북한강이 보이는 조용한 오토캠핑장",
           "thumbnail_url": "https://cdn.vivac.app/spots/Bq3FhT9xLpW2vNc8ZmYaR1/thumb.jpg",
           "title": "연세대 근처 감성 카페",
           "trust_tier": 2,
           "uid": "Bq3FhT9xLpW2vNc8ZmYaR1"
         }
+      },
+      "SpotGroupSpotListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SpotGroupSpotItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "SpotGroupSpotListResponse"
       },
       "SpotGroupUpdate": {
         "properties": {
