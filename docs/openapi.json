@@ -3,7 +3,7 @@
   "info": {
     "title": "VIVAC API",
     "description": "캠퍼를 위한 장소 큐레이션 서비스",
-    "version": "0.21.4"
+    "version": "0.21.5"
   },
   "paths": {
     "/v1/auth/google": {
