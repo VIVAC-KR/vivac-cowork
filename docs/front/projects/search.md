@@ -2,6 +2,7 @@
 
 > 작성일: 2026-07-28
 > 배경: 홈 화면 검색창이 `readOnly` 껍데기라 검색 결과를 볼 동선이 없었습니다. 검색 결과 페이지로 진입하는 라우팅·네비게이션 골격을 먼저 세우고, 실제 검색·필터는 후속으로 분리합니다.
+> 후속 문서: §4.1·§4.2가 예고한 승격 문서로 [`search-map-explore.md`](search-map-explore.md)(지도 탐색 설계·퍼블리싱 계획)와 [`backlog/search-map-schema-request.md`](../backlog/search-map-schema-request.md)(BE 계약 요청)가 2026-08-04 작성됐습니다.
 
 ## 1. 한 줄 요약
 

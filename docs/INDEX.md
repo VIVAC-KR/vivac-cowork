@@ -38,8 +38,10 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [front/backlog/codebase-review-260714.md](front/backlog/codebase-review-260714.md) | 2026-07-14 전체 코드베이스 리뷰 | 🔴 오픈 이슈 다수 (STATUS.md 참고) |
 | [front/backlog/spot-detail-design-followups.md](front/backlog/spot-detail-design-followups.md) | 상세페이지 UI 후속 논의·미해결 사항 | 열림 |
 | [front/backlog/spot-detail-schema-request.md](front/backlog/spot-detail-schema-request.md) | 상세페이지용 BE 스키마 확장 요청 | [core/projects/spot-detail-fields.md](core/projects/spot-detail-fields.md)에서 처리됨 |
+| [front/backlog/search-map-schema-request.md](front/backlog/search-map-schema-request.md) | 지도 탐색용 BE 계약 요청 (좌표·bbox·total 등 6건) | 🆕 2026-08-04 작성 — BE 회신 대기 |
 | [front/decisions/incidents/cloudfront-nextjs-rsc-caching.md](front/decisions/incidents/cloudfront-nextjs-rsc-caching.md) | CloudFront+Next.js RSC 캐싱 장애 기록 | 해결됨(재발 방지용 필독) |
 | [front/projects/search.md](front/projects/search.md) | 검색 라우팅 골격 설계 (2026-07-28) | 🚧 골격만 완료, 실제 검색·필터는 후속 |
+| [front/projects/search-map-explore.md](front/projects/search-map-explore.md) | 검색 지도 탐색(목록/지도 2모드) 설계 + 목 기반 퍼블리싱 계획 | ✅ 1단계(SDK 없이) 구현 완료 2026-08-06 — 2단계는 지도 SDK 연동, 좌표 실데이터 대기 |
 | [front/reference/frontend/api-proxy.md](front/reference/frontend/api-proxy.md) | Next.js API 프록시 구조 | ⚠️ 일부 낡음 — `route.ts` 설명이 실제로는 미사용 코드 (front/INDEX.md 알려진 한계 참고) |
 | [front/reference/infra/docker-deployment.md](front/reference/infra/docker-deployment.md) | Docker 빌드·배포 구성 | ✅ |
 | [front/templates/*.md](front/templates/) | ADR·incident·reference 작성 템플릿 3종 | ✅ |
