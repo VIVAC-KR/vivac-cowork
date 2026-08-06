@@ -34,9 +34,23 @@
 
 ## 4. BE 계약 의존
 
-확정된 요청 내역과 각 항목의 근거는 [`backlog/search-map-schema-request.md`](../backlog/search-map-schema-request.md)에 있습니다. 요약하면 좌표 필드 추가, `bbox` 파라미터, 좌표 없는 스팟 제외, `total`, 지도용 경량 응답, 커서-bbox 검증 6건입니다.
+요청 내역과 각 항목의 근거는 [`backlog/search-map-schema-request.md`](../backlog/search-map-schema-request.md)에 있습니다. 요약하면 좌표 필드 추가, `bbox` 파라미터, 좌표 없는 스팟 제외, `total`, 지도용 경량 응답, 커서-bbox 검증 6건입니다.
 
-**FE 일정의 유일한 외부 의존은 좌표 데이터 적재 시점**입니다. 계약 형태만 확정되면 실제 구현 전이라도 목으로 병렬 진행합니다.
+### ✅ 2026-08-05 BE 회신 — 계약 확정, 구현 완료
+
+회신 원문: [`core/projects/explore-map-api.md`](../../core/projects/explore-map-api.md). 6건 모두 수용됐고, **요청과 다르게 확정된 3건**이 있어 FE 목을 그에 맞춰 수정했습니다(2026-08-06).
+
+| 항목 | 요청 | 확정 | FE 영향 |
+|---|---|---|---|
+| 지도용 경량 응답 | `fields=map` 파라미터 | **별도 엔드포인트** `GET /v1/explore/spots/map`, 응답은 `{items, truncated}` (커서·`total` 없음) | 목 핸들러·`fetchSpotsMap`·스키마 신설. `truncated=false`면 `items` 길이가 곧 전체 개수 |
+| `total` 캡 | 예시 1,000 | **10,000** | 8,000건 데이터에서는 사실상 항상 정확한 값 — `총 N+곳` 표기는 당분간 도달 불가 |
+| 목록 좌표 nullable | non-nullable 요청 | **nullable** — 좌표 없는 스팟 제외가 `EXPLORE_REQUIRE_COORDINATES` 플래그(기본 OFF) 뒤라, non-null 선언은 현 prod에서 거짓 | 목록은 null 분기 유지. 대신 **`SpotMapItem`의 좌표는 non-null 보장** — 핀 렌더링이 실제로 아픈 지점이라 거기에 보장을 뒀습니다 |
+
+그 외 확정 사항: `bbox` 형식·범위 오류는 **`422 VALIDATION_ERROR`**(조용히 빈 결과를 주지 않음), 목록 `limit` 1~50 / 지도 `limit` 1~8,000(기본 8,000), 커서 스코프 불일치는 `400 CURSOR_SCOPE_MISMATCH`.
+
+> ⚠️ **주의할 동작 변경** — 기존 `q` 없는 목록 모드가 `category`·`region_province`를 **받고도 무시**하던 버그가 함께 고쳐졌습니다. 이제 실제로 필터링됩니다. 현재 검색 화면은 `q`가 있을 때만 조회하므로 영향이 없지만, `q` 없이 필터만 보내는 호출을 추가할 때 결과가 달라질 수 있습니다.
+
+**FE 일정의 유일한 외부 의존은 좌표 데이터 적재 시점**입니다. 적재 진척은 `GET /v1/internal/spots/stats`의 `missing_coordinates`/`total`로 추적할 수 있습니다.
 
 ## 5. 목(mock) 기반 선행 구현
 
@@ -120,7 +134,8 @@
 | 모드 토글 (플로팅 버튼) | 모바일 우하단 — 하단 중앙은 스냅 시트 핸들 자리라 비웁니다 |
 | 지도 모드 데스크탑 분할 레이아웃 | 45/55 · 35/65, 지도 자리는 placeholder |
 | 지도 모드 모바일 레이아웃 | 지도 + 스냅 시트(초기 40%) |
-| **스냅 바텀시트** | 스냅 피크0/25/55/90%, 드래그·플릭·키보드 화살표, ESC, 포커스 트랩, 배경 스크롤락 |
+| **스냅 바텀시트** | 스냅 피크0/25/55/90%, 드래그·플릭·키보드 화살표. ESC는 접기 |
+| 모달 필터 시트 | 포커스 트랩·배경 스크롤락·오버레이·ESC 닫기 — **모달 전용**입니다. 결과 시트는 배경(지도)과 함께 조작해야 하므로 비모달이라 셋 다 두지 않습니다 |
 | 무한 스크롤 + 가상화 | 목의 커서 동작이 실제와 동일. `@tanstack/react-virtual` |
 | 로딩 스켈레톤 · 빈 상태 · 에러 상태 · 에러 복구 | `CURSOR_SCOPE_MISMATCH`는 커서 폐기 후 처음부터 재조회 |
 | 클라이언트 경계 재설계 | `SearchResultsView`를 클라이언트로 전환, 라우트는 Suspense 셸만 유지 |
