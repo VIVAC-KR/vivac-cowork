@@ -6,9 +6,13 @@
 |---|---|
 | `VIVAC-frontend` | `docs/front/` |
 | `vivac-console` | `docs/console/` |
+| `vivac-infra` | `docs/infra/` |
+| `vivac-ios` | `docs/ios/` |
 | `vivac-mcp` | `docs/mcp/` |
 | `vivacapi-core` | `docs/core/` |
 | `vivacapi-etl` | `docs/etl/` |
+
+`vivac-infra`, `vivac-ios`는 아직 이 repo에 문서가 없어 `docs/infra/`, `docs/ios/` 폴더가 존재하지 않습니다. `docs/` 심볼릭 링크 자체는 문제없이 걸리며, 첫 문서를 그 repo용으로 작성하는 순간 폴더가 생깁니다(`.claude/rules/vivac-docs-authoring.md` 원칙상 빈 폴더를 미리 만들어두지 않습니다).
 
 `vivac-cowork` 저장소 루트 전체가 아니라 **`docs/` 폴더만** 공유됩니다. `CLAUDE.md`, `README.md` 등 `vivac-cowork` 저장소 자체에 대한 설명이나 기획 작업용 파일은 이 링크에 포함되지 않고, 각 개발 repo에는 노출되지 않습니다.
 
@@ -38,6 +42,8 @@ ln -s "<vivac-cowork 경로>/docs" docs
 |---|---|---|
 | VIVAC-frontend | `~/CursorProjects/vivac/VIVAC-frontend` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
 | vivac-console | `~/CursorProjects/vivac/vivac-console` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
+| vivac-infra | `~/CursorProjects/vivac/vivac-infra` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
+| vivac-ios | `~/CursorProjects/vivac/vivac-ios` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
 | vivac-mcp | `~/CursorProjects/vivac/vivac-mcp` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
 | vivacapi-core | `~/CursorProjects/vivac/vivacapi-core` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
 | vivacapi-etl | `~/CursorProjects/vivac/vivacapi-etl` | `ln -s ~/Documents/Claude/Projects/vivac-cowork/docs docs` |
