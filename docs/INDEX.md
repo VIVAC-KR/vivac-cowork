@@ -81,6 +81,32 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [core/projects/async-job-worker-design.md](core/projects/async-job-worker-design.md) | 비동기 Job 워커 설계 | ✅ |
 | [core/projects/vvc-105-explore-api-spec.md](core/projects/vvc-105-explore-api-spec.md) | 탐색 API 스펙(VVC-105) | ✅ 1단계 완료, 후속 VVC-117/118/119 |
 
+### 4.1 core/projects/business, core/projects/devel — 비즈니스/개발 문서 세트
+
+코드·기존 문서를 조사해 신규 합류자용으로 재구성한 관점별 문서 세트(2026-08-01/06 작성). 비즈니스 관점은 `business/`, 개발자 관점은 `devel/`이며 서로 상호 링크되어 있다.
+
+| 문서 | 내용 | 상태 |
+|---|---|---|
+| [core/projects/business/README.md](core/projects/business/README.md) | 비즈니스 문서 세트 개요 | ✅ |
+| [core/projects/business/00-product-overview.md](core/projects/business/00-product-overview.md) | 제품 개요(PRODUCT.md 요약본) | ✅ |
+| [core/projects/business/01-domain-glossary.md](core/projects/business/01-domain-glossary.md) | 도메인 용어집(비즈니스 관점) | ✅ |
+| [core/projects/business/02-core-features.md](core/projects/business/02-core-features.md) | 핵심 기능 & 유저 플로우 | ✅ |
+| [core/projects/business/03-admin-console-operations.md](core/projects/business/03-admin-console-operations.md) | 운영 콘솔 & 내부 운영 프로세스 | ✅ |
+| [core/projects/business/04-data-pipeline-and-quality.md](core/projects/business/04-data-pipeline-and-quality.md) | 데이터 파이프라인 & 신뢰도 정책 | ✅ |
+| [core/projects/business/05-monetization-and-roadmap.md](core/projects/business/05-monetization-and-roadmap.md) | 수익화 & 비즈니스 기능 로드맵 | ✅ |
+| [core/projects/business/06-known-risks-and-open-decisions.md](core/projects/business/06-known-risks-and-open-decisions.md) | 알려진 리스크 & 미결정 사항(비즈니스 관점) | ✅ |
+| [core/projects/devel/README.md](core/projects/devel/README.md) | 개발 문서 세트 개요 | ✅ |
+| [core/projects/devel/00-overview.md](core/projects/devel/00-overview.md) | 개발자 개요 — vivacapi-core | ✅ |
+| [core/projects/devel/01-data-model.md](core/projects/devel/01-data-model.md) | 데이터 모델 — ERD & Enum | ✅ |
+| [core/projects/devel/02-api-reference.md](core/projects/devel/02-api-reference.md) | API 레퍼런스(엔드포인트 전수 조사) | ✅ |
+| [core/projects/devel/03-auth-and-security.md](core/projects/devel/03-auth-and-security.md) | 인증 & 보안 | ✅ |
+| [core/projects/devel/04-async-jobs.md](core/projects/devel/04-async-jobs.md) | 비동기 Job 워커 & 배치 | ✅ |
+| [core/projects/devel/05-domain-features.md](core/projects/devel/05-domain-features.md) | 도메인 기능 상세 — Group/Invite/Review/Image | ✅ |
+| [core/projects/devel/06-search.md](core/projects/devel/06-search.md) | 탐색 검색 설계 — PostgreSQL FTS + trigram | ✅ |
+| [core/projects/devel/07-testing.md](core/projects/devel/07-testing.md) | 테스트 전략 | ✅ |
+| [core/projects/devel/08-infra-and-deployment.md](core/projects/devel/08-infra-and-deployment.md) | 인프라 & 배포 | ✅ |
+| [core/projects/devel/09-known-issues-and-tech-debt.md](core/projects/devel/09-known-issues-and-tech-debt.md) | 알려진 이슈 & 기술 부채(취합본) | ✅ |
+
 ## 5. etl — vivacapi-etl (`docs/etl/`)
 
 | 문서 | 내용 | 상태 |
