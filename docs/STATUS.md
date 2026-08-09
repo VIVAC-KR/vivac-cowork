@@ -9,8 +9,9 @@
 ## 🔴 지금 가장 급한 것
 
 1. **[Critical] `ADMIN_SESSION_SECRET`이 git history에 실제 값으로 커밋됨** — 커밋 `746ecfc`, `main`에서 여전히 reachable. 이 키를 아는 사람은 `/admin` 세션 쿠키를 위조해 무인증으로 SQLAdmin에 진입, 아무 유저나 staff로 승격 가능. **rotate 여부 확인 필요** — 실제 배포에 재사용됐는지부터 확인 권장. → [core/code-review-2026-07-22.md](core/code-review-2026-07-22.md#critical)
-2. **[BLOCKER] front — NextAuth 런타임 secret 컨테이너 주입 누락** 외 Tier 1(배포 즉시 장애/보안) 3건, 전부 아직 열림. → [front/backlog/codebase-review-260714.md](front/backlog/codebase-review-260714.md) 상세는 아래 §2 참고.
-3. **팀 결정 대기 2건** (아래 §4) — 데이터 실현성 스파이크 착수 여부, 공유자제↔데이터해자 방향.
+2. **[Critical] vivacapi-etl — prod DB 비밀번호가 소스코드에 하드코딩되어 git history에 평문으로 존재** — 커밋 `3914727`, 아직 커밋 안 된 `scripts/upload_source1.py`에도 동일 값 중복. **즉시 rotate 필요.** 원문에는 실제 값이 있었으나 이 요약 문서 체인에서는 redact 처리함 — 실제 값 확인·rotate는 vivacapi-etl repo에서 직접. → [etl/reviews/code-review-2026-07-22.md](etl/reviews/code-review-2026-07-22.md)
+3. **[BLOCKER] front — NextAuth 런타임 secret 컨테이너 주입 누락** 외 Tier 1(배포 즉시 장애/보안) 3건, 전부 아직 열림. → [front/backlog/codebase-review-260714.md](front/backlog/codebase-review-260714.md) 상세는 아래 §2 참고.
+4. **팀 결정 대기 2건** (아래 §4) — 데이터 실현성 스파이크 착수 여부, 공유자제↔데이터해자 방향.
 
 ---
 
@@ -23,6 +24,8 @@
 | core | [core/code-review-2026-07-22.md](core/code-review-2026-07-22.md) | Critical 1 / High 1 / Medium 3 / Low 4 | — | — | — | 완료 표기 트래킹이 없는 문서 — 처리 여부 확인 필요 |
 | core | [core/backlog.md](core/backlog.md) | 5건 | — | — | — | 우선순위 미정 (이미지 인프라, DB 백업 이중화, audit_log 보관정책, rate limiting, 수정이력 화면 고도화) |
 | core | [core/backlog/*.md](core/backlog/) | 6건 | — | — | — | 2026-07-11 점검 — 보안 4 / 성능 2, 심각도 대부분 낮음~중간 |
+| mcp | [mcp/reviews/code-review-2026-07-22.md](mcp/reviews/code-review-2026-07-22.md) | 다수 | — | — | — | `client.py` 테스트 부재, 예외처리·로깅 전무 — 완료 표기 트래킹 없음 |
+| etl | [etl/reviews/code-review-2026-07-22.md](etl/reviews/code-review-2026-07-22.md) | 다수 | — | — | — | 🔴 Critical 1(위 §0 참고) 포함 — 완료 표기 트래킹 없음 |
 
 ## 2. front Tier 1 — 배포 즉시 장애/보안 (전부 열림)
 
@@ -88,6 +91,8 @@
 | 2026-08-03 | nginx stale upstream으로 89분 장애 | [core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md](core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md) |
 | 2026-08-04 | 기획 문서 통합 — PRODUCT.md 확정, 원본은 archive로 이동 | [PRODUCT.md](PRODUCT.md), [archive/planning-source/](archive/planning-source/) |
 | 2026-08-04 | 실서비스(vivac.app) 점검으로 화면·API 구현 현황 확정, 상세 화면 기획 4갈래로 통합 | [feature-spec.md](feature-spec.md) |
+| 2026-08-06 | vivacapi-core 코드 전수 조사로 비즈니스/개발 관점 문서 세트(18건) 신규 작성 | [core/projects/business/](core/projects/business/README.md), [core/projects/devel/](core/projects/devel/README.md) |
+| 2026-08-06 | 7개 repo에 docs 심볼릭 링크 구조 확대 적용, 각 repo 로컬에 남아있던 미이전 문서(console/front/mcp/etl) 5건을 vivac-cowork로 병합 | [SYMLINK-SETUP.md](../SYMLINK-SETUP.md) |
 
 ## 7. MVP 구현 현황 (2026-08-10)
 

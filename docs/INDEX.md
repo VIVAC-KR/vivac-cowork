@@ -43,6 +43,7 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [front/decisions/incidents/cloudfront-nextjs-rsc-caching.md](front/decisions/incidents/cloudfront-nextjs-rsc-caching.md) | CloudFront+Next.js RSC 캐싱 장애 기록 | 해결됨(재발 방지용 필독) |
 | [front/projects/search.md](front/projects/search.md) | 검색 라우팅 골격 설계 (2026-07-28) | 🚧 골격만 완료, 실제 검색·필터는 후속 |
 | [front/projects/search-map-explore.md](front/projects/search-map-explore.md) | 검색 지도 탐색(목록/지도 2모드) 설계 + 목 기반 퍼블리싱 계획 | ✅ 1단계(SDK 없이) 구현 완료 2026-08-06 — 2단계는 지도 SDK 연동, 좌표 실데이터 대기 |
+| [front/reviews/code-review-2026-07-22.md](front/reviews/code-review-2026-07-22.md) | 2026-07-22 코드 리뷰 — 인증 토큰 refresh 체인 잠복 결함, 배포 인프라 타 서비스 순단 | 🆕 repo 로컬 docs에서 이전 |
 | [front/reference/frontend/api-proxy.md](front/reference/frontend/api-proxy.md) | Next.js API 프록시 구조 | ⚠️ 일부 낡음 — `route.ts` 설명이 실제로는 미사용 코드 (front/INDEX.md 알려진 한계 참고) |
 | [front/reference/infra/docker-deployment.md](front/reference/infra/docker-deployment.md) | Docker 빌드·배포 구성 | ✅ |
 | [front/templates/*.md](front/templates/) | ADR·incident·reference 작성 템플릿 3종 | ✅ |
@@ -54,6 +55,8 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [console/audit-history-api.md](console/audit-history-api.md) | 수정 이력(Audit History) API 프론트 연동 가이드 | ✅ |
 | [console/projects/pipeline-status-review-api.md](console/projects/pipeline-status-review-api.md) | 데이터 검증 화면용 BE API 요청 명세 | ✅ 구현 완료 (core 브랜치, 미push) |
 | [console/reviews/codebase-review-260714.md](console/reviews/codebase-review-260714.md) | 2026-07-14 코드베이스 리뷰 | 오픈 이슈 소수 |
+| [console/reviews/code-review-2026-07-22.md](console/reviews/code-review-2026-07-22.md) | 2026-07-22 코드 리뷰 — `/v1/internal` 규칙 준수 확인, 에러 envelope 계약 불일치 실버그 1건 | 🆕 repo 로컬 docs에서 이전 |
+| [console/reviews/refactor-260802.md](console/reviews/refactor-260802.md) | 2026-08-02 전체 리팩터링 기록(36파일, sub agent 병렬 작업) | 🆕 repo 로컬 docs에서 이전 |
 | [console/spot-sdp-field-mapping.md](console/spot-sdp-field-mapping.md) | 화면 필드 ↔ DB 컬럼 매핑표 | ✅ |
 
 ## 4. core — vivacapi-core (`docs/core/`)
@@ -82,6 +85,32 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [core/projects/async-job-worker-design.md](core/projects/async-job-worker-design.md) | 비동기 Job 워커 설계 | ✅ |
 | [core/projects/vvc-105-explore-api-spec.md](core/projects/vvc-105-explore-api-spec.md) | 탐색 API 스펙(VVC-105) | ✅ 1단계 완료, 후속 VVC-117/118/119 |
 
+### 4.1 core/projects/business, core/projects/devel — 비즈니스/개발 문서 세트
+
+코드·기존 문서를 조사해 신규 합류자용으로 재구성한 관점별 문서 세트(2026-08-01/06 작성). 비즈니스 관점은 `business/`, 개발자 관점은 `devel/`이며 서로 상호 링크되어 있다.
+
+| 문서 | 내용 | 상태 |
+|---|---|---|
+| [core/projects/business/README.md](core/projects/business/README.md) | 비즈니스 문서 세트 개요 | ✅ |
+| [core/projects/business/00-product-overview.md](core/projects/business/00-product-overview.md) | 제품 개요(PRODUCT.md 요약본) | ✅ |
+| [core/projects/business/01-domain-glossary.md](core/projects/business/01-domain-glossary.md) | 도메인 용어집(비즈니스 관점) | ✅ |
+| [core/projects/business/02-core-features.md](core/projects/business/02-core-features.md) | 핵심 기능 & 유저 플로우 | ✅ |
+| [core/projects/business/03-admin-console-operations.md](core/projects/business/03-admin-console-operations.md) | 운영 콘솔 & 내부 운영 프로세스 | ✅ |
+| [core/projects/business/04-data-pipeline-and-quality.md](core/projects/business/04-data-pipeline-and-quality.md) | 데이터 파이프라인 & 신뢰도 정책 | ✅ |
+| [core/projects/business/05-monetization-and-roadmap.md](core/projects/business/05-monetization-and-roadmap.md) | 수익화 & 비즈니스 기능 로드맵 | ✅ |
+| [core/projects/business/06-known-risks-and-open-decisions.md](core/projects/business/06-known-risks-and-open-decisions.md) | 알려진 리스크 & 미결정 사항(비즈니스 관점) | ✅ |
+| [core/projects/devel/README.md](core/projects/devel/README.md) | 개발 문서 세트 개요 | ✅ |
+| [core/projects/devel/00-overview.md](core/projects/devel/00-overview.md) | 개발자 개요 — vivacapi-core | ✅ |
+| [core/projects/devel/01-data-model.md](core/projects/devel/01-data-model.md) | 데이터 모델 — ERD & Enum | ✅ |
+| [core/projects/devel/02-api-reference.md](core/projects/devel/02-api-reference.md) | API 레퍼런스(엔드포인트 전수 조사) | ✅ |
+| [core/projects/devel/03-auth-and-security.md](core/projects/devel/03-auth-and-security.md) | 인증 & 보안 | ✅ |
+| [core/projects/devel/04-async-jobs.md](core/projects/devel/04-async-jobs.md) | 비동기 Job 워커 & 배치 | ✅ |
+| [core/projects/devel/05-domain-features.md](core/projects/devel/05-domain-features.md) | 도메인 기능 상세 — Group/Invite/Review/Image | ✅ |
+| [core/projects/devel/06-search.md](core/projects/devel/06-search.md) | 탐색 검색 설계 — PostgreSQL FTS + trigram | ✅ |
+| [core/projects/devel/07-testing.md](core/projects/devel/07-testing.md) | 테스트 전략 | ✅ |
+| [core/projects/devel/08-infra-and-deployment.md](core/projects/devel/08-infra-and-deployment.md) | 인프라 & 배포 | ✅ |
+| [core/projects/devel/09-known-issues-and-tech-debt.md](core/projects/devel/09-known-issues-and-tech-debt.md) | 알려진 이슈 & 기술 부채(취합본) | ✅ |
+
 ## 5. etl — vivacapi-etl (`docs/etl/`)
 
 | 문서 | 내용 | 상태 |
@@ -90,6 +119,7 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [etl/decisions/source1_transform_changelog.md](etl/decisions/source1_transform_changelog.md) | 변환 규칙 변경 이력 | ✅ |
 | [etl/reviews/source1_transform_review.md](etl/reviews/source1_transform_review.md) | 변환 결과 검토 보고서 | ✅ |
 | [etl/naver_favorites_import.md](etl/naver_favorites_import.md) | 네이버 지도 즐겨찾기 → spots 임포트 기록 | ✅ |
+| [etl/reviews/code-review-2026-07-22.md](etl/reviews/code-review-2026-07-22.md) | 2026-07-22 코드 리뷰 — prod DB 자격증명 하드코딩·가드 없는 TRUNCATE CASCADE 등 데이터 유실/유출 리스크 | 🔴 repo 로컬 docs에서 이전, 비밀번호 값은 redact 처리(STATUS.md §0 참고) |
 
 ## 6. mcp — vivac-mcp (`docs/mcp/`)
 
@@ -97,6 +127,7 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 |---|---|---|
 | [mcp/projects/plan.md](mcp/projects/plan.md) | VIVAC MCP Connector 기획 — 자연어 스팟 검색 | 기획 단계 |
 | [mcp/projects/cli-plan.md](mcp/projects/cli-plan.md) | VIVAC CLI 기획 — plan.md 위에 세워진 3번째 소비자 | 기획 단계, 열린 질문 있음 |
+| [mcp/reviews/code-review-2026-07-22.md](mcp/reviews/code-review-2026-07-22.md) | 2026-07-22 코드 리뷰 — `client.py` 테스트 부재, 네트워크 예외처리·로깅 전무 | 🆕 repo 로컬 docs에서 이전 |
 
 ## 7. design — vivac-frontend 전용 (`design/`, 미러링 안 됨)
 
