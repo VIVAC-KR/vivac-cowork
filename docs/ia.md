@@ -1,7 +1,7 @@
 # VIVAC 정보 구조 (IA)
 
 > 작성일: 2026-08-04
-> 배경: [feature-spec.md](feature-spec.md)에서 정리한 화면(기존 4개 + 신규 8개)을 하나의 구조로 묶어, 화면 간 이동 경로와 내비게이션 뼈대를 명확히 한다. 화면별 상세 기능(정보구조·상태·데이터소스)은 여기서 다루지 않는다 — [feature-spec.md](feature-spec.md)를 참고.
+> 배경: [feature-spec.md](archive/planning-source/feature-spec-260804.md)에서 정리한 화면(기존 4개 + 신규 8개)을 하나의 구조로 묶어, 화면 간 이동 경로와 내비게이션 뼈대를 명확히 한다. 화면별 상세 기능(정보구조·상태·데이터소스)은 여기서 다루지 않는다 — [features/](features/README.md)를 참고.
 > 범위: 웹 MVP 기준([PRODUCT.md](PRODUCT.md) "플랫폼" 참고). ✅ 표시는 실서비스에서 확인된 화면, 🆕는 feature-spec.md에서 신규 기획한 화면, ⚪는 이번 범위 밖(향후).
 
 ## 1. 사이트맵
@@ -76,7 +76,7 @@ graph TD
 
 ### 3.2 신규 화면 추가 시 메뉴 확장 (제안)
 
-그룹·마이페이지가 생기면 햄버거 메뉴 2개 항목으로는 부족합니다. 아래 구조를 제안합니다 — 확정 시 [feature-spec.md](feature-spec.md)에 반영하세요.
+그룹·마이페이지가 생기면 햄버거 메뉴 2개 항목으로는 부족합니다. 아래 구조를 제안합니다 — 확정 시 [features/](features/README.md)에 반영하세요.
 
 ```
 햄버거 메뉴
@@ -101,4 +101,4 @@ graph TD
 
 ---
 
-관련 문서: [feature-spec.md](feature-spec.md)(화면별 상세 기능) · [PRODUCT.md](PRODUCT.md)(제품 정의) · [STATUS.md](STATUS.md)(진행상황)
+관련 문서: [features/](features/README.md)(화면별 상세 기능) · [PRODUCT.md](PRODUCT.md)(제품 정의) · [STATUS.md](STATUS.md)(진행상황)

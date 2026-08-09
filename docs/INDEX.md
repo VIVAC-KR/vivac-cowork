@@ -8,7 +8,7 @@
 
 1. [PRODUCT.md](PRODUCT.md) — 제품 정의 — MVP 실행 기준 (2026-08-10 개정)
 2. [STATUS.md](STATUS.md) — 미해결 이슈·진행 상황·결정 로그 종합, §7 MVP 구현 현황 추가(2026-08-10)
-3. [feature-spec.md](feature-spec.md) — 화면 단위 상세 기능 기획(정상구현/반쪽구현/API선구현/완전미구현)
+3. [features/](features/README.md) — 화면별 기능 명세(홈·검색·상세·인증·공통 상태), PRODUCT.md §5에서 분리(2026-08-10)
 4. [ia.md](ia.md) — 정보 구조(사이트맵·화면 인벤토리·내비게이션)
 5. [business-feature-roadmap.md](business-feature-roadmap.md) — 실제 구현 스냅샷 기준 기능 로드맵
 
@@ -16,14 +16,15 @@
 
 | 문서 | 내용 | 상태 |
 |---|---|---|
-| [PRODUCT.md](PRODUCT.md) | 제품 정의 — 문제·가설, MVP 범위와 단계, 데이터 정의, 기능 명세, 결정 로그, 열린 항목 | ✅ 확정본 (2026-08-10 개정) |
+| [PRODUCT.md](PRODUCT.md) | 제품 정의 — 문제·가설, MVP 범위와 단계, 데이터 정의, 결정 로그, 열린 항목 (기능 명세는 `features/`로 분리) | ✅ 확정본 (2026-08-10 개정) |
 | [data-pipeline.md](data-pipeline.md) | 스팟 데이터 `pipeline_status`/`trust_tier` 필드 설계 | ✅ 확정, vivacapi-core에 구현됨 |
 | [business-feature-roadmap.md](business-feature-roadmap.md) | 성장/리텐션/수익화/신뢰 4관점 기능 후보 — 코드 대조로 근거 검증됨 | 진행 중 (항목별 상태는 STATUS.md 참고) |
-| [feature-spec.md](feature-spec.md) | 화면 단위 상세 기능 기획 — 실서비스(vivac.app)·API 대조로 확인한 정상구현/반쪽구현/API선구현/완전미구현 4갈래를 통합 | 🆕 2026-08-04 작성 |
+| [features/](features/README.md) | 화면별 기능 명세 — 홈 · 검색/필터/지도 탐색 · 스팟 상세 · 계정/인증 · 공통 상태. 각 기능을 목적 → 동작 → 확정 계약 → 수용 기준 4블록으로 기술 | 🆕 2026-08-10 PRODUCT.md §5에서 분리 |
+| [feature-spec.md](archive/planning-source/feature-spec-260804.md) | 화면 단위 상세 기능 기획 — 실서비스(vivac.app)·API 대조로 확인한 정상구현/반쪽구현/API선구현/완전미구현 4갈래를 통합 | 폐기 — 2026-08-10 archive로 이동. 구현 스펙은 `features/`, 구현 상태는 STATUS.md §7로 대체. 3부·4부 화면 기획 초안은 대체 문서 없음 |
 | [ia.md](ia.md) | 정보 구조(IA) — 사이트맵, 화면 인벤토리, 내비게이션 구조, 아직 배치 못 정한 것 | 🆕 2026-08-04 작성 |
 | [map-explore-discussion.md](map-explore-discussion.md) | 지도 기반 탐색 MVP 기획 논의 기록 — 확정 결정 D1~D14(데이터 범위·category 어휘·약속의 크기·단계·지도 SDK)와 근거·감수사항·이월 숙제 | 🆕 2026-08-10 확정 |
 | [CONTEXT_SCOPE.md](CONTEXT_SCOPE.md) | 각 repo CLAUDE.md가 import하는 공유 컨텍스트 기본 참고 범위 안내 | ✅ 안정 |
-| [archive/planning-source/](archive/planning-source/) | PRODUCT.md 병합에 쓰인 기획·리서치 원본 (2026-08-04 통합) + [PRODUCT-260804.md](archive/planning-source/PRODUCT-260804.md)(2026-08-10 개정으로 대체된 구 제품 정의) | 폐기 3건 + 미해결/유효 3건 혼재, 각 파일 상단 상태 헤더 참고 |
+| [archive/planning-source/](archive/planning-source/) | PRODUCT.md 병합에 쓰인 기획·리서치 원본 (2026-08-04 통합) + [PRODUCT-260804.md](archive/planning-source/PRODUCT-260804.md)(2026-08-10 개정으로 대체된 구 제품 정의) + [feature-spec-260804.md](archive/planning-source/feature-spec-260804.md)(2026-08-10 `features/`로 대체된 구 화면 기획) | 폐기 3건 + 미해결/유효 3건 혼재, 각 파일 상단 상태 헤더 참고 |
 
 ## 2. front — VIVAC-frontend (`docs/front/`)
 

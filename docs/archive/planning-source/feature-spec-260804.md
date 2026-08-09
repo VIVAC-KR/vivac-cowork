@@ -1,3 +1,7 @@
+> ## 📌 상태: 대체됨 — 2026-08-10
+> 이 문서는 2026-08-04판 화면 상세 기능 기획입니다. 구현 스펙은 [docs/features/](../../features/README.md)로, 구현 상태는 [STATUS.md](../../STATUS.md) §7로 대체되었으며 더 이상 갱신하지 않습니다.
+> 다만 **3부(그룹·리뷰 작성)와 4부(지도 탐색·합법성 레이어·제보)의 화면 기획 초안은 아직 대체 문서가 없습니다.** 해당 부분은 참고용으로 남깁니다.
+
 # VIVAC 화면 상세 기능 기획
 
 > 작성일: 2026-08-04
@@ -193,4 +197,4 @@
 
 ---
 
-관련 문서: [PRODUCT.md](PRODUCT.md)(제품 정의) · [ia.md](ia.md)(정보 구조·사이트맵) · [STATUS.md](STATUS.md)(진행상황·팀 결정 대기 항목) · [business-feature-roadmap.md](business-feature-roadmap.md)(백엔드 관점 기능 후보) · [INDEX.md](INDEX.md)(전체 문서 인덱스)
+관련 문서: [PRODUCT.md](../../PRODUCT.md)(제품 정의) · [ia.md](../../ia.md)(정보 구조·사이트맵) · [STATUS.md](../../STATUS.md)(진행상황·팀 결정 대기 항목) · [business-feature-roadmap.md](../../business-feature-roadmap.md)(백엔드 관점 기능 후보) · [INDEX.md](../../INDEX.md)(전체 문서 인덱스)

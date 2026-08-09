@@ -41,7 +41,7 @@
 | 상태 | 건수 | 항목 |
 |---|---|---|
 | ✅ 완료 | 3 | 1.1 재사용 리퍼럴 링크, 4.2 trust_tier 신선도 감쇠(PR #117), 4.4 검증 담당자 재할당(PR #118) |
-| ⏸ 보류 | 1 | 1.2 스팟 상세 공개 공유 카드(OG 메타) — ⚠️ **재확인 필요(2026-08-04)**: "상세페이지 자체가 없다"(2026-07-20 기준)는 전제가 더 이상 맞지 않음. `/spots/{uid}`가 실제로 구현·배포돼 있음을 실서비스에서 확인([feature-spec.md §1.2](feature-spec.md#12-스팟-상세-spotsuid)). OG 메타만 다시 검토하면 될 수 있음 |
+| ⏸ 보류 | 1 | 1.2 스팟 상세 공개 공유 카드(OG 메타) — ⚠️ **재확인 필요(2026-08-04)**: "상세페이지 자체가 없다"(2026-07-20 기준)는 전제가 더 이상 맞지 않음. `/spots/{uid}`가 실제로 구현·배포돼 있음을 실서비스에서 확인([feature-spec §1.2](archive/planning-source/feature-spec-260804.md#12-스팟-상세-spotsuid)). OG 메타만 다시 검토하면 될 수 있음 |
 | 제안(미착수) | 12 | 1.3, 1.4, 2.1~2.4, 3.1~3.4, 4.1, 4.3 |
 
 의존성 없이 바로 착수 가능한 항목(난이도 하): `1.1`✅, `1.3(a)`, `2.2`, `4.2`✅, `4.3`, `4.4`✅ — 미완료는 `1.3(a)`, `2.2`, `4.3` 3건.
@@ -68,7 +68,7 @@
 | [design/reference/pages/spot-detail.md](../../vivac-frontend/design/reference/pages/spot-detail.md) | 후속 이슈 문서 링크가 실제 파일명·경로와 다름 | ✅ 2026-08-04 수정 완료(vivac-frontend 별도 커밋) |
 | [front/archive/auth-implementation.md](front/archive/auth-implementation.md) | 대체 문서가 "없음"으로 표시 — NextAuth v5 전환 후 신규 Reference 문서 미작성 | Reference 문서 신규 작성 필요 |
 | [core/skill-db-inspect.md](core/skill-db-inspect.md) | `.claude/skills/db_inspect/SKILL.md`로 옮겨야 할 초안인데 아직 이 자리에 있음 | 이동 또는 초안임을 계속 유지할지 결정 필요 |
-| [feature-spec.md](feature-spec.md) | PRODUCT.md의 "기능 범위"·MVP 4순위·차별점 문구·수익 모델을 인용하는데, 2026-08-10 개정으로 해당 서술이 바뀌거나 다른 절로 이동함 | 새 [PRODUCT.md](PRODUCT.md) 기준으로 재정렬 필요 |
+| [archive/planning-source/feature-spec-260804.md](archive/planning-source/feature-spec-260804.md) | PRODUCT.md의 "기능 범위"·MVP 4순위·차별점 문구·수익 모델을 인용하는데, 2026-08-10 개정으로 해당 서술이 바뀌거나 다른 절로 이동함 | 새 [PRODUCT.md](PRODUCT.md) 기준으로 재정렬 필요 |
 | [ia.md](ia.md) | PRODUCT.md "플랫폼" 절을 참조 — 새 문서에서는 §3.4 | 참조 위치 갱신 필요 |
 | [STATUS.md](STATUS.md) (이 문서) | §4·§5가 구 PRODUCT.md "미해결 이슈" 원문을 기준으로 작성됨 | 새 [PRODUCT.md](PRODUCT.md) §7.4(팀 결정 대기)와 대조 필요 |
 | [core/projects/business/](core/projects/business/README.md) | `vivacapi-core`의 낡은 `docs/core/projects/PRODUCT.md` 사본에서 파생되어 폐기된 기획(감성 큐레이션·2030 감성 캠퍼·오프라인 MVP)을 되살렸음. 2026-08-10 정리 | **사본을 제거해야 재발이 막힘** — `vivacapi-core` 측 조치 필요 |
@@ -90,7 +90,7 @@
 | 2026-07-28 | 검색 라우팅 골격만 우선 구축(질의·필터는 후속) | [front/projects/search.md](front/projects/search.md) |
 | 2026-08-03 | nginx stale upstream으로 89분 장애 | [core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md](core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md) |
 | 2026-08-04 | 기획 문서 통합 — PRODUCT.md 확정, 원본은 archive로 이동 | [PRODUCT.md](PRODUCT.md), [archive/planning-source/](archive/planning-source/) |
-| 2026-08-04 | 실서비스(vivac.app) 점검으로 화면·API 구현 현황 확정, 상세 화면 기획 4갈래로 통합 | [feature-spec.md](feature-spec.md) |
+| 2026-08-04 | 실서비스(vivac.app) 점검으로 화면·API 구현 현황 확정, 상세 화면 기획 4갈래로 통합 | [archive/planning-source/feature-spec-260804.md](archive/planning-source/feature-spec-260804.md) |
 | 2026-08-06 | vivacapi-core 코드 전수 조사로 비즈니스/개발 관점 문서 세트(18건) 신규 작성 | [core/projects/business/](core/projects/business/README.md), [core/projects/devel/](core/projects/devel/README.md) |
 | 2026-08-06 | 7개 repo에 docs 심볼릭 링크 구조 확대 적용, 각 repo 로컬에 남아있던 미이전 문서(console/front/mcp/etl) 5건을 vivac-cowork로 병합 | [SYMLINK-SETUP.md](../SYMLINK-SETUP.md) |
 
@@ -149,9 +149,9 @@
 | 항목 | 위치 | 성격 |
 |---|---|---|
 | **iOS 앱 전체 미착수** | §3.4 | 1단계 **완료 조건** (§3.2) |
-| 지도 SDK 미통합 | 5.4 | 1단계 **완료 조건** (§3.2) |
-| 필터 옵션 부족 | 5.3 | 데이터 마일스톤 (§2.2) |
-| 상세 필드 공백 | 5.5 | 데이터 마일스톤 (§2.2) |
+| 지도 SDK 미통합 | [지도 탐색](features/search.md) | 1단계 **완료 조건** (§3.2) |
+| 필터 옵션 부족 | [필터](features/search.md) | 데이터 마일스톤 (§2.2) |
+| 상세 필드 공백 | [스팟 상세](features/spot-detail.md) | 데이터 마일스톤 (§2.2) |
 
 웹은 데이터 확보와 SDK 통합이 남았고, iOS는 구축부터 배포까지 전부 남았다.
 
@@ -161,13 +161,13 @@
 
 | 기능 | 현재 상태 | 미달 |
 |---|---|---|
-| §5.1 홈 | 구현 완료 | 그룹 구성이 운영 화면 없이 고정 식별자에 묶여 있다. 썸네일 채움률 0%(§7.2)라 카드가 비어 보인다 |
-| §5.2 검색·목록 | 구현 완료 | — |
-| §5.3 필터 | 구현 완료. 단 **노출 옵션이 실데이터에 미달**한다 | 카테고리 — 자연휴양림 1개만 노출 / 지역 — 4개 (임시값) |
-| §5.4 지도 탐색 | **미구현.** 2모드 UI·상태 관리·시트·API 클라이언트는 완료, 지도 SDK 미통합으로 지도 영역은 플레이스홀더 | — |
-| §5.5 스팟 상세 | 구현 완료. 리뷰 영역은 플레이스홀더(미구현) | 표시 항목 대부분이 비어 있다(§7.2). 화면은 완성됐고 데이터가 따라오지 않은 상태다. 출처는 스키마에 필드가 없어 미구현이다 |
-| §5.6 계정·인증 | 구현 완료 | — |
-| §5.7 공통 상태 | 구현 완료 | — |
+| [홈](features/home.md) | 구현 완료 | 그룹 구성이 운영 화면 없이 고정 식별자에 묶여 있다. 썸네일 채움률 0%(§7.2)라 카드가 비어 보인다 |
+| [검색·목록](features/search.md) | 구현 완료 | — |
+| [필터](features/search.md) | 구현 완료. 단 **노출 옵션이 실데이터에 미달**한다 | 카테고리 — 자연휴양림 1개만 노출 / 지역 — 4개 (임시값) |
+| [지도 탐색](features/search.md) | **미구현.** 2모드 UI·상태 관리·시트·API 클라이언트는 완료, 지도 SDK 미통합으로 지도 영역은 플레이스홀더 | — |
+| [스팟 상세](features/spot-detail.md) | 구현 완료. 리뷰 영역은 플레이스홀더(미구현) | 표시 항목 대부분이 비어 있다(§7.2). 화면은 완성됐고 데이터가 따라오지 않은 상태다. 출처는 스키마에 필드가 없어 미구현이다 |
+| [계정·인증](features/auth.md) | 구현 완료 | — |
+| [공통 상태](features/_common.md) | 구현 완료 | — |
 
 ### 7.6 미착수
 
@@ -175,17 +175,17 @@
 |---|---|
 | 사용자 행동 계측 도입 | MVP 달성 직후 (§3.2 2단계) |
 | 데이터 실현성 스파이크 | 설계는 완료, 미실행 |
-| 그룹(컬렉션) 기능 | API는 구현됨. 운영 화면 없이 홈 캐러셀이 고정 식별자에 묶여 있음 (§5.1) |
+| 그룹(컬렉션) 기능 | API는 구현됨. 운영 화면 없이 홈 캐러셀이 고정 식별자에 묶여 있음 ([홈](features/home.md)) |
 | 홍보 랜딩페이지 | 라우트 없음. `/`는 서비스 홈이지 홍보 랜딩이 아님 |
 | GA 등 분석 계측 | 전무. CBT 수요 측정용 계측도 없음 |
 | CBT 모집 수단 | 미정. 랜딩 대신 TestFlight로 대체 가능 |
-| 카카오 로그인 | MVP 직후 순차 도입 (§5.6) |
+| 카카오 로그인 | MVP 직후 순차 도입 ([계정·인증](features/auth.md)) |
 
 **UGC — MVP 범위 제외, 추후 개발**
 
 | 항목 | 현재 |
 |---|---|
-| 리뷰·평점 | 상세 화면 플레이스홀더 (§5.5). API는 구현됨 |
+| 리뷰·평점 | 상세 화면 플레이스홀더 ([스팟 상세](features/spot-detail.md)). API는 구현됨 |
 | 스팟 제보 ("새 스팟" / "정보가 틀렸어요") | 미구현 |
 | 사진·GPS 첨부 폼 | 미구현 |
 
