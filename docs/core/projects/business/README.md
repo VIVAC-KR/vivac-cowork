@@ -5,7 +5,7 @@
 
 ## 읽는 순서
 
-1. [00-product-overview.md](./00-product-overview.md) — 제품이 무엇을 해결하는가, 차별화, 타겟, MVP 범위
+1. [00-product-overview.md](./00-product-overview.md) — 제품 정의는 [PRODUCT.md](../../../PRODUCT.md) 참조 (이 문서는 폐기 스텁)
 2. [01-domain-glossary.md](./01-domain-glossary.md) — pipeline_status, trust_tier, 권한 등급 등 핵심 비즈니스 용어
 3. [02-core-features.md](./02-core-features.md) — 탐색/그룹/초대/리뷰 등 핵심 기능별 유저 플로우
 4. [03-admin-console-operations.md](./03-admin-console-operations.md) — 내부 운영 콘솔, 권한 등급별 업무, 모더레이션
@@ -17,7 +17,7 @@
 
 | 궁금한 것 | 문서 |
 |---|---|
-| VIVAC이 어떤 문제를 푸는 서비스인가 | [00-product-overview.md](./00-product-overview.md) |
+| VIVAC이 어떤 문제를 푸는 서비스인가 | [PRODUCT.md](../../../PRODUCT.md) |
 | "미검증" 뱃지는 왜 붙는가 | [01-domain-glossary.md](./01-domain-glossary.md), [04-data-pipeline-and-quality.md](./04-data-pipeline-and-quality.md) |
 | 그룹/초대 기능이 정확히 뭘 할 수 있나 | [02-core-features.md](./02-core-features.md) §4-5 |
 | 운영팀이 콘솔에서 뭘 하나 | [03-admin-console-operations.md](./03-admin-console-operations.md) |

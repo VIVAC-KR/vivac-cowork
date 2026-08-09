@@ -72,6 +72,7 @@
 | [feature-spec.md](feature-spec.md) | PRODUCT.md의 "기능 범위"·MVP 4순위·차별점 문구·수익 모델을 인용하는데, 2026-08-10 개정으로 해당 서술이 바뀌거나 다른 절로 이동함 | 새 [PRODUCT.md](PRODUCT.md) 기준으로 재정렬 필요 |
 | [ia.md](ia.md) | PRODUCT.md "플랫폼" 절을 참조 — 새 문서에서는 §3.4 | 참조 위치 갱신 필요 |
 | [STATUS.md](STATUS.md) (이 문서) | §4·§5가 구 PRODUCT.md "미해결 이슈" 원문을 기준으로 작성됨 | 새 [PRODUCT.md](PRODUCT.md) §7.4(팀 결정 대기)와 대조 필요 |
+| [core/projects/business/](core/projects/business/README.md) | `vivacapi-core`의 낡은 `docs/core/projects/PRODUCT.md` 사본에서 파생되어 폐기된 기획(감성 큐레이션·2030 감성 캠퍼·오프라인 MVP)을 되살렸음. 2026-08-10 정리 | **사본을 제거해야 재발이 막힘** — `vivacapi-core` 측 조치 필요 |
 
 ## 6. 핵심 결정 로그 (연대순)
 
