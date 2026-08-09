@@ -10,7 +10,7 @@ VIVAC 서비스의 **기획/협업 문서 저장소**입니다. 코드는 없고
 |---|---|
 | [docs/INDEX.md](docs/INDEX.md) | 전체 문서(제품 공유 문서 + 5개 repo 전용 폴더 + design/) 마스터 인덱스. "이 내용 어디 있지?"의 첫 진입점입니다. |
 | [docs/STATUS.md](docs/STATUS.md) | 코드 리뷰 오픈 이슈, 로드맵 진행 상황, 팀 결정 대기 항목, 핵심 결정 로그를 한 곳에 모은 트래커. |
-| [docs/PRODUCT.md](docs/PRODUCT.md) | 제품 개요 — 문제 정의, 차별화, 타겟, MVP 범위, 데이터 전략, 수익 모델, 로드맵. 현재 확정본입니다. |
+| [docs/PRODUCT.md](docs/PRODUCT.md) | 제품 정의 — 문제·가설, MVP 범위와 단계, 데이터 정의, 기능 명세, 결정 로그, 열린 항목. 현재 확정본입니다 (2026-08-10 개정). |
 | [docs/feature-spec.md](docs/feature-spec.md) | 화면 단위 상세 기능 기획 — 실서비스·API 대조로 확인한 정상구현/반쪽구현/API선구현/완전미구현 4갈래 통합. |
 | [docs/ia.md](docs/ia.md) | 정보 구조(IA) — 사이트맵, 화면 인벤토리, 내비게이션 구조. |
 | [docs/PRODUCT_TEMP.md](docs/PRODUCT_TEMP.md) | (2026-08-04 병합 완료, 더 이상 갱신 안 함) 과거 기획 개정 초안 — 내용은 PRODUCT.md로 병합되었고, 이 파일은 병합 사실만 안내하는 스텁으로 남아 있습니다. |
