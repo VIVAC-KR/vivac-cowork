@@ -22,6 +22,7 @@
 | [business-feature-roadmap.md](business-feature-roadmap.md) | 성장/리텐션/수익화/신뢰 4관점 기능 후보 — 코드 대조로 근거 검증됨 | 진행 중 (항목별 상태는 STATUS.md 참고) |
 | [feature-spec.md](feature-spec.md) | 화면 단위 상세 기능 기획 — 실서비스(vivac.app)·API 대조로 확인한 정상구현/반쪽구현/API선구현/완전미구현 4갈래를 통합 | 🆕 2026-08-04 작성 |
 | [ia.md](ia.md) | 정보 구조(IA) — 사이트맵, 화면 인벤토리, 내비게이션 구조, 아직 배치 못 정한 것 | 🆕 2026-08-04 작성 |
+| [map-explore-discussion.md](map-explore-discussion.md) | 지도 기반 탐색 MVP 기획 논의 기록 — 확정 결정 D1~D14(데이터 범위·category 어휘·약속의 크기·단계·지도 SDK)와 근거·감수사항·이월 숙제 | 🆕 2026-08-10 확정 |
 | [CONTEXT_SCOPE.md](CONTEXT_SCOPE.md) | 각 repo CLAUDE.md가 import하는 공유 컨텍스트 기본 참고 범위 안내 | ✅ 안정 |
 | [TEMP.md](TEMP.md) | 스크래치 메모("hello22!") | 내용 없음 — 정리 대상 |
 | [archive/planning-source/](archive/planning-source/) | PRODUCT.md 병합에 쓰인 기획·리서치 원본 (2026-08-04 통합) | 폐기 3건 + 미해결/유효 3건 혼재, 각 파일 상단 상태 헤더 참고 |
