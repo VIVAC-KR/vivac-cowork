@@ -68,8 +68,8 @@
 | [design/reference/pages/spot-detail.md](../../vivac-frontend/design/reference/pages/spot-detail.md) | 후속 이슈 문서 링크가 실제 파일명·경로와 다름 | ✅ 2026-08-04 수정 완료(vivac-frontend 별도 커밋) |
 | [front/archive/auth-implementation.md](front/archive/auth-implementation.md) | 대체 문서가 "없음"으로 표시 — NextAuth v5 전환 후 신규 Reference 문서 미작성 | Reference 문서 신규 작성 필요 |
 | [core/skill-db-inspect.md](core/skill-db-inspect.md) | `.claude/skills/db_inspect/SKILL.md`로 옮겨야 할 초안인데 아직 이 자리에 있음 | 이동 또는 초안임을 계속 유지할지 결정 필요 |
-| [archive/planning-source/feature-spec-260804.md](archive/planning-source/feature-spec-260804.md) | PRODUCT.md의 "기능 범위"·MVP 4순위·차별점 문구·수익 모델을 인용하는데, 2026-08-10 개정으로 해당 서술이 바뀌거나 다른 절로 이동함 | 새 [PRODUCT.md](PRODUCT.md) 기준으로 재정렬 필요 |
-| [ia.md](ia.md) | PRODUCT.md "플랫폼" 절을 참조 — 새 문서에서는 §3.4 | 참조 위치 갱신 필요 |
+| [archive/planning-source/feature-spec-260804.md](archive/planning-source/feature-spec-260804.md) | PRODUCT.md의 "기능 범위"·MVP 4순위·차별점 문구·수익 모델을 인용하는데, 2026-08-10 개정으로 해당 서술이 바뀌거나 다른 절로 이동함 | ✅ 2026-08-10 폐기 — 구현 스펙은 [features/](features/README.md), 구현 상태는 이 문서 §7이 대체. 재정렬 불요. 3부·4부 화면 초안만 참고용 존치 |
+| [ia.md](ia.md) | 웹 MVP 전제, 폐기된 `/map` 라우트, MVP 제외 화면을 현재 화면과 동급 나열, PRODUCT.md "플랫폼" 절 참조 | ✅ 2026-08-10 재작성 완료 |
 | [STATUS.md](STATUS.md) (이 문서) | §4·§5가 구 PRODUCT.md "미해결 이슈" 원문을 기준으로 작성됨 | 새 [PRODUCT.md](PRODUCT.md) §7.4(팀 결정 대기)와 대조 필요 |
 | [core/projects/business/](core/projects/business/README.md) | `vivacapi-core`의 낡은 `docs/core/projects/PRODUCT.md` 사본에서 파생되어 폐기된 기획(감성 큐레이션·2030 감성 캠퍼·오프라인 MVP)을 되살렸음. 2026-08-10 정리 | **사본을 제거해야 재발이 막힘** — `vivacapi-core` 측 조치 필요 |
 

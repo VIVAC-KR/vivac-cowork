@@ -1,104 +1,108 @@
 # VIVAC 정보 구조 (IA)
 
-> 작성일: 2026-08-04
-> 배경: [feature-spec.md](archive/planning-source/feature-spec-260804.md)에서 정리한 화면(기존 4개 + 신규 8개)을 하나의 구조로 묶어, 화면 간 이동 경로와 내비게이션 뼈대를 명확히 한다. 화면별 상세 기능(정보구조·상태·데이터소스)은 여기서 다루지 않는다 — [features/](features/README.md)를 참고.
-> 범위: 웹 MVP 기준([PRODUCT.md](PRODUCT.md) "플랫폼" 참고). ✅ 표시는 실서비스에서 확인된 화면, 🆕는 feature-spec.md에서 신규 기획한 화면, ⚪는 이번 범위 밖(향후).
+> 개정: 2026-08-10 (초판 2026-08-04)
+> 담는 것: 사이트맵 · 화면 인벤토리 · 내비게이션 구조. 화면별 상세 기능은 [features/](features/README.md), 제품 정의·MVP 범위는 [PRODUCT.md](PRODUCT.md), 구현 현황 수치는 [STATUS.md](STATUS.md) §7이 담당한다 — 여기서 반복하지 않는다.
+> 범위: 웹 + iOS 앱 MVP([PRODUCT.md](PRODUCT.md) §3.4). **IA 자체는 플랫폼 무관**이며 아래 구조는 양 플랫폼에 동일하게 적용된다.
+> 초판의 화면 기획 배경은 archive된 [feature-spec](archive/planning-source/feature-spec-260804.md)에 있다(더 이상 갱신하지 않는 문서).
 
 ## 1. 사이트맵
+
+실재하는 라우트는 4개다. 점선은 미확정 경로다.
 
 ```mermaid
 graph TD
   Home["🏠 / 홈"]
   Login["/login 로그인"]
-  Search["/search 검색 결과"]
-  Map["/map 지도 탐색 🆕"]
+  Search["/search 검색<br/>?mode=list | ?mode=map"]
   SpotDetail["/spots/{uid} 스팟 상세"]
-  ReviewWrite["리뷰 작성 🆕 (모달/서브섹션)"]
-  Report["제보 🆕 (모달)"]
-  GroupAdd["그룹에 담기 🆕 (모달)"]
-  Groups["/groups 그룹 목록 🆕"]
-  GroupDetail["/groups/{uid} 그룹 상세 🆕"]
-  GroupCreate["그룹 생성 🆕 (모달)"]
-  InviteAccept["초대 수락 🆕"]
-  Me["/me 마이페이지 ⚪ 범위 밖"]
 
-  Home -->|검색창/카테고리 칩| Search
+  Home -->|검색창 제출| Search
   Home -->|캐러셀 카드| SpotDetail
   Home -->|햄버거 메뉴| Login
 
-  Search -->|결과 카드| SpotDetail
-  Search -->|리스트/지도 토글| Map
-  Map -->|마커 클릭| SpotDetail
+  Search -->|결과 카드 · 지도 마커| SpotDetail
 
-  SpotDetail --> ReviewWrite
-  SpotDetail --> Report
-  SpotDetail -->|로그인 시| GroupAdd
-  GroupAdd -->|새 그룹| GroupCreate
-  GroupAdd -->|기존 그룹 선택| GroupDetail
+  Login -.->|완료 후 항상 홈으로| Home
+  SpotDetail -.->|뒤로 가기는 항상 홈으로| Home
 
-  Login -.->|로그인 완료 후 원래 화면으로 복귀| Home
+  subgraph OUT["MVP 범위 밖 · 확정 아님 (§2.2)"]
+    Groups["그룹 목록 · 상세 · 생성 / 그룹에 담기"]
+    Review["리뷰 작성"]
+    Report["제보"]
+    Invite["초대 수락"]
+    Me["마이페이지"]
+  end
 
-  Groups --> GroupDetail
-  Groups --> GroupCreate
-  GroupDetail --> SpotDetail
-  InviteAccept -->|비로그인| Login
-  InviteAccept -->|수락 완료| GroupDetail
-
+  SpotDetail -.-> Review
+  SpotDetail -.-> Report
+  SpotDetail -.-> Groups
+  Invite -.-> Groups
   Me -.-> Groups
-  Me -.-> ReviewWrite
 ```
 
 ## 2. 화면 인벤토리
 
-| 화면 | 경로 | 깊이 | 로그인 | 진입 경로 | 상태 |
+### 2.1 MVP 화면
+
+| 화면 | 경로 | 깊이 | 로그인 | 진입 경로 | 상세 |
 |---|---|---|---|---|---|
-| 홈 | `/` | 0(진입점) | 불필요 | 직접 진입 | ✅ |
-| 로그인 | `/login` | 1 | — | 홈 햄버거 메뉴, 로그인 필요 액션에서 유도 | ✅ |
-| 검색 결과 | `/search` | 1 | 불필요 | 홈 검색창/카테고리 칩 | ✅ (검색창 Enter 미동작 버그 있음 — feature-spec §1.3) |
-| 지도 탐색 | `/map` (또는 `/search` 뷰 토글) | 1~2 | 불필요 | 검색 결과 상단 토글 | 🆕 미구현 — feature-spec §4.1 |
-| 스팟 상세 | `/spots/{uid}` | 2 | 불필요(열람) | 홈 캐러셀, 검색 결과, 지도 마커 | ✅ |
-| 리뷰 작성 | (스팟 상세 내 모달/서브섹션, 별도 경로 불필요) | 3 | **필요** | 스팟 상세 "후기 작성" | 🆕 미구현 — feature-spec §3.2 |
-| 제보 | (스팟 상세 내 모달) | 3 | 불필요(제보는 비로그인도 허용 검토) | 스팟 상세 "정보가 틀렸어요" | 🆕 미구현 — feature-spec §4.3 |
-| 그룹에 담기 | (스팟 상세 내 모달) | 3 | **필요** | 스팟 상세 | 🆕 미구현 — feature-spec §3.1 |
-| 그룹 목록 | `/groups` | 1 | **필요** | 홈 햄버거 메뉴(신설 필요) | 🆕 미구현 — feature-spec §3.1 |
-| 그룹 상세 | `/groups/{uid}` | 2 | `PUBLIC`이면 불필요, `PRIVATE`면 필요 | 그룹 목록, 초대 수락, 스팟 상세 "그룹에 담기" | 🆕 미구현 — feature-spec §3.1 |
-| 그룹 생성 | (모달) | 2 | **필요** | 그룹 목록 CTA, "그룹에 담기"에서 새 그룹 | 🆕 미구현 |
-| 초대 수락 | 별도 경로(예: `/invites/{code}`) | 진입점(외부 링크로 유입) | 수락 시 필요 | 카카오톡/SNS 공유 링크 | 🆕 미구현 |
-| 마이페이지 | `/me` | 1 | **필요** | 홈 햄버거 메뉴(신설 필요) | ⚪ 이번 범위 밖 — feature-spec §6 |
+| 홈 | `/` | 0(진입점) | 불필요 | 직접 진입 | [home.md](features/home.md) |
+| 로그인 | `/login` | 1 | — | 햄버거 메뉴 | [auth.md](features/auth.md) |
+| 검색 | `/search` | 1 | 불필요 | 홈 검색창, 검색 화면 자체 검색창 | [search.md](features/search.md) |
+| 스팟 상세 | `/spots/{uid}` | 2 | 불필요(열람) | 홈 캐러셀, 검색 결과 카드·지도 마커 | [spot-detail.md](features/spot-detail.md) |
+
+- **지도 탐색은 별도 라우트가 아니다.** `/search`의 2모드 확장(`?mode=list` | `?mode=map`)이며 기본 진입은 목록이다. 지도 모드는 데스크톱에서 리스트+지도 분할, 모바일에서 지도+스냅 바텀시트로 표현된다 — 치수·동작은 [search.md](features/search.md), 진행 상태는 [STATUS.md](STATUS.md) §7.5.
+- **홈의 카테고리 칩은 진입 경로가 아니다.** 현재 비기능 요소로 렌더될 뿐 필터·검색으로 이어지지 않는다.
+- `app/api/[...path]`·`app/api/auth/[...nextauth]`는 프록시·인증 핸들러이며 화면이 아니다.
+
+### 2.2 MVP 범위 밖 · 확정 아님
+
+아래는 **MVP에서 제외**됐고([PRODUCT.md](PRODUCT.md) §1.4), 중장기 후보로만 남아 있다([PRODUCT.md](PRODUCT.md) §7.5 — 확정된 계획이 아니며 상황에 따라 반영 여부를 그때 결정한다).
+"미구현"이 아니라 **범위 밖**이다. 경로 표기는 전부 예시이며 확정된 것이 없다.
+
+| 화면 | 예상 형태 | 로그인 | 화면 초안 |
+|---|---|---|---|
+| 그룹 목록 · 상세 · 생성 / 그룹에 담기 | `/groups`, `/groups/{uid}`, 스팟 상세 내 모달 | 필요(`PUBLIC` 그룹 열람은 예외) | archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 3.1 |
+| 리뷰 작성 | 스팟 상세 내 모달/서브섹션 | 필요 | archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 3.2 |
+| 제보 | 스팟 상세 내 모달 | 미정(§4) | archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 4.3 |
+| 초대 수락 | 미정(§4) — 외부 공유 링크로 유입 | 수락 시 필요 | archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 3.1 |
+| 마이페이지 | `/me` | 필요 | — |
 
 ## 3. 내비게이션 구조
 
-### 3.1 현재(실서비스 확인)
+### 3.1 현재
 
-- **헤더**: 로고(홈 링크) + 햄버거 메뉴 아이콘만. 검색·카테고리는 헤더가 아니라 홈 본문에 있음(다른 화면에서는 검색 진입점이 안 보임 — 아래 3.3 참고).
-- **햄버거 메뉴**: "홈", "로그아웃" 단 2개 항목. 그룹·마이페이지가 없으니 지금은 이걸로 충분하지만, §3.1·§4.1 화면이 생기면 메뉴 확장이 강제됨(아래 3.2).
+- **헤더**: 로고(홈 링크) + 햄버거 버튼. 검색·카테고리는 헤더가 아니라 본문에 있다.
+- **햄버거 메뉴**: "홈" + (로그인 상태에 따라) "로그인" 또는 "로그아웃" 2개 항목.
+- **스팟 상세는 전역 헤더를 쓰지 않는다.** 히어로 위에 얹히는 자체 탑바(뒤로 가기 + 공유하기)로 대체된다. `/login`도 전역 헤더가 없다.
 - **하단 내비게이션**: 없음(모바일에서도 하단 탭 바 미사용, 스크롤형 단일 컬럼 구조).
 
-### 3.2 신규 화면 추가 시 메뉴 확장 (제안)
+### 3.2 §2.2 화면이 생길 경우의 메뉴 확장 (제안)
 
-그룹·마이페이지가 생기면 햄버거 메뉴 2개 항목으로는 부족합니다. 아래 구조를 제안합니다 — 확정 시 [features/](features/README.md)에 반영하세요.
+MVP 범위 밖 화면이 착수되면 2개 항목으로는 부족하다. 아래는 제안이며 확정이 아니다.
 
 ```
 햄버거 메뉴
 ├─ 홈
-├─ 검색 (현재 헤더에 진입점이 없어 추가 권장 — 3.3 참고)
-├─ 내 그룹 🆕            (로그인 시만 노출)
-├─ 마이페이지 🆕 ⚪      (로그인 시만 노출, 향후)
+├─ 검색 (스팟 상세에 진입점이 없어 추가 권장 — 3.3 참고)
+├─ 내 그룹 ⚪            (로그인 시만 노출)
+├─ 마이페이지 ⚪          (로그인 시만 노출)
 └─ 로그아웃 / 로그인
 ```
 
 ### 3.3 발견한 구조적 공백
 
-- **검색 진입점이 홈에만 있다.** `/search`, `/spots/{uid}` 등 다른 화면에는 헤더에 검색창/링크가 없어, 검색하려면 항상 홈으로 돌아가야 함. 헤더에 검색 아이콘을 상시 노출하는 걸 권장(🔴 즉시 적용 가능, 별도 API 불필요).
-- **로그인 후 복귀 위치 미확인.** 예: 스팟 상세에서 "그룹에 담기" 클릭 → 로그인 유도 → 로그인 완료 후 원래 스팟 상세로 돌아오는지, 홈으로 튕기는지 코드 확인 필요(🟠).
-- **그룹·마이페이지가 생기기 전까지는 로그인 후 유저가 갈 곳이 사실상 없다.** 지금 로그인해도 홈 화면과 다를 게 없음 — §3.1(그룹)이 첫 "로그인 전용 목적지"가 됨. 우선순위 판단에 참고.
+- **검색 진입점 — 부분 해소.** `/search`에 자체 검색창이 생겨 홈으로 돌아갈 필요가 없어졌다. 다만 **스팟 상세에는 여전히 검색 진입점이 없다** — 자체 탑바가 뒤로 가기·공유뿐이다.
+- **스팟 상세의 뒤로 가기가 홈으로 고정돼 있다(🔴).** 검색 결과에서 들어와도 목록으로 돌아가지 못하고 홈으로 튕긴다. 진입 경로를 보존하도록 고칠 필요가 있다.
+- **로그인 후 복귀 위치 — 확인 완료(🟠).** 로그인·로그아웃 모두 완료 후 홈으로 고정 이동한다. 원래 화면 복귀는 미지원이며, 로그인 유도가 필요한 액션이 생기면 먼저 해결해야 한다.
+- **로그인 전용 목적지가 없다.** 그룹·마이페이지가 MVP 범위 밖으로 확정돼(§2.2), MVP 기간 내내 로그인해도 비로그인과 갈 수 있는 곳이 같다.
 
 ## 4. 아직 배치를 못 정한 것
 
-- **제보("정보가 틀렸어요")의 로그인 요구 여부** — 팀 결정 필요. 스팸 방지 관점에서는 로그인 필요가 안전하나, 진입 장벽을 낮추려면 비로그인 허용 + 서버 측 rate limit이 대안(현재 `/v1/auth/*` rate limit 자체도 미구현 — STATUS.md §1 참고).
-- **초대 수락 경로 형식** — `/invites/{code}` 같은 별도 라우트 vs 그룹 상세 페이지에 쿼리 파라미터로 흡수(`/groups/{uid}?invite={code}`) 중 택1. 백엔드는 `POST /v1/invites/{uid}/accept`만 정의돼 있어 프론트 라우팅은 자유롭게 설계 가능.
-- **지도 탐색이 독립 라우트(`/map`)인지 검색 결과의 뷰 토글인지** — feature-spec.md §4.1에도 두 옵션이 나란히 제시돼 있음. IA 관점에서는 뷰 토글(검색 결과 안에서 리스트↔지도 전환) 쪽이 화면 depth를 하나 줄여 더 낫다고 판단되나, 확정은 아님.
+- **지도 탐색의 라우트 형태 — ✅ 해소.** 독립 라우트(`/map`) 안은 폐기되고 `/search`의 2모드 확장으로 확정됐다. 지도 SDK도 웹·앱 모두 네이버로 확정([PRODUCT.md](PRODUCT.md) §6 D14).
+- **초대 수락 경로 형식** — 별도 라우트(`/invites/{code}`) vs 그룹 상세의 쿼리 파라미터 흡수(`/groups/{uid}?invite={code}`) 중 택1. 그룹이 MVP 범위 밖이라 **착수 시점으로 이월**한다. 백엔드는 `POST /v1/invites/{uid}/accept`만 정의돼 있어 프론트 라우팅은 자유롭다.
+- **제보의 로그인 요구 여부** — UGC 전반이 MVP 범위 밖이므로, [PRODUCT.md](PRODUCT.md) §7.4의 UGC 방향 결정에 종속된다. 그 전까지 IA에서 배치를 확정하지 않는다.
 
 ---
 
-관련 문서: [features/](features/README.md)(화면별 상세 기능) · [PRODUCT.md](PRODUCT.md)(제품 정의) · [STATUS.md](STATUS.md)(진행상황)
+관련 문서: [features/](features/README.md)(화면별 상세 기능) · [PRODUCT.md](PRODUCT.md)(제품 정의·범위) · [STATUS.md](STATUS.md)(구현 현황)
