@@ -65,7 +65,7 @@
 | [front/reference/frontend/api-proxy.md](front/reference/frontend/api-proxy.md) | `route.ts`를 유일한 프록시로 설명하나 실제로는 `next.config.ts`의 `rewrites()`가 우선 적용 | 갱신 필요 |
 | [core/projects/vivac-console-backend.md](core/projects/vivac-console-backend.md), [vivac-console-frontend.md](core/projects/vivac-console-frontend.md) | 경로가 `/v1/admin/*`로 돼 있으나 실제는 `/v1/internal/*` | [core/architecture.md](core/architecture.md)가 최신 기준임을 이미 각주로 명시함 — 추가 조치 불요 |
 | [core/projects/spot-invites.md](core/projects/spot-invites.md) | "초대 1회용" 결정이 business-feature-roadmap 1.1에서 일반 리퍼럴에 한해 뒤집힘 | 이미 각주 반영됨 — 추가 조치 불요 |
-| [design/reference/pages/spot-detail.md](../../vivac-frontend/design/reference/pages/spot-detail.md) | 후속 이슈 문서 링크가 실제 파일명·경로와 다름 | ✅ 2026-08-04 수정 완료(vivac-frontend 별도 커밋) |
+| [design/reference/pages/spot-detail.md](design/reference/pages/spot-detail.md) | 후속 이슈 문서 링크가 실제 파일명·경로와 다름 | ✅ 2026-08-04 수정 완료(vivac-frontend 별도 커밋) |
 | [front/archive/auth-implementation.md](front/archive/auth-implementation.md) | 대체 문서가 "없음"으로 표시 — NextAuth v5 전환 후 신규 Reference 문서 미작성 | Reference 문서 신규 작성 필요 |
 | [core/skill-db-inspect.md](core/skill-db-inspect.md) | `.claude/skills/db_inspect/SKILL.md`로 옮겨야 할 초안인데 아직 이 자리에 있음 | 이동 또는 초안임을 계속 유지할지 결정 필요 |
 | [archive/planning-source/feature-spec-260804.md](archive/planning-source/feature-spec-260804.md) | PRODUCT.md의 "기능 범위"·MVP 4순위·차별점 문구·수익 모델을 인용하는데, 2026-08-10 개정으로 해당 서술이 바뀌거나 다른 절로 이동함 | ✅ 2026-08-10 폐기 — 구현 스펙은 [features/](features/README.md), 구현 상태는 이 문서 §7이 대체. 재정렬 불요. 3부·4부 화면 초안만 참고용 존치 |
@@ -83,7 +83,7 @@
 | 2026-06-07 | console을 별도 repo로 분리, `/v1/admin/*`(이후 `/v1/internal/*`로 변경) | [core/projects/vivac-console-backend.md](core/projects/vivac-console-backend.md) |
 | 2026-07-11 | `pipeline_status`/`trust_tier` 필드명 확정 | [data-pipeline.md](data-pipeline.md) |
 | 2026-07-15 | 검색은 Elasticsearch 대신 PostgreSQL FTS+trigram | [core/projects/spot-search-postgres-fts.md](core/projects/spot-search-postgres-fts.md) |
-| 2026-07-15 | 상세페이지 UI 스펙 확정(v2, DESIGN.md 우선 정책) | [design/decisions/spot-detail-design-decisions.md](../../vivac-frontend/design/decisions/spot-detail-design-decisions.md) |
+| 2026-07-15 | 상세페이지 UI 스펙 확정(v2, DESIGN.md 우선 정책) | [design/decisions/spot-detail-design-decisions.md](design/decisions/spot-detail-design-decisions.md) |
 | 2026-07-16 | 초대/리퍼럴을 단일 `Invite` 엔티티로 통합 | [core/projects/spot-invites.md](core/projects/spot-invites.md) |
 | 2026-07-20 | 재사용 리퍼럴 링크·trust_tier 감쇠·검증 담당자 재할당 구현 완료 | [business-feature-roadmap.md](business-feature-roadmap.md) |
 | 2026-07-21 | MCP Connector·CLI 기획 착수 | [mcp/projects/plan.md](mcp/projects/plan.md), [mcp/projects/cli-plan.md](mcp/projects/cli-plan.md) |

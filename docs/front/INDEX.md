@@ -26,7 +26,7 @@
 문서 간 충돌이 발생하면 항상 아래 우선순위를 따른다.
 
 1. `docs/reference/`
-2. `design/reference/`
+2. `docs/design/reference/`
 3. Source Code (실제 코드가 최종 사실이다)
 4. `docs/decisions/`
 5. `docs/backlog/`
@@ -38,7 +38,7 @@
 - [`docs/reference/infra/docker-deployment.md`](reference/infra/docker-deployment.md) — Docker 빌드·배포 구성
 - [`docs/decisions/incidents/cloudfront-nextjs-rsc-caching.md`](decisions/incidents/cloudfront-nextjs-rsc-caching.md) — CloudFront 캐싱 장애 사례 (재발 방지용, 인프라 변경 전 필독)
 - [`docs/backlog/codebase-review-260714.md`](backlog/codebase-review-260714.md) — 현재 알려진 미해결 이슈 전체 목록 (배포/보안 우선순위 포함)
-- 루트 [`DESIGN.md`](../DESIGN.md) — 디자인 시스템 단일 진실 공급원 (이 문서는 `npx getdesign`으로 재생성되므로 `docs/`·`design/`으로 옮기지 않았다)
+- vivac-frontend 루트의 `DESIGN.md` — 디자인 시스템 단일 진실 공급원 (이 문서는 `npx getdesign`으로 재생성되므로 `docs/design/`으로 옮기지 않았다)
 
 ## 4. 문서 작성 원칙
 

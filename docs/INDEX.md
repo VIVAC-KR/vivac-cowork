@@ -1,6 +1,6 @@
 # VIVAC 문서 마스터 인덱스
 
-`docs/` 전체(제품 공유 문서 + 5개 repo 전용 폴더)와 `design/`(vivac-frontend 전용, 미러링 안 됨)를 한눈에 조감하기 위한 최상위 내비게이션입니다. 각 폴더의 세부 규칙은 [`front/INDEX.md`](front/INDEX.md)(front repo 문서 구조), [`design/INDEX.md`](../../vivac-frontend/design/INDEX.md)(디자인 문서 구조), [`.claude/rules/vivac-docs-authoring.md`](../.claude/rules/vivac-docs-authoring.md)(작성 규칙)를 참고하세요.
+`docs/` 전체(제품 공유 문서 + 5개 repo 전용 폴더 + 디자인 문서 `docs/design/`)를 한눈에 조감하기 위한 최상위 내비게이션입니다. 각 폴더의 세부 규칙은 [`front/INDEX.md`](front/INDEX.md)(front repo 문서 구조), [`design/INDEX.md`](design/INDEX.md)(디자인 문서 구조), [`.claude/rules/vivac-docs-authoring.md`](../.claude/rules/vivac-docs-authoring.md)(작성 규칙)를 참고하세요.
 
 진행 상황·미해결 이슈·핵심 결정 이력은 문서마다 흩어져 있어 따로 모았습니다 → **[STATUS.md](STATUS.md)**.
 
@@ -128,17 +128,18 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [mcp/projects/cli-plan.md](mcp/projects/cli-plan.md) | VIVAC CLI 기획 — plan.md 위에 세워진 3번째 소비자 | 기획 단계, 열린 질문 있음 |
 | [mcp/reviews/code-review-2026-07-22.md](mcp/reviews/code-review-2026-07-22.md) | 2026-07-22 코드 리뷰 — `client.py` 테스트 부재, 네트워크 예외처리·로깅 전무 | 🆕 repo 로컬 docs에서 이전 |
 
-## 7. design — vivac-frontend 전용 (`design/`, 미러링 안 됨)
+## 7. design — 디자인 문서 (`docs/design/`)
 
-`docs/`와 달리 vivac-frontend repo에만 있고 vivac-cowork로 복사되지 않습니다. 구조는 [design/INDEX.md](../../vivac-frontend/design/INDEX.md) 참고.
+구조는 [design/INDEX.md](design/INDEX.md) 참고.
 
 | 문서 | 내용 | 상태 |
 |---|---|---|
-| [design/INDEX.md](../../vivac-frontend/design/INDEX.md) | 디자인 문서 구조·SoT 우선순위 | ✅ |
-| [DESIGN.md](../../vivac-frontend/DESIGN.md) | 디자인 토큰 원시값 정본(자동 생성, 직접 수정 금지) | ✅, 편차는 `globals.css` 헤더가 정본 |
-| [design/reference/pages/spot-detail.md](../../vivac-frontend/design/reference/pages/spot-detail.md) | 상세페이지 UI 스펙 v3 | ✅ 구현 반영됨(PR #23) |
-| [design/decisions/spot-detail-design-decisions.md](../../vivac-frontend/design/decisions/spot-detail-design-decisions.md) | 위 스펙 의사결정 경위 | ✅ |
-| [design/design-ref/spot-carousel/](../../vivac-frontend/design/design-ref/spot-carousel/) | 이미지 캐러셀 레퍼런스 자료 | 참고용 |
+| [design/INDEX.md](design/INDEX.md) | 디자인 문서 구조·SoT 우선순위 | ✅ |
+| `DESIGN.md` (vivac-frontend 루트) | 디자인 토큰 원시값 정본(자동 생성, 직접 수정 금지). `npx getdesign` 산출물이라 `docs/`로 옮기지 않았습니다 | ✅, 편차는 `globals.css` 헤더가 정본 |
+| [design/reference/pages/spot-detail.md](design/reference/pages/spot-detail.md) | 상세페이지 UI 스펙 v3 | ✅ 구현 반영됨(PR #23) |
+| [design/reference/pages/search.md](design/reference/pages/search.md) | 검색·지도 탐색 UI 스펙 — 카드·필터·모드 토글·지도·핀/클러스터·상태·반응형·접근성 | ✅ 확정 (2026-08-10). 지도 관련 구현은 미착수 |
+| [design/decisions/spot-detail-design-decisions.md](design/decisions/spot-detail-design-decisions.md) | 위 스펙 의사결정 경위 | ✅ |
+| [design/design-ref/spot-carousel/](design/design-ref/spot-carousel/) | 이미지 캐러셀 레퍼런스 자료 | 참고용 |
 
 ## 8. 이 인덱스 유지하는 법
 
