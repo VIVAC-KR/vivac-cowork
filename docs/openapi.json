@@ -3,7 +3,7 @@
   "info": {
     "title": "VIVAC API",
     "description": "캠퍼를 위한 장소 큐레이션 서비스",
-    "version": "0.22.0"
+    "version": "0.24.0"
   },
   "paths": {
     "/v1/auth/google": {
@@ -2249,6 +2249,53 @@
         ]
       }
     },
+    "/v1/internal/spots/bulk-status": {
+      "patch": {
+        "tags": [
+          "internal-spots"
+        ],
+        "summary": "스팟 상태 일괄 변경 (SUPERUSER 전용)",
+        "description": "지정한 spot uid들의 pipeline_status를 한 번에 변경한다 (SUPERUSER 전용).\n\nALLOWED_PIPELINE_TRANSITIONS 화이트리스트 없이 임의 전이를 허용한다.\n존재하지 않는 uid는 failed에 담고 나머지는 부분 성공으로 반영한다.",
+        "operationId": "bulk_update_pipeline_status_v1_internal_spots_bulk_status_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SpotBulkStatusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpotBulkStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
     "/v1/internal/spots/{uid}/assignment": {
       "patch": {
         "tags": [
@@ -2411,7 +2458,7 @@
           "internal-spots"
         ],
         "summary": "스팟 정보 수정",
-        "description": "전달된 필드만 부분 수정한다(exclude_unset).\n\nspot이 ENRICHED 상태(검증 대기)인 경우 본인에게 할당된 항목만 수정할 수\n있다 — 타 staff에게 할당되었거나 미할당 상태면 FORBIDDEN. pipeline_status를\n바꾸는 요청은 ALLOWED_PIPELINE_TRANSITIONS 화이트리스트에 없는 전이면 거부된다.\n수정 이력은 자동으로 감사 로그에 남는다(GET /{uid}/history로 조회).",
+        "description": "전달된 필드만 부분 수정한다(exclude_unset).\n\nspot이 ENRICHED 상태(검증 대기)인 경우 본인에게 할당된 항목만 수정할 수\n있다 — 타 staff에게 할당되었거나 미할당 상태면 FORBIDDEN(SUPERUSER는 예외,\n할당 여부와 무관하게 수정 가능). pipeline_status를 바꾸는 요청은\nALLOWED_PIPELINE_TRANSITIONS 화이트리스트에 없는 전이면 SUPERUSER만 허용된다\n(그 외 role은 403) — SUPERUSER는 화이트리스트 없이 자유 전이 가능.\n수정 이력은 자동으로 감사 로그에 남는다(GET /{uid}/history로 조회).",
         "operationId": "update_spot_v1_internal_spots__uid__patch",
         "security": [
           {
@@ -4009,7 +4056,8 @@
             "email": "staff@vivac.kr",
             "id": "j3kD9fQxT2mZ8pR1yN6vXa",
             "is_staff": true,
-            "name": "김스태프"
+            "name": "김스태프",
+            "staff_role": "staff"
           }
         }
       },
@@ -4037,6 +4085,9 @@
           "is_staff": {
             "type": "boolean",
             "title": "Is Staff"
+          },
+          "staff_role": {
+            "$ref": "#/components/schemas/StaffRole"
           }
         },
         "type": "object",
@@ -4044,14 +4095,16 @@
           "id",
           "email",
           "name",
-          "is_staff"
+          "is_staff",
+          "staff_role"
         ],
         "title": "AdminUserSummary",
         "example": {
           "email": "staff@vivac.kr",
           "id": "j3kD9fQxT2mZ8pR1yN6vXa",
           "is_staff": true,
-          "name": "김스태프"
+          "name": "김스태프",
+          "staff_role": "staff"
         }
       },
       "AuditLogEntry": {
@@ -5656,6 +5709,67 @@
           "title"
         ],
         "title": "SpotBulkRow"
+      },
+      "SpotBulkStatusRequest": {
+        "properties": {
+          "uids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 1000,
+            "minItems": 1,
+            "title": "Uids"
+          },
+          "pipeline_status": {
+            "$ref": "#/components/schemas/PipelineStatus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "uids",
+          "pipeline_status"
+        ],
+        "title": "SpotBulkStatusRequest",
+        "example": {
+          "pipeline_status": "PUBLISHED",
+          "uids": [
+            "spot_a1b2c3",
+            "spot_d4e5f6"
+          ]
+        }
+      },
+      "SpotBulkStatusResponse": {
+        "properties": {
+          "succeeded": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Succeeded"
+          },
+          "failed": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Failed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "succeeded",
+          "failed"
+        ],
+        "title": "SpotBulkStatusResponse",
+        "example": {
+          "failed": [
+            "spot_missing"
+          ],
+          "succeeded": [
+            "spot_a1b2c3"
+          ]
+        }
       },
       "SpotBusinessInfoAdminDetail": {
         "properties": {
@@ -8353,6 +8467,16 @@
           "pipeline_status": "CURATED",
           "trust_tier": 2
         }
+      },
+      "StaffRole": {
+        "type": "string",
+        "enum": [
+          "staff",
+          "manager",
+          "superuser"
+        ],
+        "title": "StaffRole",
+        "description": "staff 내 세부 권한 등급. is_staff=False인 사용자에게는 의미 없다.\n\nSTAFF < MANAGER < SUPERUSER 순으로 권한이 누적된다."
       },
       "TokenResponse": {
         "properties": {
