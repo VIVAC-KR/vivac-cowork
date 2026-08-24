@@ -31,6 +31,7 @@ Next.js 16 (App Router) + TypeScript, pnpm 기반 내부 운영 콘솔. `src/` �
   - 이 헬퍼는 `apiMutate`/`apiCreate`/`apiDelete`(`api.ts:81-119`) 전체가 공유한다. spot/business-info 저장, group member 추가·역할변경·제거, spot-option 추가·삭제, group 삭제 등 **모든 쓰기 작업의 에러**가 영향을 받는다. 특히 group member 중복(`SPOT_GROUP_MEMBER_ALREADY_EXISTS`), option 중복, last-owner 제약 같은 도메인 에러가 사람이 읽을 메시지 대신 JSON으로 뜬다.
   - `docs/pipeline-status-review-api.md:83,88-89`는 "백엔드가 `422 + {"detail": "..."}`를 주고 콘솔이 `detail`을 파싱하도록 수정했다"고 기록하지만, 실제 배포된 백엔드는 envelope를 반환하므로 **문서가 잘못된 계약을 서술**하고 있고 파서는 그 잘못된 가정 위에 만들어졌다.
 - **제안:** `parseErrorBody`에 envelope 분기를 최우선으로 추가한다. 한 줄이면 된다: `JSON.parse` 후 `if (parsed.error?.message) return \`저장 실패 (${status}) ${parsed.error.message}\`;`를 `detail` 검사보다 앞에 둔다. (하위호환으로 기존 `detail` 분기는 남겨둬도 무방하나 이 백엔드에선 죽은 코드다.) 아울러 `docs/pipeline-status-review-api.md`의 "구현 결과" 계약 서술을 envelope 기준으로 정정 권장.
+- **처리 (2026-08-23):** `src/lib/api.ts`의 `parseErrorBody`에 `parsed.error?.message` 분기를 `detail` 검사보다 앞에 추가. `docs/console/projects/pipeline-status-review-api.md`도 envelope 기준으로 정정 각주 추가.
 
 ---
 

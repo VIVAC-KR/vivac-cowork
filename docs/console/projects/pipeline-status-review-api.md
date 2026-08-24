@@ -88,4 +88,14 @@ diff에서 제외해야 하는 컬럼은 아님, 오히려 이 화면의 핵심 
 **콘솔 쪽 반영한 것**: `saveSpot`(`spots/[uid]/edit/page.tsx`)이 422 에러 바디를 `{"detail": "..."}` JSON으로 파싱해서
 `detail` 문자열만 alert에 표시하도록 수정 — 전엔 raw JSON 텍스트가 그대로 노출됐음.
 
-**미push 상태이므로 아직 프론트에서 실제 검증은 못 함.** core가 push하면 이 브랜치 기준으로 로컬 통합 테스트 진행.
+> **정정 (2026-08-23):** 위 "구현 결과"는 머지·배포됐지만, 실제 배포된 core는 이 문서가 기술한
+> `{"detail": "..."}`가 아니라 전역 exception handler의 표준 envelope
+> `{"error": {"code", "message", "details"}}`로 응답한다(`vivacapi-core/vivacapi/main.py`
+> `_error_response`/`app_exception_handler`, 전이 검증도 `HTTPException`이 아니라
+> `AppException`으로 raise). 이 계약 불일치는 `docs/console/reviews/code-review-2026-07-22.md`
+> H1로 지적됐고, 콘솔 `src/lib/api.ts`의 `parseErrorBody`에 `parsed.error?.message` 분기를
+> 추가해 반영함(2026-08-23). 아울러 core는 이 문서에 없던 `SUPERUSER` 롤을 도입해
+> `ALLOWED_PIPELINE_TRANSITIONS` 화이트리스트를 SUPERUSER에게는 적용하지 않고(자유 전이),
+> 비-SUPERUSER가 `ENRICHED`이면서 `assigned_to_uid`가 본인이 아닌 스팟을 수정하면
+> 서버에서도 별도로 거부한다(`internal_spots.py`) — 원 요청 스펙(세부 권한 도입 안 함)보다
+> 범위가 넓어졌으니 반영 상태 확인 필요 시 core 쪽 문서/코드를 먼저 볼 것.

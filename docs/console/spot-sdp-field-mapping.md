@@ -43,7 +43,7 @@
 | 한줄설명 | `tagline` | string \| null | |
 | 설명 | `description` | string \| null | |
 | 카테고리 | `category` | string[] \| null | 콤마 구분 태그로 편집 |
-| 테마 | `themes` | string[] \| null | 콤마 구분 태그로 편집 |
+| 태그 | `themes` | string[] \| null | 콤마 구분 태그로 편집. 화면 라벨은 "태그"지만 DB 컬럼명은 `themes` |
 
 **연락처 / 링크**
 

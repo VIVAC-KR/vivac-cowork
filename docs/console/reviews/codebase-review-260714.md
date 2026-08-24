@@ -111,7 +111,7 @@
 - [완료] `deploy.yml` — `permissions: contents: read` + `concurrency: prod-deploy` 추가.
 - [완료] `package.json` — `shadcn`을 `dependencies`→`devDependencies`로 이동 (런타임에 안 쓰는 CLI), `pnpm-lock.yaml` 갱신.
 - [열림] `appleboy/*` action mutable tag pin — 정확한 commit SHA 확인이 필요해 이번 배치에서 보류 (잘못 pin하면 배포가 깨짐).
-- [열림] `src/proxy.ts:25` matcher (svg/png만 제외) — 잠재 이슈, 현재 해당 route 없어 무해.
+- [완료] `src/proxy.ts:25` matcher (svg/png만 제외) — `refactor-260802.md` 🔴 항목에서 실제 우회 경로(`/spot-groups/x.png/edit`)가 생겨 exploit으로 격상, 확장자 매칭을 경로 끝(`$`)으로 한정해 수정.
 - [열림] `src/proxy.ts:20` callbackUrl 없음 — UX 개선, 로그인 페이지 쪽 처리도 같이 필요해 별도 작업으로 분리.
 - [열림] `package.json:18` next-auth beta 의존 — stable 릴리스 대기.
 - [열림] `Makefile` — 결함 아님, 취향 문제라 유지. CI lint/typecheck gate 부재가 진짜 공백이나 새 워크플로 추가는 별도 결정 필요.
