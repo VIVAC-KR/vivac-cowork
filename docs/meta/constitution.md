@@ -1,8 +1,19 @@
 <!--
 Sync Impact Report
 ==================
-Version change: (unfilled template) → 1.0.0
-Change type: MAJOR — 최초 비준. 플레이스홀더 스캐폴드를 VIVAC 실제 원칙으로 대체했습니다.
+Version change: 1.0.0 → 1.0.1
+Change type: PATCH — 문서 위치 이동과 사실 갱신. 원칙 본문은 한 글자도 바뀌지 않았습니다.
+
+이번 개정 (1.0.1, 2026-09-07)
+  - 위치 이동: .specify/memory/constitution.md → docs/meta/constitution.md
+    사유: Spec Kit을 vivac-cowork에서 걷어내고 VIVAC-frontend에서만 사용하기로 결정했습니다.
+    이 문서는 Spec Kit 산출물이 아니라 VIVAC의 거버넌스 문서이므로 도구와 함께 사라지면 안 됩니다.
+    docs/ 안으로 옮기면 각 저장소가 이미 걸어둔 docs 심볼릭 링크로 그대로 참조됩니다.
+  - Follow-up TODO 3건 중 2건 해소 (SSOT.md·DOCUMENTATION.md 초안 작성됨)
+  - Scope of This Document의 자기 경로 표기 갱신
+
+최초 비준 (1.0.0, 2026-09-07)
+  Change type: MAJOR — 플레이스홀더 스캐폴드를 VIVAC 실제 원칙으로 대체했습니다.
 
 Modified principles:
   - [PRINCIPLE_1_NAME] → I. 안전 우선 — 합법성을 단정하지 않습니다
@@ -22,9 +33,9 @@ Removed sections:
   - [SECTION_2_NAME] / [SECTION_3_NAME] 플레이스홀더 (위 두 섹션으로 대체)
 
 Follow-up TODOs:
-  - docs/meta/SSOT.md 미작성 — 원칙 V가 참조합니다. 작성 전까지 docs/INDEX.md가 잠정 대체합니다.
-  - docs/meta/DOCUMENTATION.md 미작성 — 작성 전까지 .claude/rules/vivac-docs-authoring.md가 잠정 대체합니다.
-  - CLAUDE.md에 이 문서 참조 추가 여부는 별도 결정 사항입니다(이 명령의 범위 밖).
+  - (해소, 1.0.1) docs/meta/SSOT.md 작성됨 — 초안 상태이며 승인 대기 중입니다.
+  - (해소, 1.0.1) docs/meta/DOCUMENTATION.md 작성됨 — 초안 상태이며 승인 대기 중입니다.
+  - CLAUDE.md에 이 문서 참조 추가 여부는 별도 결정 사항입니다.
 -->
 
 # VIVAC Constitution
@@ -265,7 +276,7 @@ VIVAC은 "어디에서 합법적이고 안전하게 야영할 수 있는가"라�
 
 | 문서 | 책임 범위 |
 |---|---|
-| `.specify/memory/constitution.md` (이 문서) | 불변에 가까운 원칙, 우선순위, 금지 사항, 결정 권한의 경계 |
+| `docs/meta/constitution.md` (이 문서) | 불변에 가까운 원칙, 우선순위, 금지 사항, 결정 권한의 경계 |
 | `CLAUDE.md` | AI agent 실행 지침 — 참조 문서, 표기 규칙, 도구·명령 사용법 |
 | `docs/meta/SSOT.md` | 어떤 사실의 정본이 어느 문서인지에 대한 목록 |
 | `docs/meta/DOCUMENTATION.md` | 문서 종류별 작성 방법·형식·폴더 구조·파일명 규칙 |
@@ -274,8 +285,9 @@ VIVAC은 "어디에서 합법적이고 안전하게 야영할 수 있는가"라�
 이 문서에 포함하지 않는 것: 폴더 구조, 파일명 규칙, 마크다운 서식, 명령어·git 사용법, 라이브러리
 선택, 문서별 상세 작성 방법.
 
-> `docs/meta/SSOT.md`와 `docs/meta/DOCUMENTATION.md`는 아직 작성 전입니다. 작성되기 전까지 그 역할은
-> `docs/INDEX.md`와 `.claude/rules/vivac-docs-authoring.md`가 잠정 수행합니다.
+> `docs/meta/SSOT.md`와 `docs/meta/DOCUMENTATION.md`는 2026-09-07 초안이 작성되었으며 승인 대기
+> 중입니다. 승인 전까지 그 역할은 `docs/INDEX.md`와 `.claude/rules/vivac-docs-authoring.md`가
+> 잠정 수행합니다.
 
 ## Governance
 
@@ -327,4 +339,4 @@ VIVAC은 "어디에서 합법적이고 안전하게 야영할 수 있는가"라�
 - 예외를 허용할 때는 예외 대상, 이유, 해소 조건을 기록합니다. 기한이나 해소 조건이 없는 예외는
   허용하지 않습니다.
 
-**Version**: 1.0.0 | **Ratified**: 2026-09-07 | **Last Amended**: 2026-09-07
+**Version**: 1.0.1 | **Ratified**: 2026-09-07 | **Last Amended**: 2026-09-07
