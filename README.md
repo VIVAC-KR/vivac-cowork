@@ -10,10 +10,9 @@ VIVAC 서비스의 **기획/협업 문서 저장소**입니다. 코드는 없고
 |---|---|
 | [docs/INDEX.md](docs/INDEX.md) | 전체 문서(제품 공유 문서 + 5개 repo 전용 폴더 + design/) 마스터 인덱스. "이 내용 어디 있지?"의 첫 진입점입니다. |
 | [docs/STATUS.md](docs/STATUS.md) | 코드 리뷰 오픈 이슈, 로드맵 진행 상황, 팀 결정 대기 항목, 핵심 결정 로그를 한 곳에 모은 트래커. |
-| [docs/PRODUCT.md](docs/PRODUCT.md) | 제품 개요 — 문제 정의, 차별화, 타겟, MVP 범위, 데이터 전략, 수익 모델, 로드맵. 현재 확정본입니다. |
-| [docs/feature-spec.md](docs/feature-spec.md) | 화면 단위 상세 기능 기획 — 실서비스·API 대조로 확인한 정상구현/반쪽구현/API선구현/완전미구현 4갈래 통합. |
+| [docs/PRODUCT.md](docs/PRODUCT.md) | 제품 정의 — 문제·가설, MVP 범위와 단계, 데이터 정의, 결정 로그, 열린 항목. 현재 확정본입니다 (2026-08-10 개정). 기능 명세는 `docs/features/`로 분리했습니다. |
+| [docs/features/](docs/features/README.md) | 화면별 기능 명세 — 홈 · 검색/필터/지도 탐색 · 스팟 상세 · 계정/인증 · 공통 상태. 각 기능을 목적 → 동작 → 확정 계약 → 수용 기준 4블록으로 기술합니다 (2026-08-10 PRODUCT.md §5에서 분리). |
 | [docs/ia.md](docs/ia.md) | 정보 구조(IA) — 사이트맵, 화면 인벤토리, 내비게이션 구조. |
-| [docs/PRODUCT_TEMP.md](docs/PRODUCT_TEMP.md) | (2026-08-04 병합 완료, 더 이상 갱신 안 함) 과거 기획 개정 초안 — 내용은 PRODUCT.md로 병합되었고, 이 파일은 병합 사실만 안내하는 스텁으로 남아 있습니다. |
 | [docs/data-pipeline.md](docs/data-pipeline.md) | 스팟 데이터 파이프라인 설계 — `pipeline_status`(RAW→PUBLISHED 처리 단계), `trust_tier`(신뢰도 1~3등급) 필드 정의와 확정 정책. |
 | [docs/business-feature-roadmap.md](docs/business-feature-roadmap.md) | 비즈니스 기능 로드맵 — 성장/리텐션/수익화/신뢰 4개 관점의 기능 후보와 우선순위. |
 | [docs/archive/planning-source/](docs/archive/planning-source/) | PRODUCT.md 병합에 쓰인 원본 기획·리서치 문서 모음 (2026-08-04, 프로젝트 루트에 흩어져 있던 `docs_to_be_merge/`와 시장조사 자료를 통합). 폐기된 문서와 아직 미해결·미실행인 문서가 섞여 있으므로 각 파일 상단 상태 표시를 먼저 확인하세요. |

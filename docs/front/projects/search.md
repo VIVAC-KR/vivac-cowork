@@ -2,10 +2,13 @@
 
 > 작성일: 2026-07-28
 > 배경: 홈 화면 검색창이 `readOnly` 껍데기라 검색 결과를 볼 동선이 없었습니다. 검색 결과 페이지로 진입하는 라우팅·네비게이션 골격을 먼저 세우고, 실제 검색·필터는 후속으로 분리합니다.
+> 후속 문서: §4.1·§4.2가 예고한 승격 문서로 [`search-map-explore.md`](search-map-explore.md)(지도 탐색 설계·퍼블리싱 계획)와 [`backlog/search-map-schema-request.md`](../backlog/search-map-schema-request.md)(BE 계약 요청)가 2026-08-04 작성됐습니다.
 
 ## 1. 한 줄 요약
 
 검색창 제출 시 `/search` 결과 페이지로 이동하는 라우팅·네비게이션 골격을 구축했습니다. 검색 질의·결과 리스트·필터는 아직 미구현이며, 향후 작업으로 남겨둡니다.
+
+> **이 문서는 2026-07-28 시점 기록입니다.** 여기서 "미구현"으로 남긴 검색 질의·결과 리스트·필터는 후속 문서 [`search-map-explore.md`](search-map-explore.md)에서 구현 완료됐습니다. 현재 스펙은 [features/search.md](../../features/search.md), 진행 상태는 [STATUS.md](../../STATUS.md) §7.5를 보세요.
 
 ## 2. 결정 사항 요약
 
