@@ -16,6 +16,8 @@
 
 `vivac-cowork` 저장소 루트 전체가 아니라 **`docs/` 폴더만** 공유됩니다. `CLAUDE.md`, `README.md` 등 `vivac-cowork` 저장소 자체에 대한 설명이나 기획 작업용 파일은 이 링크에 포함되지 않고, 각 개발 repo에는 노출되지 않습니다.
 
+`VIVAC-frontend`는 여기에 더해 Spec Kit 설정이 필요합니다 — 8절을 참고하세요. 다른 repo에는 해당하지 않습니다.
+
 ## 1. 기존 로컬 docs 정리
 
 작업할 repo에 이미 자체 `docs/` 폴더가 있다면(대부분 있습니다), 그 안의 md 문서가 이미 `vivac-cowork`의 `docs/<repo 약칭>/`로 옮겨졌는지 먼저 확인합니다. 옮겨졌다면 로컬 `docs/`는 삭제해도 안전합니다.
@@ -97,3 +99,69 @@ docs
 내용을 복붙하지 않고 import로 참조하는 이유는 `.claude/rules/vivac-docs-authoring.md`와 같습니다 — 원본이 `vivac-cowork`에 하나뿐이라, 참고 범위 안내를 고쳐도 각 repo의 CLAUDE.md를 따로 손댈 필요가 없습니다.
 
 `docs/`가 심볼릭 링크라 이 import는 "외부 경로"로 취급됩니다. repo마다 처음 한 번 Claude Code가 승인 다이얼로그를 띄우고, 승인하면 그다음부터는 자동으로 로드됩니다.
+
+## 8. Spec Kit 설정 (VIVAC-frontend 전용)
+
+`vivac-cowork`는 SSOT 문서 저장소로만 사용하며 Spec Kit을 두지 않습니다. SDD 워크플로는 이를 도입한 구현 저장소에서만 돕니다 — 2026-09-07 기준 **`VIVAC-frontend` 한 곳**입니다. 다른 repo에는 설치하지 않습니다.
+
+Spec Kit은 명세(`specs/`)와 코드가 같은 repo에 있다고 전제하는 도구입니다. `specs/`는 `docs/` 바깥이라 이 문서의 심볼릭 링크로는 공유되지 않으며, 공유할 필요도 없습니다. 저장소를 넘는 확정 계약은 `docs/product/features/`에 있고, `specs/`는 그 repo의 변경 단위만 담습니다.
+
+### 8.1 선행 조건
+
+`docs` 심볼릭 링크가 먼저 걸려 있어야 합니다(위 2절). 아래 Constitution 연결이 그 링크를 타고 들어가기 때문입니다.
+
+### 8.2 설치
+
+`vivac-cowork`에 설치했을 때 사용한 옵션은 아래와 같습니다. 같은 값으로 맞춥니다.
+
+| 항목 | 값 |
+|---|---|
+| `speckit_version` | `1.0.4` |
+| `ai` / `integration` | `claude` |
+| `ai_skills` | `true` (`/speckit-*` 스킬 방식) |
+| `script` | `sh` |
+| `feature_numbering` | `sequential` |
+| `here` | `true` (현재 폴더에 설치) |
+
+설치 후 생성되는 `.specify/init-options.json`이 위 표와 일치하는지 확인합니다. 다르면 재설치하거나 값을 맞춥니다.
+
+`.specify/`와 `specs/`는 git에 커밋합니다. `.specify/.gitignore`가 체크아웃별 상태(`feature.json` 등)를 알아서 제외합니다.
+
+### 8.3 Constitution 연결
+
+Constitution은 `vivac-cowork/docs/meta/constitution.md`가 정본입니다. Spec Kit은 이를 `$REPO_ROOT/.specify/memory/constitution.md`에서 읽으므로 심볼릭 링크로 연결합니다.
+
+```bash
+mkdir -p .specify/memory
+ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
+```
+
+**이 링크는 4절과 반대로 git에 커밋합니다.** `docs`나 `.claude/rules/...`와 달리 repo 내부 상대경로라 clone 위치와 무관하게 동작하기 때문입니다. 커밋해두면 사람마다 따로 설정할 필요가 없습니다.
+
+복사하지 않고 링크하는 이유는 3절과 같습니다 — 원본이 `vivac-cowork`에 하나뿐이어야 Constitution이 갈라지지 않습니다. 이는 Constitution 원칙 V가 요구하는 바이기도 합니다.
+
+`docs` 링크가 없으면 이 링크는 끊긴 상태가 됩니다. worktree를 새로 만들 때는 6절의 `.worktreeinclude`가 `docs`를 함께 복사하는지 확인하세요.
+
+### 8.4 기능 이름 규칙
+
+기능 폴더 이름은 영문 설명에서만 슬러그가 만들어집니다. **한글로 설명할 때는 `--short-name`을 반드시 함께 지정합니다.** 생략하면 `specs/001-`처럼 이름 없는 폴더가 생깁니다.
+
+```bash
+/speckit-specify --short-name map-explore "지도에서 스팟을 탐색하는 기능"
+```
+
+### 8.5 확인
+
+```bash
+ls -la .specify/memory/constitution.md        # 심볼릭 링크인지 확인
+head -3 .specify/memory/constitution.md       # 내용이 읽히는지 확인 (끊겼으면 실패)
+cat .specify/init-options.json                # 8.2 표와 일치하는지 확인
+```
+
+경로 생성만 미리 확인하려면 실제 파일을 만들지 않는 dry-run을 씁니다.
+
+```bash
+bash .specify/scripts/bash/create-new-feature.sh --dry-run --short-name map-explore "지도 탐색"
+# BRANCH_NAME: 001-map-explore
+# SPEC_FILE:   <repo>/specs/001-map-explore/spec.md
+```
