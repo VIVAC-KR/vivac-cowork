@@ -1,6 +1,6 @@
 # 알려진 리스크 & 미결정 사항 (비즈니스 관점)
 
-> 제품·기획 차원의 미결정 사항은 [PRODUCT.md](../../../PRODUCT.md) §7에 있습니다. 이 문서는 core·인프라 관점 리스크만 다룹니다.
+> 제품·기획 차원의 미결정 사항은 [PRODUCT.md](../../../product/PRODUCT.md) §7에 있습니다. 이 문서는 core·인프라 관점 리스크만 다룹니다.
 
 > 기술적 상세는 [`../devel/09-known-issues-and-tech-debt.md`](../devel/09-known-issues-and-tech-debt.md) 참고. 이 문서는 프로덕트/운영 의사결정에 영향을 주는 항목만 추린다.
 

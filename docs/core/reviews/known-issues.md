@@ -5,7 +5,7 @@
 ## 이번 취합 과정에서 반영한 것 (더 이상 열린 이슈 아님)
 
 - **auth rate limit 중복 기재** — [backlog.md](../backlog.md)의 일반 항목이 [backlog/auth-rate-limit-260711.md](../backlog/auth-rate-limit-260711.md)(더 상세)와 중복이었음. backlog.md 쪽을 링크 참조로 대체.
-- **`spot-invites.md` ↔ 비즈니스 로드맵 1.1의 결정 역전** — [projects/spot-invites.md](../projects/spot-invites.md)의 "1회용, 재사용 불가" 결정이 [business-feature-roadmap.md](../../business-feature-roadmap.md) 1.1(2026-07-20)에서 일반 리퍼럴에 한해 뒤집혔음에도 본문에 반영이 안 돼 있었음. 각주 추가.
+- **`spot-invites.md` ↔ 비즈니스 로드맵 1.1의 결정 역전** — [projects/spot-invites.md](../projects/spot-invites.md)의 "1회용, 재사용 불가" 결정이 [business-feature-roadmap.md](../../product/business-feature-roadmap.md) 1.1(2026-07-20)에서 일반 리퍼럴에 한해 뒤집혔음에도 본문에 반영이 안 돼 있었음. 각주 추가.
 - **`vivac-console-frontend.md` 낡음 경고 누락** — 짝 문서 [projects/vivac-console-backend.md](../projects/vivac-console-backend.md)는 "실제 경로는 `/v1/admin/*`이 아니라 `/v1/internal/*`" 경고가 있었는데 frontend.md에는 없었음. 동일 경고 추가.
 
 ## 아직 열려 있는 문서 갭 (원본 문서 자체는 수정하지 않음, 참고용 기록)

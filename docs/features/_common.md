@@ -1,6 +1,6 @@
 # 공통 상태 (로딩 · 빈 · 에러)
 
-> 제품 정의·MVP 범위·데이터 정의는 [PRODUCT.md](../PRODUCT.md)가 기준이다. 구현 현황은 [STATUS.md](../STATUS.md) §7.
+> 제품 정의·MVP 범위·데이터 정의는 [PRODUCT.md](../product/PRODUCT.md)가 기준이다. 구현 현황은 [STATUS.md](../STATUS.md) §7.
 
 **목적** — 로딩·빈 결과·오류를 일관되게 처리한다.
 

@@ -10,9 +10,9 @@
 
 | 내용 | 위치 |
 |---|---|
-| 구현 현황·채움률·진행률 | [STATUS.md](STATUS.md) §7 |
-| 결정의 근거·검토 과정 | [map-explore-discussion.md](map-explore-discussion.md) |
-| 화면 단위 상세 명세 | [features/](features/README.md) |
+| 구현 현황·채움률·진행률 | [STATUS.md](../STATUS.md) §7 |
+| 결정의 근거·검토 과정 | [map-explore-discussion.md](../map-explore-discussion.md) |
+| 화면 단위 상세 명세 | [features/](../features/README.md) |
 | 정보 구조·사이트맵 | [ia.md](ia.md) |
 
 현황과 기획을 분리한 이유는 갱신 주기가 다르기 때문이다.
@@ -21,7 +21,7 @@
 ### 구 문서에서 바뀐 것
 
 2026-08-04판 PRODUCT.md를 대체한다. 구 문서는
-[archive/planning-source/PRODUCT-260804.md](archive/planning-source/PRODUCT-260804.md)에 보관한다.
+[archive/planning-source/PRODUCT-260804.md](../archive/planning-source/PRODUCT-260804.md)에 보관한다.
 
 | 항목 | 구 문서 | 현재 |
 |---|---|---|
@@ -233,7 +233,7 @@ H1·H2는 각각 따로 검증되고 따로 실패한다. 묶지 않는다.
 | 오프라인 열람 | MVP 제외. 온디바이스 캐싱은 이후 재검토                  |
 
 
-[지도 탐색](features/search.md)의 지도 SDK(D14)가 이 전제 위에 있다 — 웹만 고려하면 다른 결론이 나온다.
+[지도 탐색](../features/search.md)의 지도 SDK(D14)가 이 전제 위에 있다 — 웹만 고려하면 다른 결론이 나온다.
 
 ---
 
@@ -324,24 +324,24 @@ H1·H2는 각각 따로 검증되고 따로 실패한다. 묶지 않는다.
 
 ## 5. 기능 명세
 
-화면별 상세 명세는 [features/](features/README.md)로 옮겼다. 이 문서는 제품 정의·범위·데이터·결정을 담는다.
+화면별 상세 명세는 [features/](../features/README.md)로 옮겼다. 이 문서는 제품 정의·범위·데이터·결정을 담는다.
 각 기능은 **목적 → 동작 → 확정 계약 → 수용 기준** 4블록으로 기술한다. 구현 현황은 STATUS.md §7.
 
 **플랫폼** — 목적·동작·확정 계약·수용 기준은 웹과 iOS에 동일하게 적용된다.
 
 | 기능 | 문서 |
 |---|---|
-| 홈 | [features/home.md](features/home.md) |
-| 검색·목록 / 필터 / 지도 탐색 | [features/search.md](features/search.md) |
-| 스팟 상세 | [features/spot-detail.md](features/spot-detail.md) |
-| 계정·인증 | [features/auth.md](features/auth.md) |
-| 공통 상태 (로딩·빈·에러) | [features/_common.md](features/_common.md) |
+| 홈 | [features/home.md](../features/home.md) |
+| 검색·목록 / 필터 / 지도 탐색 | [features/search.md](../features/search.md) |
+| 스팟 상세 | [features/spot-detail.md](../features/spot-detail.md) |
+| 계정·인증 | [features/auth.md](../features/auth.md) |
+| 공통 상태 (로딩·빈·에러) | [features/_common.md](../features/_common.md) |
 
 ---
 
 ## 6. 결정 로그
 
-전부 2026-08-10 확정. 근거의 상세는 [map-explore-discussion.md](map-explore-discussion.md).
+전부 2026-08-10 확정. 근거의 상세는 [map-explore-discussion.md](../map-explore-discussion.md).
 
 
 | #   | 결정                                            | 근거                          | 감수한 것                | 이월                 |
@@ -412,7 +412,7 @@ H1·H2는 각각 따로 검증되고 따로 실패한다. 묶지 않는다.
 | 항목                | 내용                                                                                                                                                                                    |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 공유 자제 ↔ 데이터 해자    | 중장기 UGC 네트워크 효과가 "책임감 있는 사용자일수록 위치 공유를 자제한다"는 타겟 가치관과 충돌한다. 해자를 UGC로 둘지, 공급자 주도 데이터 품질로 둘지.<br>**D3이 부분 답변** — 노지 위치를 공개하되 관할·최종확인일 표기로 명분을 확보한다는 노출 정책은 정해졌다. 다만 **UGC 방향 자체는 미결**이다 |
-| 구현 범위 &gt; MVP 정의 | 그룹·초대·리퍼럴·리뷰가 이미 구현돼 있다. MVP 정의를 넓혀 반영할지, 별도 트랙으로 유지할지<br>그룹·리뷰 화면 기획 초안은 archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 3부에 있다 |
+| 구현 범위 &gt; MVP 정의 | 그룹·초대·리퍼럴·리뷰가 이미 구현돼 있다. MVP 정의를 넓혀 반영할지, 별도 트랙으로 유지할지<br>그룹·리뷰 화면 기획 초안은 archive된 [feature-spec](../archive/planning-source/feature-spec-260804.md) 3부에 있다 |
 
 
 ### 7.5 중장기 후보
@@ -423,8 +423,8 @@ H1·H2는 각각 따로 검증되고 따로 실패한다. 묶지 않는다.
 
 | 후보                      | 비고                         |
 | ----------------------- | -------------------------- |
-| UGC 제보 강화 (사진 + GPS 폼)  | §7.4 UGC 방향 결정에 종속. 화면 초안은 archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 4.3 |
-| 리뷰·평점                   | 화면 초안은 archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 3.2 |
+| UGC 제보 강화 (사진 + GPS 폼)  | §7.4 UGC 방향 결정에 종속. 화면 초안은 archive된 [feature-spec](../archive/planning-source/feature-spec-260804.md) 4.3 |
+| 리뷰·평점                   | 화면 초안은 archive된 [feature-spec](../archive/planning-source/feature-spec-260804.md) 3.2 |
 | 테마별 추천 에디토리얼            | —                          |
 | 실시간 정보 (혼잡도·날씨·계절별 적합도) | —                          |
 | 오프라인 저장                 | RN 앱 단계에서 재검토 (§3.4)       |

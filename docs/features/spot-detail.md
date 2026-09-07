@@ -1,6 +1,6 @@
 # 스팟 상세
 
-> 제품 정의·MVP 범위·데이터 정의는 [PRODUCT.md](../PRODUCT.md)가 기준이다. 구현 현황은 [STATUS.md](../STATUS.md) §7.
+> 제품 정의·MVP 범위·데이터 정의는 [PRODUCT.md](../product/PRODUCT.md)가 기준이다. 구현 현황은 [STATUS.md](../STATUS.md) §7.
 
 **목적** — 한 스팟의 정보를 확인하고 예약·문의로 이어진다.
 

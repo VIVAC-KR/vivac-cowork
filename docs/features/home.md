@@ -1,6 +1,6 @@
 # 홈
 
-> 제품 정의·MVP 범위·데이터 정의는 [PRODUCT.md](../PRODUCT.md)가 기준이다. 구현 현황은 [STATUS.md](../STATUS.md) §7.
+> 제품 정의·MVP 범위·데이터 정의는 [PRODUCT.md](../product/PRODUCT.md)가 기준이다. 구현 현황은 [STATUS.md](../STATUS.md) §7.
 
 **목적** — 진입점. 검색으로 유도하고 큐레이션된 스팟을 노출한다.
 

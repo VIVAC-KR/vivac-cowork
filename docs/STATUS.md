@@ -48,13 +48,13 @@
 
 ## 4. 팀 결정이 필요한 것 (제품/기획)
 
-[PRODUCT.md](PRODUCT.md) "미해결 이슈" 원문 기준:
+[PRODUCT.md](product/PRODUCT.md) "미해결 이슈" 원문 기준:
 
 | 이슈 | 필요한 결정 | 근거 문서 |
 |---|---|---|
 | 데이터 실현성 검증 미실행 | 스파이크 착수 여부·시점 | [archive/planning-source/VIVAC_데이터실현성_스파이크_검증설계.md](archive/planning-source/VIVAC_데이터실현성_스파이크_검증설계.md) |
 | 공유 자제 ↔ 데이터 해자 | 해자를 UGC로 둘지 공급자 주도 데이터 품질로 둘지 | [archive/planning-source/VIVAC_공유자제vs데이터해자_논의1페이저.md](archive/planning-source/VIVAC_공유자제vs데이터해자_논의1페이저.md) |
-| 구현 범위가 PRODUCT.md MVP 정의보다 넓음 (그룹·초대·리퍼럴·리뷰 이미 구현됨) | MVP 정의를 넓혀 반영할지, 별도 로드맵 트랙으로 유지할지 | [business-feature-roadmap.md](business-feature-roadmap.md) |
+| 구현 범위가 PRODUCT.md MVP 정의보다 넓음 (그룹·초대·리퍼럴·리뷰 이미 구현됨) | MVP 정의를 넓혀 반영할지, 별도 로드맵 트랙으로 유지할지 | [business-feature-roadmap.md](product/business-feature-roadmap.md) |
 
 ## 5. 문서 자체의 알려진 결함 (내용은 맞지만 참조·구조가 낡음)
 
@@ -69,8 +69,8 @@
 | [front/archive/auth-implementation.md](front/archive/auth-implementation.md) | 대체 문서가 "없음"으로 표시 — NextAuth v5 전환 후 신규 Reference 문서 미작성 | Reference 문서 신규 작성 필요 |
 | [core/skill-db-inspect.md](core/skill-db-inspect.md) | `.claude/skills/db_inspect/SKILL.md`로 옮겨야 할 초안인데 아직 이 자리에 있음 | 이동 또는 초안임을 계속 유지할지 결정 필요 |
 | [archive/planning-source/feature-spec-260804.md](archive/planning-source/feature-spec-260804.md) | PRODUCT.md의 "기능 범위"·MVP 4순위·차별점 문구·수익 모델을 인용하는데, 2026-08-10 개정으로 해당 서술이 바뀌거나 다른 절로 이동함 | ✅ 2026-08-10 폐기 — 구현 스펙은 [features/](features/README.md), 구현 상태는 이 문서 §7이 대체. 재정렬 불요. 3부·4부 화면 초안만 참고용 존치 |
-| [ia.md](ia.md) | 웹 MVP 전제, 폐기된 `/map` 라우트, MVP 제외 화면을 현재 화면과 동급 나열, PRODUCT.md "플랫폼" 절 참조 | ✅ 2026-08-10 재작성 완료 |
-| [STATUS.md](STATUS.md) (이 문서) | §4·§5가 구 PRODUCT.md "미해결 이슈" 원문을 기준으로 작성됨 | 새 [PRODUCT.md](PRODUCT.md) §7.4(팀 결정 대기)와 대조 필요 |
+| [ia.md](product/ia.md) | 웹 MVP 전제, 폐기된 `/map` 라우트, MVP 제외 화면을 현재 화면과 동급 나열, PRODUCT.md "플랫폼" 절 참조 | ✅ 2026-08-10 재작성 완료 |
+| [STATUS.md](STATUS.md) (이 문서) | §4·§5가 구 PRODUCT.md "미해결 이슈" 원문을 기준으로 작성됨 | 새 [PRODUCT.md](product/PRODUCT.md) §7.4(팀 결정 대기)와 대조 필요 |
 | [core/projects/business/](core/projects/business/README.md) | `vivacapi-core`의 낡은 `docs/core/projects/PRODUCT.md` 사본에서 파생되어 폐기된 기획(감성 큐레이션·2030 감성 캠퍼·오프라인 MVP)을 되살렸음. 2026-08-10 정리 | **사본을 제거해야 재발이 막힘** — `vivacapi-core` 측 조치 필요 |
 
 ## 6. 핵심 결정 로그 (연대순)
@@ -81,22 +81,22 @@
 | 2026-05-17 | 비동기 Job 워커: 외부 브로커 없이 FastAPI 내장 폴링 워커로 | [core/projects/async-job-worker-design.md](core/projects/async-job-worker-design.md) |
 | 2026-05-19 | 탐색 API 계약을 OpenAPI로 확정(VVC-105) | [core/projects/vvc-105-explore-api-spec.md](core/projects/vvc-105-explore-api-spec.md) |
 | 2026-06-07 | console을 별도 repo로 분리, `/v1/admin/*`(이후 `/v1/internal/*`로 변경) | [core/projects/vivac-console-backend.md](core/projects/vivac-console-backend.md) |
-| 2026-07-11 | `pipeline_status`/`trust_tier` 필드명 확정 | [data-pipeline.md](data-pipeline.md) |
+| 2026-07-11 | `pipeline_status`/`trust_tier` 필드명 확정 | [data-pipeline.md](architecture/data-pipeline.md) |
 | 2026-07-15 | 검색은 Elasticsearch 대신 PostgreSQL FTS+trigram | [core/projects/spot-search-postgres-fts.md](core/projects/spot-search-postgres-fts.md) |
 | 2026-07-15 | 상세페이지 UI 스펙 확정(v2, DESIGN.md 우선 정책) | [design/decisions/spot-detail-design-decisions.md](design/decisions/spot-detail-design-decisions.md) |
 | 2026-07-16 | 초대/리퍼럴을 단일 `Invite` 엔티티로 통합 | [core/projects/spot-invites.md](core/projects/spot-invites.md) |
-| 2026-07-20 | 재사용 리퍼럴 링크·trust_tier 감쇠·검증 담당자 재할당 구현 완료 | [business-feature-roadmap.md](business-feature-roadmap.md) |
+| 2026-07-20 | 재사용 리퍼럴 링크·trust_tier 감쇠·검증 담당자 재할당 구현 완료 | [business-feature-roadmap.md](product/business-feature-roadmap.md) |
 | 2026-07-21 | MCP Connector·CLI 기획 착수 | [mcp/projects/plan.md](mcp/projects/plan.md), [mcp/projects/cli-plan.md](mcp/projects/cli-plan.md) |
 | 2026-07-28 | 검색 라우팅 골격만 우선 구축(질의·필터는 후속) | [front/projects/search.md](front/projects/search.md) |
 | 2026-08-03 | nginx stale upstream으로 89분 장애 | [core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md](core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md) |
-| 2026-08-04 | 기획 문서 통합 — PRODUCT.md 확정, 원본은 archive로 이동 | [PRODUCT.md](PRODUCT.md), [archive/planning-source/](archive/planning-source/) |
+| 2026-08-04 | 기획 문서 통합 — PRODUCT.md 확정, 원본은 archive로 이동 | [PRODUCT.md](product/PRODUCT.md), [archive/planning-source/](archive/planning-source/) |
 | 2026-08-04 | 실서비스(vivac.app) 점검으로 화면·API 구현 현황 확정, 상세 화면 기획 4갈래로 통합 | [archive/planning-source/feature-spec-260804.md](archive/planning-source/feature-spec-260804.md) |
 | 2026-08-06 | vivacapi-core 코드 전수 조사로 비즈니스/개발 관점 문서 세트(18건) 신규 작성 | [core/projects/business/](core/projects/business/README.md), [core/projects/devel/](core/projects/devel/README.md) |
 | 2026-08-06 | 7개 repo에 docs 심볼릭 링크 구조 확대 적용, 각 repo 로컬에 남아있던 미이전 문서(console/front/mcp/etl) 5건을 vivac-cowork로 병합 | [SYMLINK-SETUP.md](../SYMLINK-SETUP.md) |
 
 ## 7. MVP 구현 현황 (2026-08-10)
 
-기획·계약·수용 기준은 [PRODUCT.md](PRODUCT.md)를 따른다. 이 절은 달성 여부만 추적한다.
+기획·계약·수용 기준은 [PRODUCT.md](product/PRODUCT.md)를 따른다. 이 절은 달성 여부만 추적한다.
 
 ### 7.1 플랫폼·기능
 
@@ -113,7 +113,7 @@
 
 ### 7.2 데이터 채움률 — 현재 수치
 
-목표치는 [PRODUCT.md](PRODUCT.md) §4.5.
+목표치는 [PRODUCT.md](product/PRODUCT.md) §4.5.
 
 **전수 집계 — 191건 (2026-08-07)**
 

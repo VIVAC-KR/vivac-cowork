@@ -28,7 +28,7 @@
 | 일반 리퍼럴 초대를 `/accept`로 열었을 때 | `409 INVITE_NOT_ACCEPTABLE` | 합류할 그룹이 없어 수락할 대상이 없음. 리퍼럴은 신규가입 시점에만 의미 있음 |
 | 에러 코드 | `INVITE_NOT_FOUND`(404), `INVITE_NOT_ACCEPTABLE`(409) 신규 추가 | 기존 코드로 표현 안 되는 두 케이스(없음 / 수락 불가능한 상태)만 최소 추가 |
 
-> ⚠️ **"재사용 여부: 1회용" 행은 이후 뒤집혔다.** [business-feature-roadmap.md](../../business-feature-roadmap.md) 1.1(2026-07-20, `feature/reusable-referral-invite`)에서 `group_uid is None`인 일반 리퍼럴에 한해 수락 후에도 `status`를 `ACCEPTED`로 전환하지 않고 `PENDING`으로 유지하도록 변경해, 같은 링크로 여러 명이 반복 가입할 수 있다. 그룹 초대(`group_uid` 있음)는 이 문서대로 1회용 그대로다.
+> ⚠️ **"재사용 여부: 1회용" 행은 이후 뒤집혔다.** [business-feature-roadmap.md](../../product/business-feature-roadmap.md) 1.1(2026-07-20, `feature/reusable-referral-invite`)에서 `group_uid is None`인 일반 리퍼럴에 한해 수락 후에도 `status`를 `ACCEPTED`로 전환하지 않고 `PENDING`으로 유지하도록 변경해, 같은 링크로 여러 명이 반복 가입할 수 있다. 그룹 초대(`group_uid` 있음)는 이 문서대로 1회용 그대로다.
 
 ---
 

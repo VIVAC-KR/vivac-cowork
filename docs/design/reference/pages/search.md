@@ -4,7 +4,7 @@
 - 범위: `/search` 목록 모드 · 지도 모드 — **시각/컴포넌트 레이어**
 - 선행 문서(계약, 수정하지 않음): [`docs/features/search.md`](../../../features/search.md) — 확정 계약 정본
 - 설계 경위: [`docs/front/projects/search-map-explore.md`](../../../front/projects/search-map-explore.md)
-- 참고 소스: vivac-frontend 루트의 `DESIGN.md`(디자인 시스템 — **단일 진실 공급원**), `apps/web/src/app/globals.css`(토큰 배선), [`spot-detail.md`](spot-detail.md)(같은 feature의 형제 문서), [`docs/PRODUCT.md`](../../../PRODUCT.md) §4.3(핵심 속성 정의)
+- 참고 소스: vivac-frontend 루트의 `DESIGN.md`(디자인 시스템 — **단일 진실 공급원**), `apps/web/src/app/globals.css`(토큰 배선), [`spot-detail.md`](spot-detail.md)(같은 feature의 형제 문서), [`docs/PRODUCT.md`](../../../product/PRODUCT.md) §4.3(핵심 속성 정의)
 
 이 문서는 `docs/features/search.md`가 정한 계약을 뒤집지 않는다. "그 계약이 실제로 어떻게 생겼고 어떤 컴포넌트로 만들어지는지"만 정의한다.
 
@@ -241,7 +241,7 @@ h1을 `sr-only`로 남기는 근거: 스크린리더 사용자에게는 페이�
 
 ### 3.3 `SpotAttributeIcons` — 아이콘 어휘
 
-[`PRODUCT.md`](../../../PRODUCT.md) §4.3 핵심 속성 4종. **순서 고정**, 값 없으면 자리를 유지하고 아이콘만 미표시한다.
+[`PRODUCT.md`](../../../product/PRODUCT.md) §4.3 핵심 속성 4종. **순서 고정**, 값 없으면 자리를 유지하고 아이콘만 미표시한다.
 
 | 순서 | 속성 | 아이콘 | 근거 |
 |---|---|---|---|

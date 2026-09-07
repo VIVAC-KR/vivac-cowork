@@ -1,9 +1,9 @@
 # VIVAC 정보 구조 (IA)
 
 > 개정: 2026-08-10 (초판 2026-08-04)
-> 담는 것: 사이트맵 · 화면 인벤토리 · 내비게이션 구조. 화면별 상세 기능은 [features/](features/README.md), 제품 정의·MVP 범위는 [PRODUCT.md](PRODUCT.md), 구현 현황 수치는 [STATUS.md](STATUS.md) §7이 담당한다 — 여기서 반복하지 않는다.
+> 담는 것: 사이트맵 · 화면 인벤토리 · 내비게이션 구조. 화면별 상세 기능은 [features/](../features/README.md), 제품 정의·MVP 범위는 [PRODUCT.md](PRODUCT.md), 구현 현황 수치는 [STATUS.md](../STATUS.md) §7이 담당한다 — 여기서 반복하지 않는다.
 > 범위: 웹 + iOS 앱 MVP([PRODUCT.md](PRODUCT.md) §3.4). **IA 자체는 플랫폼 무관**이며 아래 구조는 양 플랫폼에 동일하게 적용된다.
-> 초판의 화면 기획 배경은 archive된 [feature-spec](archive/planning-source/feature-spec-260804.md)에 있다(더 이상 갱신하지 않는 문서).
+> 초판의 화면 기획 배경은 archive된 [feature-spec](../archive/planning-source/feature-spec-260804.md)에 있다(더 이상 갱신하지 않는 문서).
 
 ## 1. 사이트맵
 
@@ -46,12 +46,12 @@ graph TD
 
 | 화면 | 경로 | 깊이 | 로그인 | 진입 경로 | 상세 |
 |---|---|---|---|---|---|
-| 홈 | `/` | 0(진입점) | 불필요 | 직접 진입 | [home.md](features/home.md) |
-| 로그인 | `/login` | 1 | — | 햄버거 메뉴 | [auth.md](features/auth.md) |
-| 검색 | `/search` | 1 | 불필요 | 홈 검색창, 검색 화면 자체 검색창 | [search.md](features/search.md) |
-| 스팟 상세 | `/spots/{uid}` | 2 | 불필요(열람) | 홈 캐러셀, 검색 결과 카드·지도 마커 | [spot-detail.md](features/spot-detail.md) |
+| 홈 | `/` | 0(진입점) | 불필요 | 직접 진입 | [home.md](../features/home.md) |
+| 로그인 | `/login` | 1 | — | 햄버거 메뉴 | [auth.md](../features/auth.md) |
+| 검색 | `/search` | 1 | 불필요 | 홈 검색창, 검색 화면 자체 검색창 | [search.md](../features/search.md) |
+| 스팟 상세 | `/spots/{uid}` | 2 | 불필요(열람) | 홈 캐러셀, 검색 결과 카드·지도 마커 | [spot-detail.md](../features/spot-detail.md) |
 
-- **지도 탐색은 별도 라우트가 아니다.** `/search`의 2모드 확장(`?mode=list` | `?mode=map`)이며 기본 진입은 목록이다. 지도 모드는 데스크톱에서 리스트+지도 분할, 모바일에서 지도+스냅 바텀시트로 표현된다 — 치수·동작은 [search.md](features/search.md), 진행 상태는 [STATUS.md](STATUS.md) §7.5.
+- **지도 탐색은 별도 라우트가 아니다.** `/search`의 2모드 확장(`?mode=list` | `?mode=map`)이며 기본 진입은 목록이다. 지도 모드는 데스크톱에서 리스트+지도 분할, 모바일에서 지도+스냅 바텀시트로 표현된다 — 치수·동작은 [search.md](../features/search.md), 진행 상태는 [STATUS.md](../STATUS.md) §7.5.
 - **홈의 카테고리 칩은 진입 경로가 아니다.** 현재 비기능 요소로 렌더될 뿐 필터·검색으로 이어지지 않는다.
 - `app/api/[...path]`·`app/api/auth/[...nextauth]`는 프록시·인증 핸들러이며 화면이 아니다.
 
@@ -62,10 +62,10 @@ graph TD
 
 | 화면 | 예상 형태 | 로그인 | 화면 초안 |
 |---|---|---|---|
-| 그룹 목록 · 상세 · 생성 / 그룹에 담기 | `/groups`, `/groups/{uid}`, 스팟 상세 내 모달 | 필요(`PUBLIC` 그룹 열람은 예외) | archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 3.1 |
-| 리뷰 작성 | 스팟 상세 내 모달/서브섹션 | 필요 | archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 3.2 |
-| 제보 | 스팟 상세 내 모달 | 미정(§4) | archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 4.3 |
-| 초대 수락 | 미정(§4) — 외부 공유 링크로 유입 | 수락 시 필요 | archive된 [feature-spec](archive/planning-source/feature-spec-260804.md) 3.1 |
+| 그룹 목록 · 상세 · 생성 / 그룹에 담기 | `/groups`, `/groups/{uid}`, 스팟 상세 내 모달 | 필요(`PUBLIC` 그룹 열람은 예외) | archive된 [feature-spec](../archive/planning-source/feature-spec-260804.md) 3.1 |
+| 리뷰 작성 | 스팟 상세 내 모달/서브섹션 | 필요 | archive된 [feature-spec](../archive/planning-source/feature-spec-260804.md) 3.2 |
+| 제보 | 스팟 상세 내 모달 | 미정(§4) | archive된 [feature-spec](../archive/planning-source/feature-spec-260804.md) 4.3 |
+| 초대 수락 | 미정(§4) — 외부 공유 링크로 유입 | 수락 시 필요 | archive된 [feature-spec](../archive/planning-source/feature-spec-260804.md) 3.1 |
 | 마이페이지 | `/me` | 필요 | — |
 
 ## 3. 내비게이션 구조
@@ -105,4 +105,4 @@ MVP 범위 밖 화면이 착수되면 2개 항목으로는 부족하다. 아래�
 
 ---
 
-관련 문서: [features/](features/README.md)(화면별 상세 기능) · [PRODUCT.md](PRODUCT.md)(제품 정의·범위) · [STATUS.md](STATUS.md)(구현 현황)
+관련 문서: [features/](../features/README.md)(화면별 상세 기능) · [PRODUCT.md](PRODUCT.md)(제품 정의·범위) · [STATUS.md](../STATUS.md)(구현 현황)
