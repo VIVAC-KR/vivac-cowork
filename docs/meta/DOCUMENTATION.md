@@ -2,7 +2,7 @@
 
 > **초안입니다.** 2026-09-07 작성, 같은 날 1차 피드백 반영. 승인 전까지 이 문서는 규범이 아니라 제안입니다.
 > 이 문서가 담지 않는 것: 어떤 문서가 정본인지는 [SSOT.md](SSOT.md), 불변 원칙과 우선순위는 [constitution.md](constitution.md).
-> 대체 대상: 승인되면 `.claude/rules/vivac-docs-authoring.md`, `docs/front/INDEX.md` §1·§2·§4, `docs/CONTEXT_SCOPE.md`, `docs/INDEX.md` §8의 규칙을 이 문서로 일원화합니다.
+> 대체 대상: 승인되면 `.claude/rules/vivac-docs-authoring.md`, `docs/INDEX.md` §8의 규칙을 이 문서로 일원화합니다. `docs/front/INDEX.md`의 SoT 우선순위·작성 원칙과 `docs/CONTEXT_SCOPE.md`의 중복 서술은 2026-09-08 이 문서로 위임 완료했습니다.
 
 ## 1. 어디에 쓸 것인가
 
@@ -213,4 +213,4 @@ Constitution Conflict Resolution을 따릅니다. **저장소별로 다른 우�
 
 없습니다. `docs/front/`를 포함한 모든 폴더가 이 문서의 규칙을 따릅니다.
 
-> 과거 `docs/front/`는 VIVAC-frontend 저장소의 `docs/`를 복사한 미러였고 자체 규칙(`front/INDEX.md`)을 가졌습니다. 현재는 그 저장소가 `docs/`를 심볼릭 링크로 연결하므로 미러가 아니라 원본입니다. `front/INDEX.md`의 §1 폴더 구조와 §2 SoT 우선순위는 이 문서와 충돌하며 정리 대상입니다.
+> 과거 `docs/front/`는 VIVAC-frontend 저장소의 `docs/`를 복사한 미러였고 자체 규칙(`front/INDEX.md`)을 가졌습니다. 현재는 그 저장소가 `docs/`를 심볼릭 링크로 연결하므로 미러가 아니라 원본입니다. 충돌하던 SoT 우선순위와 작성 원칙은 2026-09-08 이 문서로 위임했고, `front/INDEX.md`는 폴더 구성과 먼저 읽을 문서만 안내합니다.

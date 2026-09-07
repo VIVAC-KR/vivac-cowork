@@ -197,9 +197,11 @@ ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
 | # | 항목 | 성격 |
 |---|---|---|
 | U1 | §2.6의 저장소 ADR 대상 문서를 각 저장소 `adr/`로 내보내는 시점과 방법 | 실행 계획 필요 |
-| U2 | `docs/feature-spec.md`가 `docs/features/`로 대체됐으나 파일이 남아 있음 | 삭제 대상 |
-| U3 | `docs/core/projects/business/`가 제품 정의를 저장소 계층에서 재서술 | 흡수 또는 아카이브 |
-| U4 | `docs/front/INDEX.md`의 SoT 우선순위가 Constitution Precedence와 충돌 | 삭제·위임 |
-| U5 | `VIVAC-frontend`에 Spec Kit 설치와 Constitution 심볼릭 링크 연결 | 별도 저장소 작업 |
+| U2 | `docs/core/projects/business/`가 제품 정의를 저장소 계층에서 재서술 | 흡수 또는 아카이브 |
+| U3 | `docs/meta/templates/` 4종(ADR · Feature 명세 · Reference · Incident)을 새 기준으로 작성 | 항목별 개별 작업 |
+| U4 | `VIVAC-frontend`에 Spec Kit 설치와 Constitution 심볼릭 링크 연결 | 별도 저장소 작업 |
+| U5 | archive된 `feature-spec-260804.md`의 3·4부(그룹·리뷰·지도·합법성·제보 화면 초안)가 대체 문서 없이 `PRODUCT.md`·`ia.md`에서 현역으로 인용됨 | 승격 위치 결정 필요 |
 
-**해소됨** — 저장소 ADR의 색인 방식(§1.3)과 기존 `docs/<약칭>/decisions/`의 처분(§2.6)은 2026-09-07 확정했습니다. `docs/`를 관심사별 폴더로 재구성하는 파일 이동과 링크 갱신, `docs/CONTEXT_SCOPE.md`의 참고 범위 갱신은 2026-09-08 완료했습니다.
+U3는 기존 템플릿을 개조하지 않고 기준부터 새로 정해 작성합니다. 4종이 모두 나온 뒤 `docs/front/templates/` 3종과 `docs/temp-adr/`·`docs/temp-specs/`·`docs/temp-product/`를 폐기합니다. `docs/temp-specs/`의 Feature Specification 초안은 cowork가 아니라 `VIVAC-frontend`의 Spec Kit 템플릿 오버라이드로 넘깁니다.
+
+**해소됨** — 저장소 ADR의 색인 방식(§1.3)과 기존 `docs/<약칭>/decisions/`의 처분(§2.6)은 2026-09-07 확정했습니다. `docs/`를 관심사별 폴더로 재구성하는 파일 이동과 링크 갱신, `docs/CONTEXT_SCOPE.md`의 참고 범위 갱신은 2026-09-08 완료했습니다. `docs/front/INDEX.md`의 SoT 우선순위·작성 원칙 충돌은 2026-09-08 `docs/meta/DOCUMENTATION.md`로 위임해 해소했습니다. `docs/feature-spec.md`는 archive 사본과 본문이 동일하고 이 파일을 가리키는 링크가 없어 2026-09-08 삭제했습니다 — 내용은 [archive/planning-source/feature-spec-260804.md](../archive/planning-source/feature-spec-260804.md)에 보존돼 있습니다.
