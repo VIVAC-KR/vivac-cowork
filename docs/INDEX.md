@@ -30,7 +30,7 @@
 
 ### 1.3 아키텍처 (`docs/architecture/`)
 
-여러 저장소에 걸친 시스템 구조와 계약만 담습니다. 한 저장소 안에서 닫히는 구조 문서([core/architecture.md](core/architecture.md), [core/erd.md](core/erd.md), [front/reference/](front/reference/))는 저장소별 폴더에 있습니다.
+여러 저장소에 걸친 시스템 구조와 계약만 담습니다. 한 저장소 안에서 닫히는 구조 문서([core/architecture.md](core/architecture.md), [core/erd.md](core/erd.md), [front/api-proxy.md](front/api-proxy.md))는 저장소별 폴더에 있습니다.
 
 | 문서 | 내용 | 상태 |
 |---|---|---|
@@ -51,6 +51,7 @@
 | [meta/SSOT.md](meta/SSOT.md) | 정본 문서 목록·저장소 경계 — 어떤 정보의 정본이 어느 문서인지 | 초안 — 승인 대기 |
 | [meta/DOCUMENTATION.md](meta/DOCUMENTATION.md) | 문서 작성 방법 — 폴더 분류, 파일명, 톤, ADR 규칙, 템플릿 | 초안 — 승인 대기 |
 | [meta/templates/](meta/templates/) | 문서 템플릿 3종 — [adr-template.md](meta/templates/adr-template.md) · [feature-template.md](meta/templates/feature-template.md) · [incident-template.md](meta/templates/incident-template.md) | 🆕 2026-09-08 작성 |
+| [meta/templates/frontend-spec-template-draft.md](meta/templates/frontend-spec-template-draft.md) | Spec Kit Feature Specification 초안 17절 — cowork용이 아니며 `VIVAC-frontend`로 넘길 예정 | 보관 — SSOT.md §4 U4 |
 | [meta/boundary-conflicts-260907.md](meta/boundary-conflicts-260907.md) | 저장소 경계 원칙과 충돌하는 문서 목록 (2026-09-07 조사, `docs/` md 107개 기준) | 보고서 |
 | [meta/doc-inventory-260907.md](meta/doc-inventory-260907.md) | 문서 인벤토리와 SSOT 마이그레이션 사전 조사 | ⚠️ main 머지 이전(69개) 기준 — 일부 항목은 이미 해소됨 |
 | [meta/migration-decisions-260907.md](meta/migration-decisions-260907.md) | 마이그레이션 중 사람이 결정해야 하는 6건 | ⚠️ 위와 같은 사유로 일부 항목 해소됨 |
@@ -66,24 +67,23 @@
 
 ## 2. front — VIVAC-frontend (`docs/front/`)
 
-VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(수정 없이 복사). 구조 설명은 [front/INDEX.md](front/INDEX.md) 참고.
+`VIVAC-frontend` 저장소가 심볼릭 링크로 참조하는 폴더입니다. 그 저장소에는 자체 `docs/`가 없으므로 여기가 원본입니다. 구조 설명은 [front/INDEX.md](front/INDEX.md) 참고.
 
 | 문서 | 내용 | 상태 |
 |---|---|---|
-| [front/INDEX.md](front/INDEX.md) | front repo 문서 구조·SoT 우선순위 안내 | ✅ |
+| [front/INDEX.md](front/INDEX.md) | front 폴더 구성·먼저 읽을 문서 안내 | ✅ |
+| [front/api-proxy.md](front/api-proxy.md) | Next.js API 프록시 구조 | ⚠️ 일부 낡음 — `route.ts` 설명이 실제로는 미사용 코드 (front/INDEX.md 알려진 한계 참고) |
+| [front/docker-deployment.md](front/docker-deployment.md) | Docker 빌드·배포 구성 | ✅ |
 | [front/archive/auth-implementation.md](front/archive/auth-implementation.md) | 구 인증 구현(react-oauth/google) 설명 | 폐기 — NextAuth v5 전환으로 대체, 대체 문서 없음(공백) |
 | [front/archive/spots-explore-plan.md](front/archive/spots-explore-plan.md) | `/spots` 리스트·지도 탐색 설계 | 폐기 — 코드가 제거되어 문서만 남음, 재구현 시 참고자료로만 사용 |
 | [front/backlog/codebase-review-260714.md](front/backlog/codebase-review-260714.md) | 2026-07-14 전체 코드베이스 리뷰 | 🔴 오픈 이슈 다수 (STATUS.md 참고) |
 | [front/backlog/spot-detail-design-followups.md](front/backlog/spot-detail-design-followups.md) | 상세페이지 UI 후속 논의·미해결 사항 | 열림 |
 | [front/backlog/spot-detail-schema-request.md](front/backlog/spot-detail-schema-request.md) | 상세페이지용 BE 스키마 확장 요청 | [core/projects/spot-detail-fields.md](core/projects/spot-detail-fields.md)에서 처리됨 |
 | [front/backlog/search-map-schema-request.md](front/backlog/search-map-schema-request.md) | 지도 탐색용 BE 계약 요청 (좌표·bbox·total 등 6건) | 🆕 2026-08-04 작성 — BE 회신 대기 |
-| [front/decisions/incidents/cloudfront-nextjs-rsc-caching.md](front/decisions/incidents/cloudfront-nextjs-rsc-caching.md) | CloudFront+Next.js RSC 캐싱 장애 기록 | 해결됨(재발 방지용 필독) |
+| [front/incidents/cloudfront-nextjs-rsc-caching.md](front/incidents/cloudfront-nextjs-rsc-caching.md) | CloudFront+Next.js RSC 캐싱 장애 기록 | 해결됨(재발 방지용 필독) |
 | [front/projects/search.md](front/projects/search.md) | 검색 라우팅 골격 설계 (2026-07-28) | 🚧 골격만 완료, 실제 검색·필터는 후속 |
 | [front/projects/search-map-explore.md](front/projects/search-map-explore.md) | 검색 지도 탐색(목록/지도 2모드) 설계 + 목 기반 퍼블리싱 계획 | ✅ 1단계(SDK 없이) 구현 완료 2026-08-06 — 2단계는 지도 SDK 연동, 좌표 실데이터 대기 |
 | [front/reviews/code-review-2026-07-22.md](front/reviews/code-review-2026-07-22.md) | 2026-07-22 코드 리뷰 — 인증 토큰 refresh 체인 잠복 결함, 배포 인프라 타 서비스 순단 | 🆕 repo 로컬 docs에서 이전 |
-| [front/reference/frontend/api-proxy.md](front/reference/frontend/api-proxy.md) | Next.js API 프록시 구조 | ⚠️ 일부 낡음 — `route.ts` 설명이 실제로는 미사용 코드 (front/INDEX.md 알려진 한계 참고) |
-| [front/reference/infra/docker-deployment.md](front/reference/infra/docker-deployment.md) | Docker 빌드·배포 구성 | ✅ |
-| [front/templates/*.md](front/templates/) | ADR·incident·reference 작성 템플릿 3종 | 폐기 대상 — [meta/templates/](meta/templates/)로 대체 (SSOT.md §4 U3) |
 
 ## 3. console — vivac-console (`docs/console/`)
 
@@ -108,7 +108,7 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [core/code-review-2026-07-22.md](core/code-review-2026-07-22.md) | 전체 코드 리뷰 — Critical 1건(git history 노출 secret), High 1건 | 🔴 Critical 항목 확인 필요 |
 | [core/reviews/known-issues.md](core/reviews/known-issues.md) | vivacapi-core 자체 문서 감사 결과 취합 | 문서 간 모순 3건 반영 완료, 잔여 갭 기록 중 |
 | [core/security/db-security-review-2026-05-02.md](core/security/db-security-review-2026-05-02.md) | DB 스키마 보안 점검 (2026-05-02) | 후속 처리 현황 갱신됨(2026-07-14) |
-| [core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md](core/troubleshooting/2026-08-03-nginx-stale-upstream-502.md) | nginx 502 장애(89분) 기록 | 복구 완료 |
+| [core/incidents/2026-08-03-nginx-stale-upstream-502.md](core/incidents/2026-08-03-nginx-stale-upstream-502.md) | nginx 502 장애(89분) 기록 | 복구 완료 |
 | [core/infra/lightsail-setup.md](core/infra/lightsail-setup.md) | AWS Lightsail 프로비저닝 가이드 | ✅ |
 | [core/test-setup.md](core/test-setup.md) | 테스트 환경 구성 | ✅ |
 | [core/skill-db-inspect.md](core/skill-db-inspect.md) | `db_inspect` Claude Skill 초안 | 미착수 — 실제 위치로 이동 안 됨 |

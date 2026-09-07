@@ -219,9 +219,9 @@ Constitution 원칙 V에서 나옵니다.
 | 기능 명세(화면) | [`docs/meta/templates/feature-template.md`](templates/feature-template.md) — §1.2의 10개 절 구성 |
 | ADR | [`docs/meta/templates/adr-template.md`](templates/adr-template.md) — §5.2의 머리말 항목을 포함합니다 |
 | 인시던트 | [`docs/meta/templates/incident-template.md`](templates/incident-template.md) |
-| Feature Specification (`specs/`) | `.specify/templates/spec-template.md` — Spec Kit을 도입한 구현 저장소가 관리합니다 |
+| Feature Specification (`specs/`) | `.specify/templates/spec-template.md` — Spec Kit을 도입한 구현 저장소가 관리합니다. 초안은 [`templates/frontend-spec-template-draft.md`](templates/frontend-spec-template-draft.md) |
 
-> `docs/meta/templates/` 3종이 정본 템플릿입니다. `docs/front/templates/` 3종과 `docs/temp-adr/`·`docs/temp-specs/`는 폐기 대상입니다([SSOT.md](SSOT.md) §4 U3). Reference 템플릿은 만들지 않았습니다 — 필요 여부부터 판단할 항목이며, 그때까지 안정적 레퍼런스 문서에는 정해진 템플릿이 없습니다.
+> `docs/meta/templates/` 3종이 정본 템플릿입니다. `docs/front/templates/` 3종과 `docs/temp-adr/`·`docs/temp-specs/`·`docs/temp-product/`는 2026-09-08 삭제했습니다([SSOT.md](SSOT.md) §4 U3). Reference 템플릿은 만들지 않았습니다 — 필요 여부부터 판단할 항목이며, 그때까지 안정적 레퍼런스 문서에는 정해진 템플릿이 없습니다.
 
 ## 8. 문서 충돌 판정
 

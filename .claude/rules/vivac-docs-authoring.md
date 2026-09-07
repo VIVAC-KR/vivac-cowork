@@ -13,9 +13,9 @@ paths:
 
 | 문서 성격 | 위치 |
 |---|---|
-| 결정사항 + 판단근거 (단일 결정 단위) | `docs/<repo>/decisions/` |
 | 미착수 · 우선순위 대기 항목 | `docs/<repo>/backlog/` |
 | 날짜별 코드리뷰 / 문서감사 스냅샷 | `docs/<repo>/reviews/` |
+| 장애 기록 | `docs/<repo>/incidents/` |
 | 여러 결정이 묶인 기능·API 설계 문서 | `docs/<repo>/projects/` |
 | 제품 정의·범위·정보 구조·로드맵 | `docs/product/` |
 | 화면별 기능 명세 | `docs/features/` |
@@ -23,13 +23,15 @@ paths:
 | 사용자·시장 리서치 | `docs/research/` |
 | 그 외 안정적 레퍼런스(아키텍처, ERD, 필드 매핑 등) | `docs/<repo>/` 루트 |
 
+결정 기록(ADR)은 `docs/` 안에 쓰지 않습니다. 저장소를 넘는 결정은 `vivac-cowork/adr/`, 그 저장소 안에서 닫히는 결정은 **해당 저장소의 `adr/`**(심볼릭 링크 대상이 아니라 그 저장소 git)로 갑니다. 판정표는 [`docs/meta/SSOT.md`](../../docs/meta/SSOT.md) §1.3, 명명·머리말 규칙은 [`DOCUMENTATION.md`](../../docs/meta/DOCUMENTATION.md) §5입니다. `docs/<repo>/decisions/`는 폐지 중인 폴더이므로 새로 만들지 않습니다.
+
 `<repo>`는 지금 작업 중인 repo 약칭: `front`(VIVAC-frontend) / `console`(vivac-console) / `mcp`(vivac-mcp) / `core`(vivacapi-core) / `etl`(vivacapi-etl). 어느 카테고리에도 뚜렷이 안 맞으면 사용자에게 먼저 확인합니다.
 
 ## 2. 파일명
 
 - kebab-case, 확장자 `.md`
 - 날짜가 의미 있는 문서(리뷰, backlog 개별 항목)는 끝에 `-YYMMDD`를 붙입니다. 예: `codebase-review-260714.md`
-- 새 폴더(`decisions/`, `reviews/` 등)는 그 유형 문서가 실제로 생길 때만 만듭니다. 빈 폴더를 미리 만들지 않습니다.
+- 새 폴더(`reviews/`, `incidents/` 등)는 그 유형 문서가 실제로 생길 때만 만듭니다. 빈 폴더를 미리 만들지 않습니다.
 
 ## 3. 톤/말투
 
@@ -41,21 +43,9 @@ paths:
 
 화면별 기능 명세·ADR·인시던트는 [`docs/meta/templates/`](../../docs/meta/templates/)의 템플릿(`feature-template.md` · `adr-template.md` · `incident-template.md`)을 씁니다. 아래는 저장소 계층 폴더용 포맷입니다.
 
-### decisions/ — 단일 결정 + 근거
+### 변경 이력 — 규칙이 누적되는 영역
 
-```markdown
-# <결정 제목>
-
-> 작성일: YYYY-MM-DD
-> 배경: <이 결정이 필요해진 계기>
-
-## 결정 사항 요약
-
-| 항목 | 결정 | 근거 |
-|---|---|---|
-```
-
-여러 결정이 누적되는 영역(예: 데이터 변환 규칙)은 버전별 변경 이력 포맷도 허용합니다.
+데이터 변환 규칙처럼 결정이 계속 쌓이는 영역은 ADR 대신 버전별 변경 이력 포맷을 씁니다.
 
 ```markdown
 # <대상> 변경 이력

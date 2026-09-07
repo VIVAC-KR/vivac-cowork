@@ -28,7 +28,7 @@ VIVAC은 8개 저장소로 구성되지만 **제품 문서의 정본은 `vivac-c
 
 약칭: `front`(VIVAC-frontend) · `console`(vivac-console) · `core`(vivacapi-core) · `etl`(vivacapi-etl) · `mcp`(vivac-mcp) · `infra`(vivac-infra) · `ios`(vivac-ios)
 
-> `docs/architecture/`는 여러 저장소에 걸친 것만 담습니다. `docs/core/architecture.md`, `docs/core/erd.md`, `docs/front/reference/`처럼 한 저장소 안에서 닫히는 구조 문서는 저장소 계층에 남습니다. 이름이 같아도 계층이 다릅니다.
+> `docs/architecture/`는 여러 저장소에 걸친 것만 담습니다. `docs/core/architecture.md`, `docs/core/erd.md`, `docs/front/api-proxy.md`처럼 한 저장소 안에서 닫히는 구조 문서는 저장소 계층에 남습니다. 이름이 같아도 계층이 다릅니다.
 
 ### 1.1 계층 판정 기준
 
@@ -181,7 +181,7 @@ ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
 | `docs/core/projects/spot-search-postgres-fts.md`                  | Elasticsearch 대신 PostgreSQL FTS | `vivacapi-core/adr/`        |
 | `docs/core/projects/async-job-worker-design.md`                   | 외부 브로커 없이 내장 폴링 워커              | `vivacapi-core/adr/`        |
 | `docs/etl/decisions/source1_transform_changelog.md`               | 변환 규칙 변경 이력                     | `vivacapi-etl/adr/`         |
-| `docs/front/decisions/incidents/*`, `docs/core/troubleshooting/*` | 사건 기록                           | `docs/<약칭>/incidents/`      |
+| `docs/front/incidents/*`, `docs/core/incidents/*`                 | 사건 기록                           | 이동 완료 (2026-09-08)          |
 
 
 > 인시던트 기록은 ADR이 아닙니다. 결정이 아니라 사건이므로 저장소로 내보내지 않고 `docs/<약칭>/incidents/`에 남깁니다.
@@ -206,7 +206,7 @@ ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
 | 백엔드 아키텍처     | `docs/core/architecture.md`              |
 | DB 스키마       | `docs/core/erd.md`                       |
 | Enum 값       | `docs/core/enums.md`                     |
-| 프론트 아키텍처·배포  | `docs/front/reference/`                  |
+| 프론트 아키텍처·배포  | `docs/front/` 루트                         |
 | 디자인 스펙·토큰    | `docs/design/`                           |
 | 콘솔 화면-데이터 매핑 | `docs/console/spot-sdp-field-mapping.md` |
 | ETL 변환 규칙    | `docs/etl/`                              |
@@ -236,10 +236,10 @@ ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
 | U1  | §2.6의 저장소 ADR 대상 문서를 각 저장소 `adr/`로 내보내는 시점과 방법                                                           | 실행 계획 필요    |
 | U2  | `docs/core/projects/business/`가 제품 정의를 저장소 계층에서 재서술                                                      | 흡수 또는 아카이브  |
 | U3  | `docs/meta/templates/`에 ADR · Feature 명세 · Incident 3종 작성 완료(2026-09-08). Reference 템플릿은 필요 여부부터 판단합니다   | 잔여 1종      |
-| U4  | `VIVAC-frontend`에 Spec Kit 설치와 Constitution 심볼릭 링크 연결                                                    | 별도 저장소 작업   |
+| U4  | `VIVAC-frontend`에 Spec Kit 설치와 Constitution 심볼릭 링크 연결. 설치 시 `meta/templates/frontend-spec-template-draft.md`를 오버라이드로 넘깁니다 | 별도 저장소 작업   |
 | U5  | archive된 `feature-spec-260804.md`의 3·4부(그룹·리뷰·지도·합법성·제보 화면 초안)가 대체 문서 없이 `PRODUCT.md`·`ia.md`에서 현역으로 인용됨 | 승격 위치 결정 필요 |
 
 
-U3는 기존 템플릿을 개조하지 않고 기준부터 새로 정해 작성했습니다. ADR · Feature 명세 · Incident 3종이 `docs/meta/templates/`에 있으므로 `docs/front/templates/` 3종과 `docs/temp-adr/`·`docs/temp-specs/`·`docs/temp-product/`는 폐기 대상입니다. `docs/temp-specs/`의 Feature Specification 초안은 cowork가 아니라 `VIVAC-frontend`의 Spec Kit 템플릿 오버라이드로 넘깁니다.
+U3는 기존 템플릿을 개조하지 않고 기준부터 새로 정해 작성했습니다. ADR · Feature 명세 · Incident 3종이 `docs/meta/templates/`에 있으므로 `docs/front/templates/` 3종과 `docs/temp-adr/`·`docs/temp-specs/`·`docs/temp-product/`는 2026-09-08 삭제했습니다(저장소 루트의 `TEMP.md`도 함께 삭제). `docs/temp-specs/`의 Feature Specification 초안만 [`meta/templates/frontend-spec-template-draft.md`](templates/frontend-spec-template-draft.md)로 옮겨 보관합니다 — cowork용 템플릿이 아니며, U4에서 `VIVAC-frontend`의 `.specify/templates/overrides/spec-template.md`로 넘깁니다.
 
-**해소됨** — 저장소 ADR의 색인 방식(§1.3)과 기존 `docs/<약칭>/decisions/`의 처분(§2.6)은 2026-09-07 확정했습니다. `docs/`를 관심사별 폴더로 재구성하는 파일 이동과 링크 갱신, `docs/CONTEXT_SCOPE.md`의 참고 범위 갱신은 2026-09-08 완료했습니다. `docs/front/INDEX.md`의 SoT 우선순위·작성 원칙 충돌은 2026-09-08 `docs/meta/DOCUMENTATION.md`로 위임해 해소했습니다. `docs/feature-spec.md`는 archive 사본과 본문이 동일하고 이 파일을 가리키는 링크가 없어 2026-09-08 삭제했습니다 — 내용은 [archive/planning-source/feature-spec-260804.md](../archive/planning-source/feature-spec-260804.md)에 보존돼 있습니다.
+**해소됨** — 저장소 ADR의 색인 방식(§1.3)과 기존 `docs/<약칭>/decisions/`의 처분(§2.6)은 2026-09-07 확정했습니다. `docs/`를 관심사별 폴더로 재구성하는 파일 이동과 링크 갱신, `docs/CONTEXT_SCOPE.md`의 참고 범위 갱신은 2026-09-08 완료했습니다. `docs/front/INDEX.md`의 SoT 우선순위·작성 원칙 충돌은 2026-09-08 `docs/meta/DOCUMENTATION.md`로 위임해 해소했습니다. `docs/front/reference/`는 2026-09-08 폐지하고 두 문서를 `docs/front/` 루트로 옮겼으며, 사건 기록은 `docs/front/incidents/`·`docs/core/incidents/`로 이름을 통일했습니다(D6 해소). `docs/feature-spec.md`는 archive 사본과 본문이 동일하고 이 파일을 가리키는 링크가 없어 2026-09-08 삭제했습니다 — 내용은 [archive/planning-source/feature-spec-260804.md](../archive/planning-source/feature-spec-260804.md)에 보존돼 있습니다.
