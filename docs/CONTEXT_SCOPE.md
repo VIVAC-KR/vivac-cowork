@@ -5,7 +5,7 @@
 ## 기본으로 참고
 
 - [product/PRODUCT.md](product/PRODUCT.md) — 제품 정의·MVP 범위·데이터 정의
-- [features/](features/README.md) — 화면별 기능 명세. 플랫폼 무관한 서비스 기능 축이며, 필요한 기능 파일만 골라 읽습니다
+- [features/](features/README.md) — 화면별 기능 명세. 플랫폼 무관한 서비스 기능 축이며, 각 문서가 자족적이라 해당 화면 파일만 골라 읽으면 됩니다
 - [architecture/](architecture/) — 여러 저장소에 걸친 시스템 구조(데이터 파이프라인, API 계약)
 - 지금 작업 중인 저장소에 대응하는 `docs/<약칭>/` 폴더 (front · console · core · etl · mcp 중 하나)
 

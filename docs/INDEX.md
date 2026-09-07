@@ -26,7 +26,7 @@
 
 | 문서 | 내용 | 상태 |
 |---|---|---|
-| [features/](features/README.md) | 화면별 기능 명세 — 홈 · 검색/필터/지도 탐색 · 스팟 상세 · 계정/인증 · 공통 상태. 각 기능을 목적 → 동작 → 확정 계약 → 수용 기준 4블록으로 기술 | 🆕 2026-08-10 PRODUCT.md §5에서 분리 |
+| [features/](features/README.md) | 화면별 기능 명세 — 홈 · 검색/필터/지도 탐색 · 스팟 상세 · 계정/인증. 각 화면을 10개 절(목적과 비목표 → … → 검토 체크리스트)로 **자족적으로** 기술하며, 라우트 없는 공용 로직은 `features/_shared/`에 둡니다 | 🆕 2026-08-10 PRODUCT.md §5에서 분리 |
 
 ### 1.3 아키텍처 (`docs/architecture/`)
 
@@ -47,9 +47,10 @@
 
 | 문서 | 내용 | 상태 |
 |---|---|---|
-| [meta/constitution.md](meta/constitution.md) | 불변 원칙, 우선순위, 결정 권한의 경계 | ✅ v1.0.1 (2026-09-07 비준) |
+| [meta/constitution.md](meta/constitution.md) | 불변 원칙, 우선순위, 결정 권한의 경계 | ✅ v1.1.0 (2026-09-07 비준, 2026-09-08 개정) |
 | [meta/SSOT.md](meta/SSOT.md) | 정본 문서 목록·저장소 경계 — 어떤 정보의 정본이 어느 문서인지 | 초안 — 승인 대기 |
 | [meta/DOCUMENTATION.md](meta/DOCUMENTATION.md) | 문서 작성 방법 — 폴더 분류, 파일명, 톤, ADR 규칙, 템플릿 | 초안 — 승인 대기 |
+| [meta/templates/](meta/templates/) | 문서 템플릿 3종 — [adr-template.md](meta/templates/adr-template.md) · [feature-template.md](meta/templates/feature-template.md) · [incident-template.md](meta/templates/incident-template.md) | 🆕 2026-09-08 작성 |
 | [meta/boundary-conflicts-260907.md](meta/boundary-conflicts-260907.md) | 저장소 경계 원칙과 충돌하는 문서 목록 (2026-09-07 조사, `docs/` md 107개 기준) | 보고서 |
 | [meta/doc-inventory-260907.md](meta/doc-inventory-260907.md) | 문서 인벤토리와 SSOT 마이그레이션 사전 조사 | ⚠️ main 머지 이전(69개) 기준 — 일부 항목은 이미 해소됨 |
 | [meta/migration-decisions-260907.md](meta/migration-decisions-260907.md) | 마이그레이션 중 사람이 결정해야 하는 6건 | ⚠️ 위와 같은 사유로 일부 항목 해소됨 |
@@ -82,7 +83,7 @@ VIVAC-frontend 저장소 자체 `docs/` 구조를 그대로 미러링합니다(�
 | [front/reviews/code-review-2026-07-22.md](front/reviews/code-review-2026-07-22.md) | 2026-07-22 코드 리뷰 — 인증 토큰 refresh 체인 잠복 결함, 배포 인프라 타 서비스 순단 | 🆕 repo 로컬 docs에서 이전 |
 | [front/reference/frontend/api-proxy.md](front/reference/frontend/api-proxy.md) | Next.js API 프록시 구조 | ⚠️ 일부 낡음 — `route.ts` 설명이 실제로는 미사용 코드 (front/INDEX.md 알려진 한계 참고) |
 | [front/reference/infra/docker-deployment.md](front/reference/infra/docker-deployment.md) | Docker 빌드·배포 구성 | ✅ |
-| [front/templates/*.md](front/templates/) | ADR·incident·reference 작성 템플릿 3종 | ✅ |
+| [front/templates/*.md](front/templates/) | ADR·incident·reference 작성 템플릿 3종 | 폐기 대상 — [meta/templates/](meta/templates/)로 대체 (SSOT.md §4 U3) |
 
 ## 3. console — vivac-console (`docs/console/`)
 

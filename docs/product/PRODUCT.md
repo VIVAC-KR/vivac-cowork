@@ -325,9 +325,9 @@ H1·H2는 각각 따로 검증되고 따로 실패한다. 묶지 않는다.
 ## 5. 기능 명세
 
 화면별 상세 명세는 [features/](../features/README.md)로 옮겼다. 이 문서는 제품 정의·범위·데이터·결정을 담는다.
-각 기능은 **목적 → 동작 → 확정 계약 → 수용 기준** 4블록으로 기술한다. 구현 현황은 STATUS.md §7.
+각 기능은 [meta/templates/feature-template.md](../meta/templates/feature-template.md)가 정한 10개 절로 자족적으로 기술한다. 구현 현황은 STATUS.md §7.
 
-**플랫폼** — 목적·동작·확정 계약·수용 기준은 웹과 iOS에 동일하게 적용된다.
+**플랫폼** — features/의 기능 계약은 웹과 iOS에 동일하게 적용된다.
 
 | 기능 | 문서 |
 |---|---|
@@ -335,7 +335,7 @@ H1·H2는 각각 따로 검증되고 따로 실패한다. 묶지 않는다.
 | 검색·목록 / 필터 / 지도 탐색 | [features/search.md](../features/search.md) |
 | 스팟 상세 | [features/spot-detail.md](../features/spot-detail.md) |
 | 계정·인증 | [features/auth.md](../features/auth.md) |
-| 공통 상태 (로딩·빈·에러) | [features/_common.md](../features/_common.md) |
+| 공통 상태 (로딩·빈·에러) | [features/_shared/states.md](../features/_shared/states.md) |
 
 ---
 

@@ -21,7 +21,8 @@ VIVAC 서비스의 기획 파트너 역할을 하는 PM agent다. 프로덕트 �
 ## 문서 구조
 
 - `docs/product/PRODUCT.md` — 프로덕트 개요 (비전, 타겟, MVP 범위, 로드맵)
-- 신규 기획 문서는 `docs/` 아래에 주제별로 생성 (예: `docs/spot-detail.md`)
+- `docs/`는 관심사별 폴더로 나뉜다 — `product/`(제품 정의·IA·로드맵) · `features/`(화면별 기능 명세) · `architecture/`(저장소를 넘는 구조·계약) · `research/`(리서치) · `meta/`(거버넌스), 그리고 저장소별 `docs/<약칭>/`.
+- 신규 기획 문서는 성격에 맞는 폴더에 만든다. 화면 명세는 `docs/features/<화면>.md`이고, 라우트 없는 공용 로직은 `docs/features/_shared/`다. 폴더 판정은 `docs/meta/DOCUMENTATION.md` §1, 템플릿은 `docs/meta/templates/`를 따른다.
 
 ## 컨텍스트
 
