@@ -13,12 +13,31 @@
 | 문서 성격 | 위치 |
 |---|---|
 | 제품 정의·범위·데이터 정의 | `docs/product/PRODUCT.md` (단일 파일) |
-| 화면별 기능 명세 | `docs/product/features/<화면>.md` |
 | 정보 구조 | `docs/product/ia.md` |
-| 여러 저장소에 걸친 정책·설계 | `docs/product/<주제>.md` |
-| 사용자·시장 리서치 | `docs/product/research/` |
+| 기능 후보·로드맵 | `docs/product/business-feature-roadmap.md` |
 
-### 1.2 저장소 계층 — `docs/<약칭>/`
+### 1.2 기능 명세 계층 — `docs/features/`
+
+| 문서 성격 | 위치 |
+|---|---|
+| 화면별 확정 계약 | `docs/features/<화면>.md` |
+
+### 1.3 아키텍처 계층 — `docs/architecture/`
+
+여러 저장소에 걸친 시스템 구조와 계약만 담습니다. 한 저장소 안에서 닫히는 구조 문서는 저장소 계층(`docs/<약칭>/`)에 씁니다.
+
+| 문서 성격 | 위치 |
+|---|---|
+| 저장소를 넘는 데이터·필드 설계 | `docs/architecture/<주제>.md` |
+| API 계약 | `docs/architecture/openapi.json` |
+
+### 1.4 리서치 계층 — `docs/research/`
+
+| 문서 성격 | 위치 |
+|---|---|
+| 사용자·시장 조사 근거 | `docs/research/<주제>.md` |
+
+### 1.5 저장소 계층 — `docs/<약칭>/`
 
 | 문서 성격 | 위치 |
 |---|---|
@@ -30,7 +49,7 @@
 
 새 폴더는 그 유형의 문서가 실제로 생길 때만 만듭니다. 빈 폴더를 미리 만들지 않습니다.
 
-### 1.3 명세 계층 — 각 구현 저장소 `specs/`
+### 1.6 명세 계층 — 각 구현 저장소 `specs/`
 
 `vivac-cowork`에는 없습니다. Spec Kit을 도입한 구현 저장소에만 존재하며, 사람이 직접 폴더를 만들지 않고 그 저장소에서 `/speckit-specify`로 생성합니다. 경로는 `$REPO_ROOT/specs`로 고정돼 있습니다.
 
@@ -40,7 +59,7 @@
 /speckit-specify --short-name map-explore "지도에서 스팟을 탐색하는 기능"
 ```
 
-### 1.4 결정 계층 — `adr/`
+### 1.7 결정 계층 — `adr/`
 
 영향 범위로 위치가 갈립니다. 판정표는 [SSOT.md](SSOT.md) §1.3에 있습니다. 규칙은 아래 §5.
 
@@ -62,7 +81,7 @@
 
 두 곳 모두 "이 기능이 무엇을 해야 하는가"를 다루므로 **경계를 명시하지 않으면 반드시 중복됩니다.** 축과 수명이 다릅니다.
 
-| | `docs/product/features/` | `<repo>/specs/<NNN-feature>/` |
+| | `docs/features/` | `<repo>/specs/<NNN-feature>/` |
 |---|---|---|
 | 저장소 | `vivac-cowork` | 구현 저장소 |
 | 축 | **화면** (홈·검색·상세·인증·공통) | **변경 단위** (이번에 만들 것) |
@@ -75,7 +94,7 @@
 
 ### 4.1 중복을 막는 규칙
 
-1. **`specs/`는 델타만 씁니다.** 현재 계약을 옮겨 적지 않고 `docs/product/features/<화면>.md`를 링크한 뒤 바뀌는 부분만 기술합니다.
+1. **`specs/`는 델타만 씁니다.** 현재 계약을 옮겨 적지 않고 `docs/features/<화면>.md`를 링크한 뒤 바뀌는 부분만 기술합니다.
 2. **완료의 정의에 반영을 포함합니다.** 저장소가 다르므로 자동으로 따라가지 않습니다. 구현이 끝나면 확정된 계약을 `features/`에 반영해야 그 명세가 완료입니다. 반영하지 않으면 `features/`가 낡고 §6의 충돌로 되돌아옵니다.
 3. **`features/`에는 진행 중인 것을 쓰지 않습니다.** 확정되지 않은 항목은 `specs/`에 있거나 `PRODUCT.md` §7 열린 항목에 있습니다.
 4. **한 화면을 여러 명세가 건드릴 수 있습니다.** 반대로 한 명세가 여러 화면을 바꿀 수도 있습니다. 1:1 대응을 가정하지 않습니다.
@@ -141,7 +160,7 @@
 1. 저장소 ADR을 `Proposed` 상태로 두고 **머지하지 않습니다**
 2. 팀에서 영향 범위를 논의합니다
 3. `vivac-cowork/adr/`에 상위 ADR을 기록합니다
-4. 영향받는 기획 문서(`docs/product/PRODUCT.md`, `docs/product/features/`, `docs/product/ia.md` 등)를 수정합니다
+4. 영향받는 기획 문서(`docs/product/PRODUCT.md`, `docs/features/`, `docs/product/ia.md` 등)를 수정합니다
 5. 저장소 ADR의 `Cross-repo impact`에 3에서 만든 cowork ADR을 링크하고 `Parent ADR`도 채운 뒤 머지합니다
 
 #### 기계 검증
@@ -174,7 +193,7 @@ Constitution 원칙 V에서 나옵니다.
 | ADR | 결정 2 확정 후 지정. §5.2의 머리말 항목을 포함해야 합니다 |
 | Reference | `docs/front/templates/reference-template.md` |
 | 인시던트 | `docs/front/templates/incident-template.md` |
-| 기능 명세(화면) | `docs/product/features/`의 기존 문서 — 목적 → 동작 → 확정 계약 → 수용 기준 4블록 |
+| 기능 명세(화면) | `docs/features/`의 기존 문서 — 목적 → 동작 → 확정 계약 → 수용 기준 4블록 |
 
 > 템플릿 단일화는 아직 결정되지 않았습니다. ADR 템플릿이 `docs/temp-adr/_template.md`와 `docs/front/templates/adr-template.md` 두 벌, Feature Spec 템플릿이 `docs/temp-specs/_template.md`와 `.specify/templates/spec-template.md` 두 벌 있습니다. 어느 쪽을 고르든 §5.2의 Parent ADR / Related ADR과 §5.4의 Cross-repo impact 항목을 추가해야 합니다.
 

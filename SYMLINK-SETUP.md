@@ -72,7 +72,7 @@ docs
 
 ```bash
 ls -la docs                                        # 심볼릭 링크인지 확인 (화살표로 표시됨)
-cat docs/PRODUCT.md                                # 공유 문서가 읽히는지 확인
+cat docs/product/PRODUCT.md                        # 공유 문서가 읽히는지 확인
 ls docs/<repo 약칭>/                               # 해당 repo 전용 문서 폴더 확인
 ls -la .claude/rules/vivac-docs-authoring.md       # 규칙 심볼릭 링크 확인
 ```
@@ -104,7 +104,7 @@ docs
 
 `vivac-cowork`는 SSOT 문서 저장소로만 사용하며 Spec Kit을 두지 않습니다. SDD 워크플로는 이를 도입한 구현 저장소에서만 돕니다 — 2026-09-07 기준 **`VIVAC-frontend` 한 곳**입니다. 다른 repo에는 설치하지 않습니다.
 
-Spec Kit은 명세(`specs/`)와 코드가 같은 repo에 있다고 전제하는 도구입니다. `specs/`는 `docs/` 바깥이라 이 문서의 심볼릭 링크로는 공유되지 않으며, 공유할 필요도 없습니다. 저장소를 넘는 확정 계약은 `docs/product/features/`에 있고, `specs/`는 그 repo의 변경 단위만 담습니다.
+Spec Kit은 명세(`specs/`)와 코드가 같은 repo에 있다고 전제하는 도구입니다. `specs/`는 `docs/` 바깥이라 이 문서의 심볼릭 링크로는 공유되지 않으며, 공유할 필요도 없습니다. 저장소를 넘는 확정 계약은 `docs/features/`에 있고, `specs/`는 그 repo의 변경 단위만 담습니다.
 
 ### 8.1 선행 조건
 

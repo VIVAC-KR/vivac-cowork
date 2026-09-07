@@ -1,7 +1,7 @@
 # API 레퍼런스
 
 > 소스: `vivacapi/api/v1/routers.py` + `endpoints/*.py` 전수 조사 (2026-08-01 기준). 기존 `architecture.md`의 엔드포인트 표보다 최신/상세하다 — 이 문서를 1차 참고로 삼는다.
-> 항상 최신 확정 계약이 필요하면 `make openapi`(→ `docs/openapi.json`, git 미추적) 또는 서버 실행 후 `/docs`(Swagger)를 사용한다.
+> 항상 최신 확정 계약이 필요하면 `make openapi`(→ `docs/architecture/openapi.json`, git에 추적된다) 또는 서버 실행 후 `/docs`(Swagger)를 사용한다.
 
 ## 1. 공통 규약
 

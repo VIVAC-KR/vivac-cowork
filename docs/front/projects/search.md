@@ -32,7 +32,7 @@
 
 ### 4.1 검색 결과 리스트 UI (다음 착수 · 우선)
 
-- API를 연결하지 않고 `docs/openapi.json`의 `SpotListItem` 스키마를 참고해 **UI만** 설계합니다.
+- API를 연결하지 않고 `docs/architecture/openapi.json`의 `SpotListItem` 스키마를 참고해 **UI만** 설계합니다.
 - 리스트 카드 필드: `uid`, `title`, `trust_tier`, `thumbnail_url`, `region_short`, `category`.
 - 응답(`SpotListResponse`)은 `items` · `next_cursor` · `has_more` 구조라 `total`이 없습니다 → cursor 기반 **무한 스크롤**을 지향하되, 이번 단계는 자리(placeholder)만 잡습니다.
 - loading · empty 상태를 포함합니다.
@@ -47,7 +47,7 @@
 
 ### 4.3 참조 BE 계약
 
-- 진실 공급원: `docs/openapi.json`의 `GET /v1/explore/spots` (쿼리 `q` · `category` · `region_province` · `cursor` · `limit`).
+- 진실 공급원: `docs/architecture/openapi.json`의 `GET /v1/explore/spots` (쿼리 `q` · `category` · `region_province` · `cursor` · `limit`).
 - 설계 배경: [`docs/core/projects/vvc-105-explore-api-spec.md`](../../core/projects/vvc-105-explore-api-spec.md), [`docs/core/projects/spot-search-postgres-fts.md`](../../core/projects/spot-search-postgres-fts.md). 단, openapi.json과 다른 부분이 있으면 openapi.json을 따릅니다.
 
 ### 4.4 열린 결정 · 의존성

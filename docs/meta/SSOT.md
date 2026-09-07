@@ -3,7 +3,7 @@
 > **초안입니다.** 2026-09-07 작성, 같은 날 1차 피드백 반영. 승인 전까지 이 문서는 규범이 아니라 제안입니다.
 > 근거: Constitution 원칙 V가 "어떤 문서가 정본인지의 목록은 이 문서가 관리한다"고 위임했습니다.
 > 이 문서가 담지 않는 것: 폴더 분류·파일명·작성 방법은 [DOCUMENTATION.md](DOCUMENTATION.md), 불변 원칙과 우선순위는 [constitution.md](constitution.md).
-> **경로 표기**: 이 문서의 경로는 **목표 구조**입니다. 아직 파일을 옮기지 않았으므로 현재 위치와 다른 항목은 "현재" 열에 표시했습니다.
+> **경로 표기**: 이 문서의 경로는 현재 구조와 일치합니다. `docs/product/`·`docs/architecture/`·`docs/research/` 신설에 따른 파일 이동은 2026-09-08에 끝났습니다.
 
 ## 1. 저장소 경계
 
@@ -13,7 +13,10 @@ VIVAC은 8개 저장소로 구성되지만 **제품 문서의 정본은 `vivac-c
 
 | 계층 | 위치 | 정본이 되는 것 |
 |---|---|---|
-| **제품** | `vivac-cowork/docs/product/` | 제품 정의, MVP 범위, 정보 구조, 기능 명세, 데이터·신뢰도 정책 |
+| **제품** | `vivac-cowork/docs/product/` | 제품 정의, MVP 범위, 정보 구조, 로드맵 |
+| **기능 명세** | `vivac-cowork/docs/features/` | 화면별 확정 계약 — 목적·동작·확정 계약·수용 기준 |
+| **아키텍처** | `vivac-cowork/docs/architecture/` | 여러 저장소에 걸친 시스템 구조와 계약 |
+| **리서치** | `vivac-cowork/docs/research/` | 사용자·시장 조사 근거 |
 | **명세** | 각 구현 저장소 `specs/` | 그 저장소의 변경 단위 명세 (Spec Kit을 도입한 저장소만) |
 | **결정** | `vivac-cowork/adr/` | 제품·정책·시스템 전반의 의사결정 |
 | **거버넌스** | `vivac-cowork/docs/meta/` | Constitution, 정본 목록, 작성 규칙 |
@@ -22,6 +25,8 @@ VIVAC은 8개 저장소로 구성되지만 **제품 문서의 정본은 `vivac-c
 | **코드** | 각 구현 저장소 | 구현, 빌드·배포 설정, 생성물 |
 
 약칭: `front`(VIVAC-frontend) · `console`(vivac-console) · `core`(vivacapi-core) · `etl`(vivacapi-etl) · `mcp`(vivac-mcp) · `infra`(vivac-infra) · `ios`(vivac-ios)
+
+> `docs/architecture/`는 여러 저장소에 걸친 것만 담습니다. `docs/core/architecture.md`, `docs/core/erd.md`, `docs/front/reference/`처럼 한 저장소 안에서 닫히는 구조 문서는 저장소 계층에 남습니다. 이름이 같아도 계층이 다릅니다.
 
 ### 1.1 계층 판정 기준
 
@@ -37,10 +42,10 @@ VIVAC은 8개 저장소로 구성되지만 **제품 문서의 정본은 `vivac-c
 
 ### 1.2 중복 작성 금지
 
-제품 기능의 요구사항을 저장소별로 다시 쓰지 않습니다. **확정 계약은 `docs/product/features/` 한 곳에 있고, 각 저장소는 그것을 참조해 구현합니다.**
+제품 기능의 요구사항을 저장소별로 다시 쓰지 않습니다. **확정 계약은 `docs/features/` 한 곳에 있고, 각 저장소는 그것을 참조해 구현합니다.**
 
 ```text
-vivac-cowork/docs/product/features/search.md   ← 확정 계약 (모든 저장소가 참조)
+vivac-cowork/docs/features/search.md   ← 확정 계약 (모든 저장소가 참조)
         ├─→ VIVAC-frontend 구현   (specs/ 로 변경 단위를 쪼갬)
         ├─→ vivacapi-core 구현     (docs/core/ + adr/ 로 진행)
         └─→ vivac-infra 구현
@@ -78,17 +83,36 @@ vivac-cowork/docs/product/features/search.md   ← 확정 계약 (모든 저장�
 
 ### 2.1 제품 계층 — `docs/product/`
 
-| 정보 | 정본 | 현재 위치 |
-|---|---|---|
-| 제품 정의, 문제·가설, MVP 판정 기준, 단계 로드맵 | `docs/product/PRODUCT.md` | `docs/PRODUCT.md` |
-| 데이터 정의(category 어휘, 노지 등재 요건, 채움률 목표) | `docs/product/PRODUCT.md` §4 | 〃 |
-| 신뢰도·노출 **정책** | `docs/product/PRODUCT.md` §4.3 | 〃 |
-| 신뢰도·노출 **필드 설계** | `docs/product/data-pipeline.md` | `docs/data-pipeline.md` |
-| 화면별 기능 명세 | `docs/product/features/` | `docs/features/` |
-| 정보 구조·사이트맵·라우팅 | `docs/product/ia.md` | `docs/ia.md` |
-| 사용자·시장 리서치 | `docs/product/research/` | `docs/archive/planning-source/research_backpacking_market.md` |
+| 정보 | 정본 |
+|---|---|
+| 제품 정의, 문제·가설, MVP 판정 기준, 단계 로드맵 | `docs/product/PRODUCT.md` |
+| 데이터 정의(category 어휘, 노지 등재 요건, 채움률 목표) | `docs/product/PRODUCT.md` §4 |
+| 신뢰도·노출 **정책** | `docs/product/PRODUCT.md` §4.3 |
+| 정보 구조·사이트맵·라우팅 | `docs/product/ia.md` |
+| 기능 후보와 우선순위 | `docs/product/business-feature-roadmap.md` |
 
-### 2.2 명세 계층 — 각 저장소 `specs/`
+### 2.2 기능 명세 계층 — `docs/features/`
+
+| 정보 | 정본 |
+|---|---|
+| 화면별 확정 계약 | `docs/features/<화면>.md` |
+
+목적 → 동작 → 확정 계약 → 수용 기준 4블록으로 기술합니다. 저장소를 넘는 계약이므로 모든 구현 저장소가 이 문서를 참조합니다.
+
+### 2.3 아키텍처 계층 — `docs/architecture/`
+
+| 정보 | 정본 |
+|---|---|
+| 신뢰도·노출 **필드 설계**(`pipeline_status`·`trust_tier`) | `docs/architecture/data-pipeline.md` |
+| API 계약 | `docs/architecture/openapi.json` — `vivacapi-core`에서 생성해 동기화합니다 |
+
+### 2.4 리서치 계층 — `docs/research/`
+
+| 정보 | 정본 |
+|---|---|
+| 사용자·시장 조사 근거 | `docs/research/research_backpacking_market.md` |
+
+### 2.5 명세 계층 — 각 저장소 `specs/`
 
 `vivac-cowork`는 SSOT 저장소이며 Spec Kit을 사용하지 않습니다. SDD 워크플로는 이를 도입한 구현 저장소에서만 돕니다. 2026-09-07 기준 `VIVAC-frontend` 한 곳입니다.
 
@@ -100,7 +124,7 @@ vivac-cowork/docs/product/features/search.md   ← 확정 계약 (모든 저장�
 
 경로는 Spec Kit이 `$REPO_ROOT/specs`로 고정하므로 바꿀 수 없습니다.
 
-**저장소 `specs/`는 제품 요구사항의 정본이 아닙니다.** 저장소를 넘는 확정 계약은 `docs/product/features/`에 있고, `specs/`는 그 계약을 그 저장소에서 어떻게 바꿔 나가는지를 담습니다. 경계는 [DOCUMENTATION.md](DOCUMENTATION.md) §4를 따릅니다.
+**저장소 `specs/`는 제품 요구사항의 정본이 아닙니다.** 저장소를 넘는 확정 계약은 `docs/features/`에 있고, `specs/`는 그 계약을 그 저장소에서 어떻게 바꿔 나가는지를 담습니다. 경계는 [DOCUMENTATION.md](DOCUMENTATION.md) §4를 따릅니다.
 
 Spec Kit이 참조하는 Constitution은 각 저장소에서 상대경로 심볼릭 링크로 연결합니다.
 
@@ -112,7 +136,7 @@ ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
 
 저장소 내부 상대경로라 git에 커밋되며, 사람마다 따로 설정할 필요가 없습니다.
 
-### 2.3 결정 계층 — `adr/`
+### 2.6 결정 계층 — `adr/`
 
 | 정보 | 정본 |
 |---|---|
@@ -133,7 +157,7 @@ ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
 > 인시던트 기록은 ADR이 아닙니다. 결정이 아니라 사건이므로 저장소로 내보내지 않고 `docs/<약칭>/incidents/`에 남깁니다.
 > 저장소 `adr/`로 가는 문서는 `vivac-cowork`에서 제거됩니다. 이동 시점과 방법은 §4의 실행 계획 항목입니다.
 
-### 2.4 거버넌스 계층
+### 2.7 거버넌스 계층
 
 | 정보 | 정본 |
 |---|---|
@@ -142,14 +166,13 @@ ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
 | 폴더 분류, 파일명, 템플릿, 작성 방법 | `docs/meta/DOCUMENTATION.md` |
 | AI agent 실행 지침 | `CLAUDE.md`, `.claude/rules/` |
 
-### 2.5 저장소별 계층 — `docs/<약칭>/`
+### 2.8 저장소별 계층 — `docs/<약칭>/`
 
 | 정보 | 정본 |
 |---|---|
 | 백엔드 아키텍처 | `docs/core/architecture.md` |
 | DB 스키마 | `docs/core/erd.md` |
 | Enum 값 | `docs/core/enums.md` |
-| API 계약 | `docs/openapi.json` — `vivacapi-core`에서 생성해 동기화합니다 |
 | 프론트 아키텍처·배포 | `docs/front/reference/` |
 | 디자인 스펙·토큰 | `docs/design/` |
 | 콘솔 화면-데이터 매핑 | `docs/console/spot-sdp-field-mapping.md` |
@@ -173,12 +196,10 @@ ln -s ../../docs/meta/constitution.md .specify/memory/constitution.md
 
 | # | 항목 | 성격 |
 |---|---|---|
-| U1 | `docs/product/` 신설에 따른 파일 이동과 링크 갱신 범위 | 실행 계획 필요 |
-| U2 | §2.3의 저장소 ADR 대상 문서를 각 저장소 `adr/`로 내보내는 시점과 방법 | 실행 계획 필요 |
-| U3 | `docs/feature-spec.md`가 `docs/features/`로 대체됐으나 파일이 남아 있음 | 삭제 대상 |
-| U4 | `docs/core/projects/business/`가 제품 정의를 저장소 계층에서 재서술 | 흡수 또는 아카이브 |
-| U5 | `docs/front/INDEX.md`의 SoT 우선순위가 Constitution Precedence와 충돌 | 삭제·위임 |
-| U6 | `docs/CONTEXT_SCOPE.md`가 `product/`·`meta/`·`adr/`를 참고 범위에 미포함 | 갱신 |
-| U7 | `VIVAC-frontend`에 Spec Kit 설치와 Constitution 심볼릭 링크 연결 | 별도 저장소 작업 |
+| U1 | §2.6의 저장소 ADR 대상 문서를 각 저장소 `adr/`로 내보내는 시점과 방법 | 실행 계획 필요 |
+| U2 | `docs/feature-spec.md`가 `docs/features/`로 대체됐으나 파일이 남아 있음 | 삭제 대상 |
+| U3 | `docs/core/projects/business/`가 제품 정의를 저장소 계층에서 재서술 | 흡수 또는 아카이브 |
+| U4 | `docs/front/INDEX.md`의 SoT 우선순위가 Constitution Precedence와 충돌 | 삭제·위임 |
+| U5 | `VIVAC-frontend`에 Spec Kit 설치와 Constitution 심볼릭 링크 연결 | 별도 저장소 작업 |
 
-**해소됨** — 저장소 ADR의 색인 방식(§1.3)과 기존 `docs/<약칭>/decisions/`의 처분(§2.3)은 2026-09-07 확정했습니다.
+**해소됨** — 저장소 ADR의 색인 방식(§1.3)과 기존 `docs/<약칭>/decisions/`의 처분(§2.6)은 2026-09-07 확정했습니다. `docs/`를 관심사별 폴더로 재구성하는 파일 이동과 링크 갱신, `docs/CONTEXT_SCOPE.md`의 참고 범위 갱신은 2026-09-08 완료했습니다.

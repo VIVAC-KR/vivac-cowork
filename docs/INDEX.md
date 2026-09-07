@@ -1,30 +1,67 @@
 # VIVAC 문서 마스터 인덱스
 
-`docs/` 전체(제품 공유 문서 + 5개 repo 전용 폴더 + 디자인 문서 `docs/design/`)를 한눈에 조감하기 위한 최상위 내비게이션입니다. 각 폴더의 세부 규칙은 [`front/INDEX.md`](front/INDEX.md)(front repo 문서 구조), [`design/INDEX.md`](design/INDEX.md)(디자인 문서 구조), [`.claude/rules/vivac-docs-authoring.md`](../.claude/rules/vivac-docs-authoring.md)(작성 규칙)를 참고하세요.
+`docs/` 전체(제품·기능 명세·아키텍처·리서치·거버넌스 공유 문서 + 5개 repo 전용 폴더 + 디자인 문서 `docs/design/`)를 한눈에 조감하기 위한 최상위 내비게이션입니다. 각 폴더의 세부 규칙은 [`front/INDEX.md`](front/INDEX.md)(front repo 문서 구조), [`design/INDEX.md`](design/INDEX.md)(디자인 문서 구조), [`.claude/rules/vivac-docs-authoring.md`](../.claude/rules/vivac-docs-authoring.md)(작성 규칙)를 참고하세요.
 
 진행 상황·미해결 이슈·핵심 결정 이력은 문서마다 흩어져 있어 따로 모았습니다 → **[STATUS.md](STATUS.md)**.
 
 ## 0. 지금 가장 먼저 봐야 할 문서
 
-1. [PRODUCT.md](PRODUCT.md) — 제품 정의 — MVP 실행 기준 (2026-08-10 개정)
+1. [PRODUCT.md](product/PRODUCT.md) — 제품 정의 — MVP 실행 기준 (2026-08-10 개정)
 2. [STATUS.md](STATUS.md) — 미해결 이슈·진행 상황·결정 로그 종합, §7 MVP 구현 현황 추가(2026-08-10)
 3. [features/](features/README.md) — 화면별 기능 명세(홈·검색·상세·인증·공통 상태), PRODUCT.md §5에서 분리(2026-08-10)
-4. [ia.md](ia.md) — 정보 구조(사이트맵·화면 인벤토리·내비게이션)
-5. [business-feature-roadmap.md](business-feature-roadmap.md) — 실제 구현 스냅샷 기준 기능 로드맵
+4. [ia.md](product/ia.md) — 정보 구조(사이트맵·화면 인벤토리·내비게이션)
+5. [business-feature-roadmap.md](product/business-feature-roadmap.md) — 실제 구현 스냅샷 기준 기능 로드맵
 
-## 1. 제품 전체 (docs/ 루트 — 여러 repo에 걸친 맥락)
+## 1. 여러 repo에 걸친 문서
+
+### 1.1 제품 (`docs/product/`)
 
 | 문서 | 내용 | 상태 |
 |---|---|---|
-| [PRODUCT.md](PRODUCT.md) | 제품 정의 — 문제·가설, MVP 범위와 단계, 데이터 정의, 결정 로그, 열린 항목 (기능 명세는 `features/`로 분리) | ✅ 확정본 (2026-08-10 개정) |
-| [data-pipeline.md](data-pipeline.md) | 스팟 데이터 `pipeline_status`/`trust_tier` 필드 설계 | ✅ 확정, vivacapi-core에 구현됨 |
-| [business-feature-roadmap.md](business-feature-roadmap.md) | 성장/리텐션/수익화/신뢰 4관점 기능 후보 — 코드 대조로 근거 검증됨 | 진행 중 (항목별 상태는 STATUS.md 참고) |
+| [product/PRODUCT.md](product/PRODUCT.md) | 제품 정의 — 문제·가설, MVP 범위와 단계, 데이터 정의, 결정 로그, 열린 항목 (기능 명세는 `features/`로 분리) | ✅ 확정본 (2026-08-10 개정) |
+| [product/ia.md](product/ia.md) | 정보 구조(IA) — 사이트맵, 화면 인벤토리, 내비게이션 구조, 아직 배치 못 정한 것 | 🆕 2026-08-04 작성 |
+| [product/business-feature-roadmap.md](product/business-feature-roadmap.md) | 성장/리텐션/수익화/신뢰 4관점 기능 후보 — 코드 대조로 근거 검증됨 | 진행 중 (항목별 상태는 STATUS.md 참고) |
+
+### 1.2 기능 명세 (`docs/features/`)
+
+| 문서 | 내용 | 상태 |
+|---|---|---|
 | [features/](features/README.md) | 화면별 기능 명세 — 홈 · 검색/필터/지도 탐색 · 스팟 상세 · 계정/인증 · 공통 상태. 각 기능을 목적 → 동작 → 확정 계약 → 수용 기준 4블록으로 기술 | 🆕 2026-08-10 PRODUCT.md §5에서 분리 |
+
+### 1.3 아키텍처 (`docs/architecture/`)
+
+여러 저장소에 걸친 시스템 구조와 계약만 담습니다. 한 저장소 안에서 닫히는 구조 문서([core/architecture.md](core/architecture.md), [core/erd.md](core/erd.md), [front/reference/](front/reference/))는 저장소별 폴더에 있습니다.
+
+| 문서 | 내용 | 상태 |
+|---|---|---|
+| [architecture/data-pipeline.md](architecture/data-pipeline.md) | 스팟 데이터 `pipeline_status`/`trust_tier` 필드 설계 | ✅ 확정, vivacapi-core에 구현됨 |
+| `architecture/openapi.json` | API 계약(생성물) — `vivacapi-core`에서 `make openapi`로 만들어 동기화하며, 커밋 메시지에 core 버전을 명시합니다 | ✅ 최신 동기화 v0.22.0 |
+
+### 1.4 리서치 (`docs/research/`)
+
+| 문서 | 내용 | 상태 |
+|---|---|---|
+| [research/research_backpacking_market.md](research/research_backpacking_market.md) | 백패킹·비박 시장 리서치 — PRODUCT.md 문제 정의의 근거 자료 | 참고용 — `archive/planning-source/`에서 이동 |
+
+### 1.5 문서 거버넌스 (`docs/meta/`)
+
+| 문서 | 내용 | 상태 |
+|---|---|---|
+| [meta/constitution.md](meta/constitution.md) | 불변 원칙, 우선순위, 결정 권한의 경계 | ✅ v1.0.1 (2026-09-07 비준) |
+| [meta/SSOT.md](meta/SSOT.md) | 정본 문서 목록·저장소 경계 — 어떤 정보의 정본이 어느 문서인지 | 초안 — 승인 대기 |
+| [meta/DOCUMENTATION.md](meta/DOCUMENTATION.md) | 문서 작성 방법 — 폴더 분류, 파일명, 톤, ADR 규칙, 템플릿 | 초안 — 승인 대기 |
+| [meta/boundary-conflicts-260907.md](meta/boundary-conflicts-260907.md) | 저장소 경계 원칙과 충돌하는 문서 목록 (2026-09-07 조사, `docs/` md 107개 기준) | 보고서 |
+| [meta/doc-inventory-260907.md](meta/doc-inventory-260907.md) | 문서 인벤토리와 SSOT 마이그레이션 사전 조사 | ⚠️ main 머지 이전(69개) 기준 — 일부 항목은 이미 해소됨 |
+| [meta/migration-decisions-260907.md](meta/migration-decisions-260907.md) | 마이그레이션 중 사람이 결정해야 하는 6건 | ⚠️ 위와 같은 사유로 일부 항목 해소됨 |
+
+### 1.6 docs/ 루트
+
+| 문서 | 내용 | 상태 |
+|---|---|---|
 | [feature-spec.md](archive/planning-source/feature-spec-260804.md) | 화면 단위 상세 기능 기획 — 실서비스(vivac.app)·API 대조로 확인한 정상구현/반쪽구현/API선구현/완전미구현 4갈래를 통합 | 폐기 — 2026-08-10 archive로 이동. 구현 스펙은 `features/`, 구현 상태는 STATUS.md §7로 대체. 3부·4부 화면 기획 초안은 대체 문서 없음 |
-| [ia.md](ia.md) | 정보 구조(IA) — 사이트맵, 화면 인벤토리, 내비게이션 구조, 아직 배치 못 정한 것 | 🆕 2026-08-04 작성 |
 | [map-explore-discussion.md](map-explore-discussion.md) | 지도 기반 탐색 MVP 기획 논의 기록 — 확정 결정 D1~D14(데이터 범위·category 어휘·약속의 크기·단계·지도 SDK)와 근거·감수사항·이월 숙제 | 🆕 2026-08-10 확정 |
 | [CONTEXT_SCOPE.md](CONTEXT_SCOPE.md) | 각 repo CLAUDE.md가 import하는 공유 컨텍스트 기본 참고 범위 안내 | ✅ 안정 |
-| [archive/planning-source/](archive/planning-source/) | PRODUCT.md 병합에 쓰인 기획·리서치 원본 (2026-08-04 통합) + [PRODUCT-260804.md](archive/planning-source/PRODUCT-260804.md)(2026-08-10 개정으로 대체된 구 제품 정의) + [feature-spec-260804.md](archive/planning-source/feature-spec-260804.md)(2026-08-10 `features/`로 대체된 구 화면 기획) | 폐기 3건 + 미해결/유효 3건 혼재, 각 파일 상단 상태 헤더 참고 |
+| [archive/planning-source/](archive/planning-source/) | PRODUCT.md 병합에 쓰인 기획 원본 (2026-08-04 통합) + [PRODUCT-260804.md](archive/planning-source/PRODUCT-260804.md)(2026-08-10 개정으로 대체된 구 제품 정의) + [feature-spec-260804.md](archive/planning-source/feature-spec-260804.md)(2026-08-10 `features/`로 대체된 구 화면 기획). 시장 리서치 원본은 [research/](research/)로 옮겼습니다 | 폐기 3건 + 미해결/유효 3건 혼재, 각 파일 상단 상태 헤더 참고 |
 
 ## 2. front — VIVAC-frontend (`docs/front/`)
 

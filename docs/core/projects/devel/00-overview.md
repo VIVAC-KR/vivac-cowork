@@ -109,7 +109,7 @@ make run              # = uvicorn vivacapi.main:app --reload
 # 테스트 (vivac_test DB, .env.test 사용)
 make test
 
-# OpenAPI 스펙 추출 (docs/openapi.json, git 미추적)
+# OpenAPI 스펙 추출 (docs/architecture/openapi.json, git에 추적된다)
 make openapi
 
 # 배포 (main 브랜치에서만, 버전 태그 push)

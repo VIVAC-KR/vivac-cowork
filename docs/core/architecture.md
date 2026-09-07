@@ -4,8 +4,10 @@
 >
 > 이 문서는 living document다 — 라우터/모델/설정이 바뀌면 함께 갱신한다.
 > DB 스키마 상세는 [erd.md](./erd.md) 참고. API 명세는 수기로 관리하지 않는다
-> — `make openapi`로 `docs/openapi.json`(git 미추적)을 생성하거나, 서버 실행 후
-> `/docs`(Swagger UI)를 사용한다.
+> — `vivacapi-core`에서 `make openapi`로 생성한 뒤 `vivac-cowork`의
+> `docs/architecture/openapi.json`으로 동기화한다(git에 추적되며, 커밋 메시지에
+> core 버전을 밝힌다 — 예: `docs: sync openapi.json from vivacapi-core v0.22.0`).
+> 서버 실행 후 `/docs`(Swagger UI)로도 확인할 수 있다.
 
 ## Tech Stack
 

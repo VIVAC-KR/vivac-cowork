@@ -9,7 +9,7 @@
 
 ## 1. 한 줄 요약
 
-FE/BE 병렬 구현을 위해 탐색 API 계약을 OpenAPI(`docs/openapi.json`)로 확정한다. 본 단계는 **스펙·스텁만** 다루며, 실제 DB 쿼리·필터·이미지·정렬 로직은 후속 마일스톤에서 진행한다.
+FE/BE 병렬 구현을 위해 탐색 API 계약을 OpenAPI(`docs/architecture/openapi.json`)로 확정한다. 본 단계는 **스펙·스텁만** 다루며, 실제 DB 쿼리·필터·이미지·정렬 로직은 후속 마일스톤에서 진행한다.
 
 ---
 
@@ -154,12 +154,12 @@ next_cursor = base64( {"r": <sort_value>, "u": "<uid>", "s": "<sort_key>"} )
 - `app/core/errors.py` — `SPOT_NOT_FOUND` 추가
 - `app/api/v1/routers.py` — `/v1/explore` 마운트
 - `tests/test_explore_router.py` — 스텁 계약 검증 7개 테스트
-- `docs/openapi.json` — `make openapi`로 재생성 (gitignored, FE가 참고할 계약서)
+- `docs/architecture/openapi.json` — `make openapi`로 재생성해 `vivac-cowork`에 동기화 (git에 추적된다, FE가 참고할 계약서)
 
 ---
 
 ## 9. FE 액션
 
-1. `docs/openapi.json` 또는 본 PR 머지 후 main 브랜치의 OpenAPI 스펙으로 mock 클라이언트 생성
+1. `docs/architecture/openapi.json` 또는 본 PR 머지 후 main 브랜치의 OpenAPI 스펙으로 mock 클라이언트 생성
 2. 본 스펙 결정 사항(경로/필드/페이지네이션/에러 envelope) 합의 확인
 3. 정렬 변경 시 cursor 무효화 동작을 클라이언트 측에서 처리 (VVC-119 머지 전까지는 stub이므로 영향 없음)

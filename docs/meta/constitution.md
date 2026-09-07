@@ -1,10 +1,16 @@
 <!--
 Sync Impact Report
 ==================
-Version change: 1.0.0 → 1.0.1
-Change type: PATCH — 문서 위치 이동과 사실 갱신. 원칙 본문은 한 글자도 바뀌지 않았습니다.
+Version change: 1.0.1 → 1.0.2
+Change type: PATCH — 참조 문서 경로 표기 갱신. 원칙 본문은 한 글자도 바뀌지 않았습니다.
 
-이번 개정 (1.0.1, 2026-09-07)
+이번 개정 (1.0.2, 2026-09-08)
+  - 경로 표기 갱신: docs/data-pipeline.md → docs/architecture/data-pipeline.md,
+    docs/PRODUCT.md → docs/product/PRODUCT.md
+    사유: docs/ 를 관심사별 폴더(product · features · architecture · research · meta)로
+    재구성하면서 문서 위치가 바뀌었습니다. 원칙의 의미는 바뀌지 않았습니다.
+
+1.0.1 개정 (2026-09-07)
   - 위치 이동: .specify/memory/constitution.md → docs/meta/constitution.md
     사유: Spec Kit을 vivac-cowork에서 걷어내고 VIVAC-frontend에서만 사용하기로 결정했습니다.
     이 문서는 Spec Kit 산출물이 아니라 VIVAC의 거버넌스 문서이므로 도구와 함께 사라지면 안 됩니다.
@@ -91,7 +97,7 @@ VIVAC은 "어디에서 합법적이고 안전하게 야영할 수 있는가"라�
   노출 대상이 아닙니다.
 - 검수 단계를 통과하지 않은 데이터를 production API에 노출해서는 안 됩니다(MUST NOT). 노출 게이트와
   신뢰도 표시는 서로 다른 축으로 분리해 유지합니다(MUST) — 현재 이를 구현하는 필드는
-  `pipeline_status`와 `trust_tier`이며 정의의 정본은 `docs/data-pipeline.md`입니다. 메커니즘은 바뀔 수
+  `pipeline_status`와 `trust_tier`이며 정의의 정본은 `docs/architecture/data-pipeline.md`입니다. 메커니즘은 바뀔 수
   있으나 두 축의 분리라는 원칙은 유지합니다.
 - 신뢰도가 낮다는 이유로 정보를 조용히 감추어서는 안 됩니다(MUST NOT). 낮은 신뢰도는 비노출이 아니라
   명시적 표시로 처리합니다.
@@ -280,7 +286,7 @@ VIVAC은 "어디에서 합법적이고 안전하게 야영할 수 있는가"라�
 | `CLAUDE.md` | AI agent 실행 지침 — 참조 문서, 표기 규칙, 도구·명령 사용법 |
 | `docs/meta/SSOT.md` | 어떤 사실의 정본이 어느 문서인지에 대한 목록 |
 | `docs/meta/DOCUMENTATION.md` | 문서 종류별 작성 방법·형식·폴더 구조·파일명 규칙 |
-| `docs/PRODUCT.md` | 제품 정의 — 문제, 타겟, 범위, 전략 |
+| `docs/product/PRODUCT.md` | 제품 정의 — 문제, 타겟, 범위, 전략 |
 
 이 문서에 포함하지 않는 것: 폴더 구조, 파일명 규칙, 마크다운 서식, 명령어·git 사용법, 라이브러리
 선택, 문서별 상세 작성 방법.
@@ -339,4 +345,4 @@ VIVAC은 "어디에서 합법적이고 안전하게 야영할 수 있는가"라�
 - 예외를 허용할 때는 예외 대상, 이유, 해소 조건을 기록합니다. 기한이나 해소 조건이 없는 예외는
   허용하지 않습니다.
 
-**Version**: 1.0.1 | **Ratified**: 2026-09-07 | **Last Amended**: 2026-09-07
+**Version**: 1.0.2 | **Ratified**: 2026-09-07 | **Last Amended**: 2026-09-08

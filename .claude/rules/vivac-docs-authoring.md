@@ -7,6 +7,8 @@ paths:
 
 `docs/` 하위에 새 문서를 쓰거나 기존 문서를 고칠 때 이 규칙을 따릅니다. 사용자가 "문서 작성해줘"라고만 요청해도, 아래 기준으로 알맞은 카테고리 폴더에 정형 포맷으로 작성합니다.
 
+상세 규칙은 [`docs/meta/DOCUMENTATION.md`](../../docs/meta/DOCUMENTATION.md)를 따릅니다. 이 문서는 그중 자주 쓰는 부분을 간추린 것입니다.
+
 ## 1. 어느 폴더에 쓸지
 
 | 문서 성격 | 위치 |
@@ -15,7 +17,10 @@ paths:
 | 미착수 · 우선순위 대기 항목 | `docs/<repo>/backlog/` |
 | 날짜별 코드리뷰 / 문서감사 스냅샷 | `docs/<repo>/reviews/` |
 | 여러 결정이 묶인 기능·API 설계 문서 | `docs/<repo>/projects/` |
-| 특정 repo 전용이 아닌, 여러 repo에 걸친 product 맥락 | `docs/` 루트 |
+| 제품 정의·범위·정보 구조·로드맵 | `docs/product/` |
+| 화면별 기능 명세 | `docs/features/` |
+| 여러 repo에 걸친 시스템 구조·계약 | `docs/architecture/` |
+| 사용자·시장 리서치 | `docs/research/` |
 | 그 외 안정적 레퍼런스(아키텍처, ERD, 필드 매핑 등) | `docs/<repo>/` 루트 |
 
 `<repo>`는 지금 작업 중인 repo 약칭: `front`(VIVAC-frontend) / `console`(vivac-console) / `mcp`(vivac-mcp) / `core`(vivacapi-core) / `etl`(vivacapi-etl). 어느 카테고리에도 뚜렷이 안 맞으면 사용자에게 먼저 확인합니다.

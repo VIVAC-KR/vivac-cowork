@@ -78,7 +78,7 @@ front 폴더가 자체 우선순위를 선언합니다. **코드가 3순위**로
 
 `reference/`·`templates/` 등 front 전용 분류를 선언합니다. 다른 저장소 폴더는 `decisions/`·`backlog/`·`reviews/`·`projects/`를 씁니다.
 
-**제안**: 실제 폴더는 그대로 두되 분류 기준 서술은 [DOCUMENTATION.md](DOCUMENTATION.md) §1.2로 통합합니다.
+**제안**: 실제 폴더는 그대로 두되 분류 기준 서술은 [DOCUMENTATION.md](DOCUMENTATION.md) §1.5로 통합합니다.
 
 ### B7. `.claude/rules/vivac-docs-authoring.md`
 
